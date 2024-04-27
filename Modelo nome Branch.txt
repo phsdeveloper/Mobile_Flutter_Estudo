@@ -1,5 +1,7 @@
 Modelo nome Branch:
  - Udemy_SecaoXX_AulaXX_NomeAula
+ - Udemy_Secao02_Aula21_CriandoUmNovoProjeto
 
  Modelo Commit: 
- - SecaoXX_AulaXX_NomeAula_Status_Observacao
+ - SecaoXX >> Aula XX: NomeAula >> Status >> Observacao
+ - Secao02 >> Aula 21: Criando Um Novo Projeto >> Concluida >> Apenas a criacao do projeto
