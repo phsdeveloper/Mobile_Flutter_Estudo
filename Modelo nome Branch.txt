@@ -1,0 +1,5 @@
+Modelo nome Branch:
+ - Udemy_SecaoXX_AulaXX_NomeAula
+
+ Modelo Commit: 
+ - SecaoXX_AulaXX_NomeAula_Status_Observacao
