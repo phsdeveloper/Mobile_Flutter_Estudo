@@ -10,10 +10,15 @@ class PerguntaApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-final List<String> perguntas = [
-  '01) Qual é a sua cor favorita',
-  '02) Qual é a Seu animal',
-];
+  final List<String> perguntas = [
+    '01) Qual é a sua cor favorita',
+    '02) Qual é a Seu animal',
+  ];
+
+  void Responder()
+  {
+    print('pergunta Respondida');
+  }
 
     return MaterialApp(
       home: Scaffold(
@@ -26,7 +31,7 @@ final List<String> perguntas = [
              Text(perguntas[0]),
              const ElevatedButton(child: Text('Resposta 01'),onPressed: null,),
              const ElevatedButton(child: Text('Resposta 02'),onPressed: null,),
-             const ElevatedButton(child: Text('Resposta 03'),onPressed: null,),
+             const ElevatedButton(child: Text('Resposta 03'),onPressed: Responder(),),
           ],
         ),
       )
