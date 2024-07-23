@@ -6,13 +6,18 @@ main()=> runApp(PerguntaApp());
 //}
 
 class PerguntaApp extends StatelessWidget {
-  const PerguntaApp();
+  const PerguntaApp({super.key});
 
-  
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Text('Ola teste'),
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('Perguntas'),
+          backgroundColor: Theme.of(context).colorScheme.secondary
+        ),
+        body: const Text('teste'),
+      )
     );
   }
 }
