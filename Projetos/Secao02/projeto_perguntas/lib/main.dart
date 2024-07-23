@@ -15,9 +15,8 @@ class PerguntaApp extends StatelessWidget {
     '02) Qual é a Seu animal',
   ];
 
-  void Responder()
-  {
-    print('pergunta Respondida');
+  void Responder(){
+    print('pergunta Respondida metodo');
   }
 
     return MaterialApp(
@@ -29,9 +28,10 @@ class PerguntaApp extends StatelessWidget {
         body: Column(
           children: [
              Text(perguntas[0]),
-             const ElevatedButton(child: Text('Resposta 01'),onPressed: null,),
-             const ElevatedButton(child: Text('Resposta 02'),onPressed: null,),
-             const ElevatedButton(child: Text('Resposta 03'),onPressed: Responder(),),
+             ElevatedButton(child: Text('Resposta 01'),onPressed: Responder),
+             ElevatedButton(child: Text('Resposta 02'),onPressed: (){print('teste');}),
+             ElevatedButton(child: const Text('Resposta 03'),onPressed: () => print('Resposta 3!!!'),),
+             ElevatedButton(child: const Text('Resposta 04 - Desabilitado'),onPressed: null,),
           ],
         ),
       )
