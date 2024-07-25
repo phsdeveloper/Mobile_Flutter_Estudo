@@ -69,3 +69,9 @@ class PerguntaApp extends StatefulWidget {
 
 
 }
+/*********************************************************************************************************************
+ * Para essa aula fiz corretamente que foi criar um componente apartado e reinderizar na tela.                       *                    
+ * Mas nesse caso fui um pouco alem e coloquei um evento que exiba os dados de pergunta e resposta perinentes.       *
+ * Porém não atualizou a tela                                                                                        *        
+ *                                                                                                                   *                             
+ *********************************************************************************************************************/
