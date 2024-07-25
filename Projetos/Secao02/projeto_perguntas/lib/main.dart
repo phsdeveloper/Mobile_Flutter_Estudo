@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 main()=> runApp(PerguntaApp());
 
-class PerguntaAppState extends State <PerguntaApp>{
+class _PerguntaAppState extends State <PerguntaApp>{
 
 
   int perguntaSelecionada = 0;
@@ -12,7 +12,7 @@ final List<String> perguntas = [
     '03) Qual é a sua Comida favorita',
     '04) O Samuel é lindo?',
   ];
-  void Responder(){
+  void _responder(){
     setState(() {
       perguntaSelecionada++;
     });
@@ -21,7 +21,7 @@ final List<String> perguntas = [
     {
       perguntaSelecionada = 0;
     }
-    print('pergunta "${perguntas[perguntaSelecionada]}" Respondida.');
+    print('pergunta "${perguntas[perguntaSelecionada]}" Respondida. com o index $perguntaSelecionada');
   }
 
     @override
@@ -36,10 +36,10 @@ final List<String> perguntas = [
         body: Column(
           children: [
              Text(perguntas[perguntaSelecionada]),
-             ElevatedButton(child: Text('Com certeza'),onPressed: Responder),
-             ElevatedButton(child: Text('Não Acho'),onPressed: (){print('teste');}),
-             ElevatedButton(child: const Text('Mais ou menos'),onPressed: () => print('Resposta 3!!!'),),
-             ElevatedButton(child: const Text('Não vou responder - Desabilitado'),onPressed: null,),
+             ElevatedButton(onPressed: _responder,child: const Text('Com certeza')),
+             ElevatedButton(onPressed: _responder,child: const Text('Não Acho')),
+             ElevatedButton(onPressed: _responder,child: const Text('Mais ou menos')),
+             const ElevatedButton(onPressed: null,child: Text('Não vou responder - Desabilitado')),
           ],
         ),
       )
@@ -53,10 +53,10 @@ final List<String> perguntas = [
 
 
 class PerguntaApp extends StatefulWidget {
-  //const PerguntaApp({super.key});
+  const PerguntaApp({super.key});
   @override
-  PerguntaAppState createState() {
-    return new PerguntaAppState();
+  _PerguntaAppState createState() {
+    return new _PerguntaAppState();
   }
 
 
