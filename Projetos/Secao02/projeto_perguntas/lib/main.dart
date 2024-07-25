@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import './questao.dart';
+import './resposta_desafio.dart';
 main()=> runApp(PerguntaApp());
 
 class _PerguntaAppState extends State <PerguntaApp>{
@@ -24,6 +25,19 @@ final List<String> perguntas = [
     print('pergunta "${perguntas[perguntaSelecionada]}" Respondida. com o index $perguntaSelecionada');
   }
 
+
+  int _obterPergunta()
+  {
+      setState(() {
+      perguntaSelecionada++;
+    });
+    if(perguntaSelecionada>=perguntas.length)
+    {
+      perguntaSelecionada = 0;
+    }
+    return perguntaSelecionada;
+  }
+
     @override
   Widget build(BuildContext context) {
 
@@ -36,9 +50,9 @@ final List<String> perguntas = [
         body: Column(
           children: [
              Questao(perguntas[perguntaSelecionada]),
-             ElevatedButton(onPressed: _responder,child: const Text('Com certeza')),
-             ElevatedButton(onPressed: _responder,child: const Text('Não Acho')),
-             ElevatedButton(onPressed: _responder,child: const Text('Mais ou menos')),
+             resposta_desafio('Com certeza',perguntas[perguntaSelecionada],_obterPergunta()),
+             resposta_desafio('Não Acho',perguntas[perguntaSelecionada],_obterPergunta()),
+             resposta_desafio('Mais ou menos',perguntas[perguntaSelecionada],_obterPergunta()),
              const ElevatedButton(onPressed: null,child: Text('Não vou responder - Desabilitado')),
           ],
         ),
@@ -46,12 +60,6 @@ final List<String> perguntas = [
     );
   }
 }
-
-
-
-
-
-
 class PerguntaApp extends StatefulWidget {
   const PerguntaApp({super.key});
   @override
