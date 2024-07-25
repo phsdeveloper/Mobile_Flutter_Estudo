@@ -56,7 +56,7 @@ class PerguntaApp extends StatefulWidget {
   const PerguntaApp({super.key});
   @override
   _PerguntaAppState createState() {
-    return new _PerguntaAppState();
+    return _PerguntaAppState();
   }
 
 
