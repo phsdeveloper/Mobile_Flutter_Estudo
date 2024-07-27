@@ -11,7 +11,6 @@ final List<String> perguntas = [
     '01) Qual é a sua cor favorita',
     '02) Qual é a Seu animal favorito',
     '03) Qual é a sua Comida favorita',
-    '04) O Samuel é lindo?',
   ];
   void _responder(){
     setState(() {
@@ -26,18 +25,6 @@ final List<String> perguntas = [
   }
 
 
-  int _obterPergunta()
-  {
-      setState(() {
-      perguntaSelecionada++;
-    });
-    if(perguntaSelecionada>=perguntas.length)
-    {
-      perguntaSelecionada = 0;
-    }
-    return perguntaSelecionada;
-  }
-
     @override
   Widget build(BuildContext context) {
 
@@ -50,9 +37,9 @@ final List<String> perguntas = [
         body: Column(
           children: [
              Questao(perguntas[perguntaSelecionada]),
-             resposta_desafio('Com certeza!',perguntas[perguntaSelecionada],_obterPergunta()),
-             resposta_desafio('Não Acho',perguntas[perguntaSelecionada],_obterPergunta()),
-             resposta_desafio('Mais ou menos',perguntas[perguntaSelecionada],_obterPergunta()),
+             resposta_desafio('Com certeza!',perguntas[perguntaSelecionada],_responder),
+             resposta_desafio('Não Acho',perguntas[perguntaSelecionada],_responder),
+             resposta_desafio('Mais ou menos',perguntas[perguntaSelecionada],_responder),
              const ElevatedButton(onPressed: null,child: Text('Não vou responder - Desabilitado')),
           ],
         ),
@@ -66,8 +53,6 @@ class PerguntaApp extends StatefulWidget {
   _PerguntaAppState createState() {
     return _PerguntaAppState();
   }
-
-
 }
 /*********************************************************************************************************************
  * Para essa aula fiz corretamente que foi criar um componente apartado e reinderizar na tela.                       *                    
