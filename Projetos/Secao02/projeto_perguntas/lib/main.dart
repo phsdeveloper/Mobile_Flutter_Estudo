@@ -50,7 +50,7 @@ final List<String> perguntas = [
         body: Column(
           children: [
              Questao(perguntas[perguntaSelecionada]),
-             resposta_desafio('Com certeza',perguntas[perguntaSelecionada],_obterPergunta()),
+             resposta_desafio('Com certeza!',perguntas[perguntaSelecionada],_obterPergunta()),
              resposta_desafio('Não Acho',perguntas[perguntaSelecionada],_obterPergunta()),
              resposta_desafio('Mais ou menos',perguntas[perguntaSelecionada],_obterPergunta()),
              const ElevatedButton(onPressed: null,child: Text('Não vou responder - Desabilitado')),
