@@ -7,10 +7,27 @@ class _PerguntaAppState extends State <PerguntaApp>{
 
 
   int perguntaSelecionada = 0;
-final List<String> perguntas = [
-    '01) Qual é a sua cor favorita',
-    '02) Qual é a Seu animal favorito',
-    '03) Qual é a sua Comida favorita',
+final List<Map<String,Object>> perguntas = [
+    {
+      'texto':'01) Qual é a sua cor favorita?',
+      'resposta':['Preto','Vermelho','Verde','Branco','Azul',]
+
+    },
+    {
+      'texto':'02) Qual é a Seu animal favorito?',
+      'resposta':['Cachorro','Gato','Peixe','Coelho','Passaro',]
+
+    },
+    {
+      'texto':'03) Qual é a sua Comida favorita?',
+      'resposta':['Pizza','Hamburguer','Cachorro quente','feijoada','Coxinha',]
+
+    },
+    {
+      'texto':'04) O Samuel é lindo?',
+      'resposta':['Não','Com certeza','mais ou menos']
+
+    },
   ];
   void _responder(){
     setState(() {
@@ -36,10 +53,10 @@ final List<String> perguntas = [
         ),
         body: Column(
           children: [
-             Questao(perguntas[perguntaSelecionada]),
-             resposta_desafio('Com certeza!',perguntas[perguntaSelecionada],_responder),
-             resposta_desafio('Não Acho',perguntas[perguntaSelecionada],_responder),
-             resposta_desafio('Mais ou menos',perguntas[perguntaSelecionada],_responder),
+             Questao(perguntas[perguntaSelecionada]['texto'].toString()),
+             resposta_desafio('Com certeza!',perguntas[perguntaSelecionada]['texto'].toString(),_responder),
+             resposta_desafio('Não Acho',perguntas[perguntaSelecionada]['texto'].toString(),_responder),
+             resposta_desafio('Mais ou menos',perguntas[perguntaSelecionada]['texto'].toString(),_responder),
              const ElevatedButton(onPressed: null,child: Text('Não vou responder - Desabilitado')),
           ],
         ),
