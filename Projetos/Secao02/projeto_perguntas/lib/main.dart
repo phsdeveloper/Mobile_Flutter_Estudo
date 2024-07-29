@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import './questao.dart';
 import './resposta_desafio.dart';
-main()=> runApp(PerguntaApp());
+main()=> runApp(const _PerguntaApp());
 
-class _PerguntaAppState extends State <PerguntaApp>{
+class _PerguntaAppState extends State <_PerguntaApp>{
 
 
   int perguntaSelecionada = 0;
@@ -20,7 +20,7 @@ final List<Map<String,Object>> perguntas = [
     },
     {
       'texto':'03) Qual é a sua Comida favorita?',
-      'resposta':['Pizza','Hamburguer','Cachorro quente','feijoada','Coxinha',]
+      'resposta':['Pizza','Hamburguer','Cachorro quente','feijoada','Coxinha!',]
 
     },
     {
@@ -42,9 +42,21 @@ final List<Map<String,Object>> perguntas = [
   }
 
 
+   List<Widget> respostas = [];
+    
+ 
+
+
+
+
     @override
   Widget build(BuildContext context) {
-
+  respostas.clear();
+   for(String respostaItem in perguntas[perguntaSelecionada]['resposta'] as List)
+   {
+    
+       respostas.add(resposta_desafio(respostaItem,perguntas[perguntaSelecionada]['texto'].toString(),_responder));
+   }
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
@@ -54,9 +66,7 @@ final List<Map<String,Object>> perguntas = [
         body: Column(
           children: [
              Questao(perguntas[perguntaSelecionada]['texto'].toString()),
-             resposta_desafio('Com certeza!',perguntas[perguntaSelecionada]['texto'].toString(),_responder),
-             resposta_desafio('Não Acho',perguntas[perguntaSelecionada]['texto'].toString(),_responder),
-             resposta_desafio('Mais ou menos',perguntas[perguntaSelecionada]['texto'].toString(),_responder),
+             ...respostas, ///Esses 3 pontos adicona todos os elementos nesta lista, ou seja, é como se fosse um foreach para o item
              const ElevatedButton(onPressed: null,child: Text('Não vou responder - Desabilitado')),
           ],
         ),
@@ -64,8 +74,9 @@ final List<Map<String,Object>> perguntas = [
     );
   }
 }
-class PerguntaApp extends StatefulWidget {
-  const PerguntaApp({super.key});
+
+class _PerguntaApp extends StatefulWidget {
+  const _PerguntaApp();
   @override
   _PerguntaAppState createState() {
     return _PerguntaAppState();
