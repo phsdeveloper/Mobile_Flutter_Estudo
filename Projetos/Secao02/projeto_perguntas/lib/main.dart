@@ -44,19 +44,15 @@ final List<Map<String,Object>> perguntas = [
 
    List<Widget> respostas = [];
     
- 
-
-
-
-
     @override
   Widget build(BuildContext context) {
   respostas.clear();
-   for(String respostaItem in perguntas[perguntaSelecionada]['resposta'] as List)
-   {
-    
-       respostas.add(resposta_desafio(respostaItem,perguntas[perguntaSelecionada]['texto'].toString(),_responder));
-   }
+  /**
+   * O map é similar ao select do Entity
+   */
+  List<String> lstRespostas = perguntas[perguntaSelecionada]['resposta'] as List<String>;
+respostas = lstRespostas.map((t) => resposta_desafio(t,perguntas[perguntaSelecionada]['texto'].toString(),_responder))
+                        .toList();
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
@@ -66,7 +62,8 @@ final List<Map<String,Object>> perguntas = [
         body: Column(
           children: [
              Questao(perguntas[perguntaSelecionada]['texto'].toString()),
-             ...respostas, ///Esses 3 pontos adicona todos os elementos nesta lista, ou seja, é como se fosse um foreach para o item
+             //...respostas, ///Esses 3 (sprad) pontos adicona todos os elementos nesta lista, ou seja, é como se fosse um foreach para o item
+             ...lstRespostas.map((t) => resposta_desafio(t,perguntas[perguntaSelecionada]['texto'].toString(),_responder)),
              const ElevatedButton(onPressed: null,child: Text('Não vou responder - Desabilitado')),
           ],
         ),
