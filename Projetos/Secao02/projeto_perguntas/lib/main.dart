@@ -29,18 +29,26 @@ final List<Map<String,Object>> perguntas = [
 
     },
   ];
+
   void _responder(){
     setState(() {
       perguntaSelecionada++;
     });
     
-    if(perguntaSelecionada>=perguntas.length)
-    {
-      perguntaSelecionada = 0;
-    }
-    print('pergunta "${perguntas[perguntaSelecionada]}" Respondida. com o index $perguntaSelecionada');
+    //if(perguntaSelecionada>=perguntas.length)
+    //{
+    //  perguntaSelecionada = 0;
+    //}
+    //print('pergunta "${perguntas[perguntaSelecionada]}" Respondida. com o index $perguntaSelecionada');
   }
 
+  void _reiniciarQuestoes()
+  {
+    perguntaSelecionada = -1;
+    _responder();
+  }
+
+  
 
    List<Widget> respostas = [];
     
@@ -50,23 +58,40 @@ final List<Map<String,Object>> perguntas = [
   /**
    * O map é similar ao select do Entity
    */
-  List<String> lstRespostas = perguntas[perguntaSelecionada]['resposta'] as List<String>;
-respostas = lstRespostas.map((t) => resposta_desafio(t,perguntas[perguntaSelecionada]['texto'].toString(),_responder))
-                        .toList();
+List<String> lstRespostas =[];
+if(perguntaSelecionada<perguntas.length)
+{
+    lstRespostas = perguntas[perguntaSelecionada]['resposta'] as List<String>;
+    respostas = lstRespostas.map((t) => resposta_desafio(t,perguntas[perguntaSelecionada]['texto'].toString(),_responder))
+                            .toList();
+}
+
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
           title: const Text('Perguntas'),
           backgroundColor: Theme.of(context).colorScheme.secondary
         ),
-        body: Column(
-          children: [
-             Questao(perguntas[perguntaSelecionada]['texto'].toString()),
-             //...respostas, ///Esses 3 (sprad) pontos adicona todos os elementos nesta lista, ou seja, é como se fosse um foreach para o item
-             ...lstRespostas.map((t) => resposta_desafio(t,perguntas[perguntaSelecionada]['texto'].toString(),_responder)),
-             const ElevatedButton(onPressed: null,child: Text('Não vou responder - Desabilitado')),
-          ],
+        body: (perguntaSelecionada>=perguntas.length)?
+        (
+          Column(children: [
+            Questao('Todas as perguntas respondidas, quer reiniciar as questões?'.toString()),
+            resposta_desafio('Sim','',_reiniciarQuestoes),
+            resposta_desafio('Nao', '', () { })//Por hora nao sei como resolver essa parada
+          ])
+        )
+        : 
+        (
+          Column(
+              children: [
+                Questao(perguntas[perguntaSelecionada]['texto'].toString()),
+                //...respostas, ///Esses 3 (sprad) pontos adicona todos os elementos nesta lista, ou seja, é como se fosse um foreach para o item
+                ...lstRespostas.map((t) => resposta_desafio(t,perguntas[perguntaSelecionada]['texto'].toString(),_responder)),
+                const ElevatedButton(onPressed: null,child: Text('Não vou responder - Desabilitado')),
+              ],
+            )
         ),
+
       )
     );
   }
