@@ -5,9 +5,9 @@ main()=> runApp(const _PerguntaApp());
 
 class _PerguntaAppState extends State <_PerguntaApp>{
 
-
+  bool _blFinalizarQuestionario = false;
   int perguntaSelecionada = 0;
-final List<Map<String,Object>> perguntas = [
+final List<Map<String,Object>> _perguntas = const [
     {
       'texto':'01) Qual é a sua cor favorita?',
       'resposta':['Preto','Vermelho','Verde','Branco','Azul',]
@@ -47,7 +47,14 @@ final List<Map<String,Object>> perguntas = [
     perguntaSelecionada = -1;
     _responder();
   }
+  
+  void _finalizarQuestionario()
+  {
+     setState(() {
+      _blFinalizarQuestionario = true;
+    });
 
+  }
   
 
    List<Widget> respostas = [];
@@ -59,10 +66,10 @@ final List<Map<String,Object>> perguntas = [
    * O map é similar ao select do Entity
    */
 List<String> lstRespostas =[];
-if(perguntaSelecionada<perguntas.length)
+if(perguntaSelecionada<_perguntas.length)
 {
-    lstRespostas = perguntas[perguntaSelecionada]['resposta'] as List<String>;
-    respostas = lstRespostas.map((t) => resposta_desafio(t,perguntas[perguntaSelecionada]['texto'].toString(),_responder))
+    lstRespostas = _perguntas[perguntaSelecionada]['resposta'] as List<String>;
+    respostas = lstRespostas.map((t) => resposta_desafio(t,_perguntas[perguntaSelecionada]['texto'].toString(),_responder))
                             .toList();
 }
 
@@ -72,21 +79,26 @@ if(perguntaSelecionada<perguntas.length)
           title: const Text('Perguntas'),
           backgroundColor: Theme.of(context).colorScheme.secondary
         ),
-        body: (perguntaSelecionada>=perguntas.length)?
+        body: _blFinalizarQuestionario? 
+         (
+           const Center(child: Text('Parabéns',style: TextStyle(fontSize: 28),))
+         )
+        :
+        (perguntaSelecionada>=_perguntas.length)?
         (
           Column(children: [
             Questao('Todas as perguntas respondidas, quer reiniciar as questões?'.toString()),
             resposta_desafio('Sim','',_reiniciarQuestoes),
-            resposta_desafio('Nao', '', () { })//Por hora nao sei como resolver essa parada
+            resposta_desafio('Nao', '', _finalizarQuestionario)
           ])
         )
         : 
         (
           Column(
               children: [
-                Questao(perguntas[perguntaSelecionada]['texto'].toString()),
+                Questao(_perguntas[perguntaSelecionada]['texto'].toString()),
                 //...respostas, ///Esses 3 (sprad) pontos adicona todos os elementos nesta lista, ou seja, é como se fosse um foreach para o item
-                ...lstRespostas.map((t) => resposta_desafio(t,perguntas[perguntaSelecionada]['texto'].toString(),_responder)),
+                ...lstRespostas.map((t) => resposta_desafio(t,_perguntas[perguntaSelecionada]['texto'].toString(),_responder)),
                 const ElevatedButton(onPressed: null,child: Text('Não vou responder - Desabilitado')),
               ],
             )
@@ -104,6 +116,24 @@ class _PerguntaApp extends StatefulWidget {
     return _PerguntaAppState();
   }
 }
+/****************************************************************************************************************************************
+ *                                                       A N O T A Ç Õ E S  A U L A S                                                   *
+ ****************************************************************************************************************************************
+ *                                                                                                                                      *
+ *     -------------------------------------------------------------------------------------------------------------------------        *
+ *     --                                                      AULA 54                                                        --        *
+ *     -------------------------------------------------------------------------------------------------------------------------        *
+ *     -- Nessa aula foi resolvido o problema de acesar uma pergunda fora do limte de perguntas disponiveis, eu               --        *
+ *     -- havia feito um looping para que esse erro nao ocorresse.                                                            --        *
+ *     -- Mas nessa aula foi adicionado um recurso que ao acabar as perguntas uma mensagem de "Parabens" ia aparecer na tela  --        *
+ *     -- em um novo componente Center.                                                                                       --        *
+ *     -- Minha abordagem foi questionar ao usuário se o usuário gostaria de reiniciar as questoes, mas isso fez a arvore     --        *
+ *     -- de Widgets ficar desorganizada com muitos operadores ternarios.                                                     --        *
+ *     -------------------------------------------------------------------------------------------------------------------------        *
+ *                                                                                                                                      *
+ *                                                                                                                                      *
+ ****************************************************************************************************************************************/
+
 /*********************************************************************************************************************
  * Para essa aula fiz corretamente que foi criar um componente apartado e reinderizar na tela.                       *                    
  * Mas nesse caso fui um pouco alem e coloquei um evento que exiba os dados de pergunta e resposta perinentes.       *
