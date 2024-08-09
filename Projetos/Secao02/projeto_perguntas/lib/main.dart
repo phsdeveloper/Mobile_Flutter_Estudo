@@ -129,6 +129,7 @@ class _PerguntaApp extends StatefulWidget {
  *     -- em um novo componente Center.                                                                                       --        *
  *     -- Minha abordagem foi questionar ao usuário se o usuário gostaria de reiniciar as questoes, mas isso fez a arvore     --        *
  *     -- de Widgets ficar desorganizada com muitos operadores ternarios.                                                     --        *
+ *     -- Essa aula foi realizada na branch anterior                                                                          --        *
  *     -------------------------------------------------------------------------------------------------------------------------        *
  *                                                                                                                                      *
  *                                                                                                                                      *
