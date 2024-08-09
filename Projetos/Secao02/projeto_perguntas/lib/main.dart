@@ -12,36 +12,40 @@ class _PerguntaAppState extends State<_PerguntaApp> {
     {
       'texto': '01) Qual é a sua cor favorita?',
       'resposta': [
-        'Preto',
-        'Vermelho',
-        'Verde',
-        'Branco',
-        'Azul',
+        {'nota': 10, 'texto': 'Preto'},
+        {'nota': 5, 'texto': 'Vermelho'},
+        {'nota': 20, 'texto': 'Verde'},
+        {'nota': 100, 'texto': 'Branco'},
+        {'nota': 50, 'texto': 'Azul'},
       ]
     },
     {
       'texto': '02) Qual é a Seu animal favorito?',
       'resposta': [
-        'Cachorro',
-        'Gato',
-        'Peixe',
-        'Coelho',
-        'Passaro',
+        {'texto': 'Cachorro','nota': 5,},
+        {'texto': 'Gato'    ,'nota': 6,},
+        {'texto': 'Peixe'   ,'nota': 7,},
+        {'texto': 'Coelho'  ,'nota': 8,},
+        {'texto': 'Passaro' ,'nota': 9,},
       ]
     },
     {
       'texto': '03) Qual é a sua Comida favorita?',
       'resposta': [
-        'Pizza',
-        'Hamburguer',
-        'Cachorro quente',
-        'feijoada',
-        'Coxinha!',
+        {'texto': 'Pizza'          ,'nota': 20},
+        {'texto': 'Hamburguer'     ,'nota': 30},
+        {'texto': 'Cachorro quente','nota': 40},
+        {'texto': 'feijoada'       ,'nota': 50},
+        {'texto': 'Coxinha!'       ,'nota': 60},
       ]
     },
     {
       'texto': '04) O Samuel é lindo?',
-      'resposta': ['Não', 'Com certeza', 'mais ou menos']
+      'resposta': [
+        {'texto':'Não'          ,'nota': 0  ,}, 
+        {'texto':'Com certeza'  ,'nota': 100,}, 
+        {'texto':'mais ou menos','nota': 10 ,},
+        ]
     },
   ];
 
@@ -90,6 +94,13 @@ class _PerguntaApp extends StatefulWidget {
 /****************************************************************************************************************************************
  *                                                       A N O T A Ç Õ E S  A U L A S                                                   *
  ****************************************************************************************************************************************
+ *                                                                                                                                      *
+ *     -------------------------------------------------------------------------------------------------------------------------        *
+ *     --                                              AULA 62 - Adicionando pontuacao                                        --        *
+ *     -------------------------------------------------------------------------------------------------------------------------        *
+ *     -- Nesta aula foi iniciado uma alteracao para adicionar a pontuacao as perguntas, fiz a alteracao mas com uma abordagem--        *
+ *     -- diferente, e mantendo o meu template inicial                                                                        --        *
+ *     -------------------------------------------------------------------------------------------------------------------------        *
  *                                                                                                                                      *
  *     -------------------------------------------------------------------------------------------------------------------------        *
  *     --                                           AULA 60 - Widget Questionario                                             --        *

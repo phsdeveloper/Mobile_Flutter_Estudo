@@ -31,11 +31,11 @@ class Questionario extends StatelessWidget {
   /**
    * O map é similar ao select do Entity
    */
-List<String> lstRespostas =[];
+List<Map<String,Object>> lstRespostas = [];
 if(perguntaSelecionada<perguntas.length)
 {
-    lstRespostas = perguntas[perguntaSelecionada]['resposta'] as List<String>;
-    _respostas = lstRespostas.map((t) => resposta_desafio(t,perguntas[perguntaSelecionada]['texto'].toString(),responder))
+    lstRespostas.addAll(perguntas);
+    _respostas = lstRespostas.map((resp) => resposta_desafio(resp['texto'].toString(),perguntas[perguntaSelecionada]['texto'].toString(),responder))
                             .toList();
 }
 
@@ -53,7 +53,7 @@ if(perguntaSelecionada<perguntas.length)
               children: [
                 Questao(perguntas[perguntaSelecionada]['texto'].toString()),
                 //...respostas, ///Esses 3 (sprad) pontos adicona todos os elementos nesta lista, ou seja, é como se fosse um foreach para o item
-                ...lstRespostas.map((t) => resposta_desafio(t,perguntas[perguntaSelecionada]['texto'].toString(),responder)),
+                ...lstRespostas.map((resp) => resposta_desafio(resp['texto'].toString(),perguntas[perguntaSelecionada]['texto'].toString(),responder)),
                 const ElevatedButton(onPressed: null,child: Text('Não vou responder - Desabilitado')),
               ],
             )
