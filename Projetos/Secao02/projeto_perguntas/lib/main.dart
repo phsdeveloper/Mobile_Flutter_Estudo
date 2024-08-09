@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import './questao.dart';
 import './resposta_desafio.dart';
+import './Resultado.dart';
 main()=> runApp(const _PerguntaApp());
 
 class _PerguntaAppState extends State <_PerguntaApp>{
@@ -81,7 +82,7 @@ if(perguntaSelecionada<_perguntas.length)
         ),
         body: _blFinalizarQuestionario? 
          (
-           const Center(child: Text('Parabéns',style: TextStyle(fontSize: 28),))
+           const Resultado()
          )
         :
         (perguntaSelecionada>=_perguntas.length)?
