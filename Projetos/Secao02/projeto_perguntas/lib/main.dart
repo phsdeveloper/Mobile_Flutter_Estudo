@@ -1,112 +1,82 @@
 import 'package:flutter/material.dart';
-import './questao.dart';
-import './resposta_desafio.dart';
+import './questionario.dart';
+
 import './Resultado.dart';
-main()=> runApp(const _PerguntaApp());
 
-class _PerguntaAppState extends State <_PerguntaApp>{
+main() => runApp(const _PerguntaApp());
 
+class _PerguntaAppState extends State<_PerguntaApp> {
   bool _blFinalizarQuestionario = false;
   int perguntaSelecionada = 0;
-final List<Map<String,Object>> _perguntas = const [
+  final List<Map<String, Object>> _perguntas = const [
     {
-      'texto':'01) Qual é a sua cor favorita?',
-      'resposta':['Preto','Vermelho','Verde','Branco','Azul',]
-
+      'texto': '01) Qual é a sua cor favorita?',
+      'resposta': [
+        'Preto',
+        'Vermelho',
+        'Verde',
+        'Branco',
+        'Azul',
+      ]
     },
     {
-      'texto':'02) Qual é a Seu animal favorito?',
-      'resposta':['Cachorro','Gato','Peixe','Coelho','Passaro',]
-
+      'texto': '02) Qual é a Seu animal favorito?',
+      'resposta': [
+        'Cachorro',
+        'Gato',
+        'Peixe',
+        'Coelho',
+        'Passaro',
+      ]
     },
     {
-      'texto':'03) Qual é a sua Comida favorita?',
-      'resposta':['Pizza','Hamburguer','Cachorro quente','feijoada','Coxinha!',]
-
+      'texto': '03) Qual é a sua Comida favorita?',
+      'resposta': [
+        'Pizza',
+        'Hamburguer',
+        'Cachorro quente',
+        'feijoada',
+        'Coxinha!',
+      ]
     },
     {
-      'texto':'04) O Samuel é lindo?',
-      'resposta':['Não','Com certeza','mais ou menos']
-
+      'texto': '04) O Samuel é lindo?',
+      'resposta': ['Não', 'Com certeza', 'mais ou menos']
     },
   ];
 
-  void _responder(){
+  void _responder() {
     setState(() {
       perguntaSelecionada++;
     });
-    
-    //if(perguntaSelecionada>=perguntas.length)
-    //{
-    //  perguntaSelecionada = 0;
-    //}
-    //print('pergunta "${perguntas[perguntaSelecionada]}" Respondida. com o index $perguntaSelecionada');
   }
 
-  void _reiniciarQuestoes()
-  {
+  void _reiniciarQuestoes() {
     perguntaSelecionada = -1;
     _responder();
   }
-  
-  void _finalizarQuestionario()
-  {
-     setState(() {
+
+  void _finalizarQuestionario() {
+    setState(() {
       _blFinalizarQuestionario = true;
     });
-
   }
-  
 
-   List<Widget> respostas = [];
-    
-    @override
+  @override
   Widget build(BuildContext context) {
-  respostas.clear();
-  /**
-   * O map é similar ao select do Entity
-   */
-List<String> lstRespostas =[];
-if(perguntaSelecionada<_perguntas.length)
-{
-    lstRespostas = _perguntas[perguntaSelecionada]['resposta'] as List<String>;
-    respostas = lstRespostas.map((t) => resposta_desafio(t,_perguntas[perguntaSelecionada]['texto'].toString(),_responder))
-                            .toList();
-}
-
     return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Perguntas'),
-          backgroundColor: Theme.of(context).colorScheme.secondary
-        ),
-        body: _blFinalizarQuestionario? 
-         (
-           const Resultado()
-         )
-        :
-        (perguntaSelecionada>=_perguntas.length)?
-        (
-          Column(children: [
-            Questao('Todas as perguntas respondidas, quer reiniciar as questões?'.toString()),
-            resposta_desafio('Sim','',_reiniciarQuestoes),
-            resposta_desafio('Nao', '', _finalizarQuestionario)
-          ])
-        )
-        : 
-        (
-          Column(
-              children: [
-                Questao(_perguntas[perguntaSelecionada]['texto'].toString()),
-                //...respostas, ///Esses 3 (sprad) pontos adicona todos os elementos nesta lista, ou seja, é como se fosse um foreach para o item
-                ...lstRespostas.map((t) => resposta_desafio(t,_perguntas[perguntaSelecionada]['texto'].toString(),_responder)),
-                const ElevatedButton(onPressed: null,child: Text('Não vou responder - Desabilitado')),
-              ],
-            )
-        ),
-
-      )
-    );
+        home: Scaffold(
+            appBar: AppBar(
+                title: const Text('Perguntas'),
+                backgroundColor: Theme.of(context).colorScheme.secondary),
+            body: _blFinalizarQuestionario
+                ? (const Resultado())
+                : Questionario(
+                    perguntas: _perguntas,
+                    perguntaSelecionada: perguntaSelecionada,
+                    responder: _responder,
+                    reiniciarQuestoes: _reiniciarQuestoes,
+                    finalizarQuestionario: _finalizarQuestionario)));
   }
 }
 
@@ -120,6 +90,13 @@ class _PerguntaApp extends StatefulWidget {
 /****************************************************************************************************************************************
  *                                                       A N O T A Ç Õ E S  A U L A S                                                   *
  ****************************************************************************************************************************************
+ *                                                                                                                                      *
+ *     -------------------------------------------------------------------------------------------------------------------------        *
+ *     --                                           AULA 60 - Widget Questionario                                             --        *
+ *     -------------------------------------------------------------------------------------------------------------------------        *
+ *     -- Nesta aula foi realizada uma refatoracao no sentido de separar melhor os componentes, até agora consegui manter o   --        *
+ *     -- meu codigo inicial sem alteracoes                                                                                   --        *
+ *     -------------------------------------------------------------------------------------------------------------------------        *
  *                                                                                                                                      *
  *     -------------------------------------------------------------------------------------------------------------------------        *
  *     --                                             AULA 57 - Desafio Widget Resultado                                      --        *

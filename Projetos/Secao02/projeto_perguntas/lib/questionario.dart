@@ -1,0 +1,62 @@
+import 'package:flutter/material.dart';
+import './questao.dart';
+import './resposta_desafio.dart';
+class Questionario extends StatelessWidget {
+   Questionario({super.key, required this.perguntas
+                    ,required this.perguntaSelecionada
+                    ,required this.responder
+                    ,required this.reiniciarQuestoes
+                    ,required this.finalizarQuestionario
+                    
+                    });
+
+
+  final List<Map<String,Object>> perguntas;
+  final int perguntaSelecionada;
+
+  final void Function() responder;
+  final void Function() reiniciarQuestoes;
+  final void Function() finalizarQuestionario;
+
+
+
+
+   List<Widget> _respostas = [];
+
+  @override
+  Widget build(BuildContext context) {
+
+
+  _respostas.clear();
+  /**
+   * O map é similar ao select do Entity
+   */
+List<String> lstRespostas =[];
+if(perguntaSelecionada<perguntas.length)
+{
+    lstRespostas = perguntas[perguntaSelecionada]['resposta'] as List<String>;
+    _respostas = lstRespostas.map((t) => resposta_desafio(t,perguntas[perguntaSelecionada]['texto'].toString(),responder))
+                            .toList();
+}
+
+
+    return  (perguntaSelecionada>=perguntas.length)?        (
+          Column(children: [
+            Questao('Todas as perguntas respondidas, quer reiniciar as questões?'.toString()),
+            resposta_desafio('Sim','',reiniciarQuestoes),
+            resposta_desafio('Nao', '', finalizarQuestionario)
+          ])
+        )
+        : 
+        (
+          Column(
+              children: [
+                Questao(perguntas[perguntaSelecionada]['texto'].toString()),
+                //...respostas, ///Esses 3 (sprad) pontos adicona todos os elementos nesta lista, ou seja, é como se fosse um foreach para o item
+                ...lstRespostas.map((t) => resposta_desafio(t,perguntas[perguntaSelecionada]['texto'].toString(),responder)),
+                const ElevatedButton(onPressed: null,child: Text('Não vou responder - Desabilitado')),
+              ],
+            )
+        );
+  }
+}
