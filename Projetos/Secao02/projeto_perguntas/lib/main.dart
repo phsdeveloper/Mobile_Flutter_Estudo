@@ -13,40 +13,40 @@ class _PerguntaAppState extends State<_PerguntaApp> {
     {
       'texto': '01) Qual é a sua cor favorita?',
       'resposta': [
-        {'texto': 'Preto'   , 'pontuacao': 10 , },
-        {'texto': 'Vermelho', 'pontuacao': 5  , },
-        {'texto': 'Verde'   , 'pontuacao': 20 , },
-        {'texto': 'Branco'  , 'pontuacao': 100, },
-        {'texto': 'Azul'    , 'pontuacao': 50 , },
+        {'texto': 'Preto'   , 'pontuacao': 1 , },
+        {'texto': 'Vermelho', 'pontuacao': 2  , },
+        {'texto': 'Verde'   , 'pontuacao': 3 , },
+        {'texto': 'Branco'  , 'pontuacao': 4, },
+        {'texto': 'Azul'    , 'pontuacao': 5 , },
       ]
     },
     {
       'texto': '02) Qual é a Seu animal favorito?',
       'resposta': [
-        {'texto': 'Cachorro'  ,'pontuacao': 5,},
-        {'texto': 'Gato'      ,'pontuacao': 6,},
-        {'texto': 'Peixe'     ,'pontuacao': 7,},
-        {'texto': 'Coelho'    ,'pontuacao': 8,},
-        {'texto': 'Passaro'   ,'pontuacao': 9,},
-        {'texto': 'Tartaruga' ,'pontuacao': 10,},
+        {'texto': 'Cachorro'  ,'pontuacao': 1,},
+        {'texto': 'Gato'      ,'pontuacao': 2,},
+        {'texto': 'Peixe'     ,'pontuacao': 3,},
+        {'texto': 'Coelho'    ,'pontuacao': 4,},
+        {'texto': 'Passaro'   ,'pontuacao': 5,},
+        {'texto': 'Tartaruga' ,'pontuacao': 6,},
       ]
     },
     {
       'texto': '03) Qual é a sua Comida favorita?',
       'resposta': [
-        {'texto': 'Pizza'          ,'pontuacao': 20},
-        {'texto': 'Hamburguer'     ,'pontuacao': 30},
-        {'texto': 'Cachorro quente','pontuacao': 40},
-        {'texto': 'feijoada'       ,'pontuacao': 50},
-        {'texto': 'Coxinha!'       ,'pontuacao': 60},
+        {'texto': 'Pizza'          ,'pontuacao': 2},
+        {'texto': 'Hamburguer'     ,'pontuacao': 3},
+        {'texto': 'Cachorro quente','pontuacao': 4},
+        {'texto': 'feijoada'       ,'pontuacao': 5},
+        {'texto': 'Coxinha!'       ,'pontuacao': 6},
       ]
     },
     {
       'texto': '04) O Samuel é lindo?',
       'resposta': [
-        {'texto':'Não'          ,'pontuacao': 0  ,}, 
-        {'texto':'Com certeza'  ,'pontuacao': 100,}, 
-        {'texto':'mais ou menos','pontuacao': 10 ,},
+        {'texto':'Não'          ,'pontuacao': 0,}, 
+        {'texto':'Com certeza'  ,'pontuacao': 5,}, 
+        {'texto':'mais ou menos','pontuacao': 1,},
         ]
     },
   ];
@@ -81,7 +81,7 @@ class _PerguntaAppState extends State<_PerguntaApp> {
                 title: const Text('Perguntas'),
                 backgroundColor: Theme.of(context).colorScheme.secondary),
             body: _blFinalizarQuestionario
-                ? (const Resultado())
+                ? (  Resultado(_pontuacaoFinal))
                 : Questionario(
                     perguntas: _perguntas,
                     perguntaSelecionada: perguntaSelecionada,
@@ -101,6 +101,13 @@ class _PerguntaApp extends StatefulWidget {
 /****************************************************************************************************************************************
  *                                                       A N O T A Ç Õ E S  A U L A S                                                   *
  ****************************************************************************************************************************************
+ *                                                                                                                                      *
+ *     -------------------------------------------------------------------------------------------------------------------------        *
+ *     --                                           AULA 65. Adicionando Pontuação #03                                        --        *
+ *     -------------------------------------------------------------------------------------------------------------------------        *
+ *     -- Nesta aula foi implementado uma mensagem diferente de acordo com a pontuacao final                                  --        *
+ *     -- Aula compilando corretamente                                                                                        --        *
+ *     -------------------------------------------------------------------------------------------------------------------------        *
  *                                                                                                                                      *
  *     -------------------------------------------------------------------------------------------------------------------------        *
  *     --                                        **  AULA 64 - Adicionando pontuacao 02 **                                    --        *
