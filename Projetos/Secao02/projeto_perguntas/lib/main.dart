@@ -8,56 +8,61 @@ main() => runApp(const _PerguntaApp());
 class _PerguntaAppState extends State<_PerguntaApp> {
   bool _blFinalizarQuestionario = false;
   int perguntaSelecionada = 0;
+  int _pontuacaoFinal = 0;
   final List<Map<String, Object>> _perguntas = const [
     {
       'texto': '01) Qual é a sua cor favorita?',
       'resposta': [
-        {'nota': 10, 'texto': 'Preto'},
-        {'nota': 5, 'texto': 'Vermelho'},
-        {'nota': 20, 'texto': 'Verde'},
-        {'nota': 100, 'texto': 'Branco'},
-        {'nota': 50, 'texto': 'Azul'},
+        {'pontuacao': 10, 'texto': 'Preto'},
+        {'pontuacao': 5, 'texto': 'Vermelho'},
+        {'pontuacao': 20, 'texto': 'Verde'},
+        {'pontuacao': 100, 'texto': 'Branco'},
+        {'pontuacao': 50, 'texto': 'Azul'},
       ]
     },
     {
       'texto': '02) Qual é a Seu animal favorito?',
       'resposta': [
-        {'texto': 'Cachorro','nota': 5,},
-        {'texto': 'Gato'    ,'nota': 6,},
-        {'texto': 'Peixe'   ,'nota': 7,},
-        {'texto': 'Coelho'  ,'nota': 8,},
-        {'texto': 'Passaro' ,'nota': 9,},
+        {'texto': 'Cachorro','pontuacao': 5,},
+        {'texto': 'Gato'    ,'pontuacao': 6,},
+        {'texto': 'Peixe'   ,'pontuacao': 7,},
+        {'texto': 'Coelho'  ,'pontuacao': 8,},
+        {'texto': 'Passaro' ,'pontuacao': 9,},
       ]
     },
     {
       'texto': '03) Qual é a sua Comida favorita?',
       'resposta': [
-        {'texto': 'Pizza'          ,'nota': 20},
-        {'texto': 'Hamburguer'     ,'nota': 30},
-        {'texto': 'Cachorro quente','nota': 40},
-        {'texto': 'feijoada'       ,'nota': 50},
-        {'texto': 'Coxinha!'       ,'nota': 60},
+        {'texto': 'Pizza'          ,'pontuacao': 20},
+        {'texto': 'Hamburguer'     ,'pontuacao': 30},
+        {'texto': 'Cachorro quente','pontuacao': 40},
+        {'texto': 'feijoada'       ,'pontuacao': 50},
+        {'texto': 'Coxinha!'       ,'pontuacao': 60},
       ]
     },
     {
       'texto': '04) O Samuel é lindo?',
       'resposta': [
-        {'texto':'Não'          ,'nota': 0  ,}, 
-        {'texto':'Com certeza'  ,'nota': 100,}, 
-        {'texto':'mais ou menos','nota': 10 ,},
+        {'texto':'Não'          ,'pontuacao': 0  ,}, 
+        {'texto':'Com certeza'  ,'pontuacao': 100,}, 
+        {'texto':'mais ou menos','pontuacao': 10 ,},
         ]
     },
   ];
 
-  void _responder() {
+  void _responder(dynamic pontuacao) {
     setState(() {
       perguntaSelecionada++;
+      //_pontuacaoFinal+=pontuacao;
     });
+    String st_valor = pontuacao.toString();
+    debugPrint('Pontuacao Final: $pontuacao');
   }
 
   void _reiniciarQuestoes() {
     perguntaSelecionada = -1;
-    _responder();
+    _pontuacaoFinal = 0;
+    _responder(0);
   }
 
   void _finalizarQuestionario() {

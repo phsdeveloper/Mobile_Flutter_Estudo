@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import './questao.dart';
 import './resposta_desafio.dart';
+
 class Questionario extends StatelessWidget {
    Questionario({super.key, required this.perguntas
                     ,required this.perguntaSelecionada
@@ -14,7 +15,7 @@ class Questionario extends StatelessWidget {
   final List<Map<String,Object>> perguntas;
   final int perguntaSelecionada;
 
-  final void Function() responder;
+  final void Function(dynamic) responder;
   final void Function() reiniciarQuestoes;
   final void Function() finalizarQuestionario;
 
@@ -35,7 +36,7 @@ List<Map<String,Object>> lstRespostas = [];
 if(perguntaSelecionada<perguntas.length)
 {
     lstRespostas.addAll(perguntas);
-    _respostas = lstRespostas.map((resp) => resposta_desafio(resp['texto'].toString(),perguntas[perguntaSelecionada]['texto'].toString(),responder))
+    _respostas = lstRespostas.map((resp) => resposta_desafio(resp['texto'].toString(),perguntas[perguntaSelecionada]['texto'].toString(),()=> responder(0)))
                             .toList();
 }
 
@@ -53,7 +54,9 @@ if(perguntaSelecionada<perguntas.length)
               children: [
                 Questao(perguntas[perguntaSelecionada]['texto'].toString()),
                 //...respostas, ///Esses 3 (sprad) pontos adicona todos os elementos nesta lista, ou seja, é como se fosse um foreach para o item
-                ...lstRespostas.map((resp) => resposta_desafio(resp['texto'].toString(),perguntas[perguntaSelecionada]['texto'].toString(),responder)),
+                ...lstRespostas.map((resp) => resposta_desafio(resp['texto'].toString(),
+                                    perguntas[perguntaSelecionada]['texto'].toString(),
+                                    ()=> responder(resp['texto']) )),
                 const ElevatedButton(onPressed: null,child: Text('Não vou responder - Desabilitado')),
               ],
             )
