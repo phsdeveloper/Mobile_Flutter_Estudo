@@ -15,7 +15,7 @@ class Questionario extends StatelessWidget {
   final List<Map<String,Object>> perguntas;
   final int perguntaSelecionada;
 
-  final void Function(dynamic) responder;
+  final void Function(int) responder;
   final void Function() reiniciarQuestoes;
   final void Function() finalizarQuestionario;
 
@@ -35,7 +35,10 @@ class Questionario extends StatelessWidget {
 List<Map<String,Object>> lstRespostas = [];
 if(perguntaSelecionada<perguntas.length)
 {
-    lstRespostas.addAll(perguntas);
+  //O erro estava neste ponto, pois eu precisava obter as respostas disponiveis, juntamente com a pontuacao
+  //mas eu estava apenas passando a listagem completa comm as perguntas e respostas..
+  //Com isso dava ruim, pois eu apresentava as perguntas como se fossem respostas.
+    lstRespostas = perguntas[perguntaSelecionada]['resposta'] as List<Map<String,Object>>;
     _respostas = lstRespostas.map((resp) => resposta_desafio(resp['texto'].toString(),perguntas[perguntaSelecionada]['texto'].toString(),()=> responder(0)))
                             .toList();
 }
@@ -55,8 +58,8 @@ if(perguntaSelecionada<perguntas.length)
                 Questao(perguntas[perguntaSelecionada]['texto'].toString()),
                 //...respostas, ///Esses 3 (sprad) pontos adicona todos os elementos nesta lista, ou seja, é como se fosse um foreach para o item
                 ...lstRespostas.map((resp) => resposta_desafio(resp['texto'].toString(),
-                                    perguntas[perguntaSelecionada]['texto'].toString(),
-                                    ()=> responder(resp['texto']) )),
+                                    resp['texto'].toString(),
+                                    ()=> responder(resp['pontuacao'] as int) )),
                 const ElevatedButton(onPressed: null,child: Text('Não vou responder - Desabilitado')),
               ],
             )

@@ -13,21 +13,22 @@ class _PerguntaAppState extends State<_PerguntaApp> {
     {
       'texto': '01) Qual é a sua cor favorita?',
       'resposta': [
-        {'pontuacao': 10, 'texto': 'Preto'},
-        {'pontuacao': 5, 'texto': 'Vermelho'},
-        {'pontuacao': 20, 'texto': 'Verde'},
-        {'pontuacao': 100, 'texto': 'Branco'},
-        {'pontuacao': 50, 'texto': 'Azul'},
+        {'texto': 'Preto'   , 'pontuacao': 10 , },
+        {'texto': 'Vermelho', 'pontuacao': 5  , },
+        {'texto': 'Verde'   , 'pontuacao': 20 , },
+        {'texto': 'Branco'  , 'pontuacao': 100, },
+        {'texto': 'Azul'    , 'pontuacao': 50 , },
       ]
     },
     {
       'texto': '02) Qual é a Seu animal favorito?',
       'resposta': [
-        {'texto': 'Cachorro','pontuacao': 5,},
-        {'texto': 'Gato'    ,'pontuacao': 6,},
-        {'texto': 'Peixe'   ,'pontuacao': 7,},
-        {'texto': 'Coelho'  ,'pontuacao': 8,},
-        {'texto': 'Passaro' ,'pontuacao': 9,},
+        {'texto': 'Cachorro'  ,'pontuacao': 5,},
+        {'texto': 'Gato'      ,'pontuacao': 6,},
+        {'texto': 'Peixe'     ,'pontuacao': 7,},
+        {'texto': 'Coelho'    ,'pontuacao': 8,},
+        {'texto': 'Passaro'   ,'pontuacao': 9,},
+        {'texto': 'Tartaruga' ,'pontuacao': 10,},
       ]
     },
     {
@@ -50,13 +51,14 @@ class _PerguntaAppState extends State<_PerguntaApp> {
     },
   ];
 
-  void _responder(dynamic pontuacao) {
+  void _responder(int pontuacao) {
+    String st_log = 'Pontuacao Anterior: $_pontuacaoFinal >> Pontuacao Recebida: $pontuacao';
     setState(() {
       perguntaSelecionada++;
-      //_pontuacaoFinal+=pontuacao;
+      _pontuacaoFinal+=pontuacao;
     });
-    String st_valor = pontuacao.toString();
-    debugPrint('Pontuacao Final: $pontuacao');
+    st_log += ' >> Pontuacao Final $_pontuacaoFinal';
+    debugPrint(st_log);
   }
 
   void _reiniciarQuestoes() {
@@ -99,6 +101,15 @@ class _PerguntaApp extends StatefulWidget {
 /****************************************************************************************************************************************
  *                                                       A N O T A Ç Õ E S  A U L A S                                                   *
  ****************************************************************************************************************************************
+ *                                                                                                                                      *
+ *     -------------------------------------------------------------------------------------------------------------------------        *
+ *     --                                        **  AULA 64 - Adicionando pontuacao 02 **                                    --        *
+ *     -------------------------------------------------------------------------------------------------------------------------        *
+ *     -- Nesta aula foi implementado o método para incrementar a pontuacao total, em alguma branch anterior acabei deixando  --        *
+ *     -- passar um ponto importante, estava passando as perguntas para o componente que gera os botoes de respostas com isso --        *
+ *     -- todas as perguntas eram passadas como respostas, fiz essa correcao no componente/Widget questionario, assim         --        *
+ *     -- consegui manter minha abordagem diferente da que foi proposta pelo instrutor                                        --        *
+ *     -------------------------------------------------------------------------------------------------------------------------        *
  *                                                                                                                                      *
  *     -------------------------------------------------------------------------------------------------------------------------        *
  *     --                                              AULA 62 - Adicionando pontuacao                                        --        *
