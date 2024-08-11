@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
-class resposta_desafio extends StatelessWidget {
-  const resposta_desafio(this.resposta, this.questao, this.quandoSelecionado, {super.key});
+// ignore: camel_case_types
+class Resposta_desafio extends StatelessWidget {
+  const Resposta_desafio(this.resposta, this.questao, this.quandoSelecionado, {super.key});
 
   final void Function() quandoSelecionado;    
   final String resposta;
   final String questao;
-
+  @override
   Widget build(BuildContext context) {
     return  SizedBox(
       width: double.infinity,

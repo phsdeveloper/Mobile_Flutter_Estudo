@@ -1,3 +1,7 @@
+// ignore_for_file: must_be_immutable, file_names
+
+
+
 import 'package:flutter/material.dart';
 import './questao.dart';
 import './resposta_desafio.dart';
@@ -8,13 +12,14 @@ class Questionario extends StatelessWidget {
                     ,required this.responder
                     ,required this.reiniciarQuestoes
                     ,required this.finalizarQuestionario
+                    ,required this.blExibirOpcaoRessetar
                     
                     });
 
 
   final List<Map<String,Object>> perguntas;
   final int perguntaSelecionada;
-
+  final bool blExibirOpcaoRessetar;
   final void Function(int) responder;
   final void Function() reiniciarQuestoes;
   final void Function() finalizarQuestionario;
@@ -39,16 +44,21 @@ if(perguntaSelecionada<perguntas.length)
   //mas eu estava apenas passando a listagem completa comm as perguntas e respostas..
   //Com isso dava ruim, pois eu apresentava as perguntas como se fossem respostas.
     lstRespostas = perguntas[perguntaSelecionada]['resposta'] as List<Map<String,Object>>;
-    _respostas = lstRespostas.map((resp) => resposta_desafio(resp['texto'].toString(),perguntas[perguntaSelecionada]['texto'].toString(),()=> responder(0)))
+    _respostas = lstRespostas.map((resp) => Resposta_desafio(resp['texto'].toString(),perguntas[perguntaSelecionada]['texto'].toString(),()=> responder(0)))
                             .toList();
 }
+  //if(perguntaSelecionada>=perguntas.length)
+  //{
+  //  finalizarQuestionario();
+  //}
 
-
-    return  (perguntaSelecionada>=perguntas.length)?        (
+    return  
+        (perguntaSelecionada>=(perguntas.length) && blExibirOpcaoRessetar)?        
+        (
           Column(children: [
-            Questao('Todas as perguntas respondidas, quer reiniciar as questões?'.toString()),
-            resposta_desafio('Sim','',reiniciarQuestoes),
-            resposta_desafio('Nao', '', finalizarQuestionario)
+            Questao('Deseja finalizar o questionario?'.toString()),
+            Resposta_desafio('Sim - Finalizar','',finalizarQuestionario),
+            Resposta_desafio('Nao - Reiniciar', '',reiniciarQuestoes )
           ])
         )
         : 
@@ -57,7 +67,7 @@ if(perguntaSelecionada<perguntas.length)
               children: [
                 Questao(perguntas[perguntaSelecionada]['texto'].toString()),
                 //...respostas, ///Esses 3 (sprad) pontos adicona todos os elementos nesta lista, ou seja, é como se fosse um foreach para o item
-                ...lstRespostas.map((resp) => resposta_desafio(resp['texto'].toString(),
+                ...lstRespostas.map((resp) => Resposta_desafio(resp['texto'].toString(),
                                     resp['texto'].toString(),
                                     ()=> responder(resp['pontuacao'] as int) )),
                 const ElevatedButton(onPressed: null,child: Text('Não vou responder - Desabilitado')),

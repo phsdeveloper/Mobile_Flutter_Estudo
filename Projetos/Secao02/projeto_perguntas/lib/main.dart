@@ -1,3 +1,5 @@
+// ignore_for_file: unused_element
+
 import 'package:flutter/material.dart';
 import './questionario.dart';
 
@@ -9,56 +11,101 @@ class _PerguntaAppState extends State<_PerguntaApp> {
   bool _blFinalizarQuestionario = false;
   int perguntaSelecionada = 0;
   int _pontuacaoFinal = 0;
+  
+  final blExibirOpcaoRessetar = false;//aqui habilita e desabilita a implementacao que fiz
   final List<Map<String, Object>> _perguntas = const [
     {
       'texto': '01) Qual é a sua cor favorita?',
       'resposta': [
-        {'texto': 'Preto'   , 'pontuacao': 1 , },
-        {'texto': 'Vermelho', 'pontuacao': 2  , },
-        {'texto': 'Verde'   , 'pontuacao': 3 , },
-        {'texto': 'Branco'  , 'pontuacao': 4, },
-        {'texto': 'Azul'    , 'pontuacao': 5 , },
+        {
+          'texto': 'Preto',
+          'pontuacao': 1,
+        },
+        {
+          'texto': 'Vermelho',
+          'pontuacao': 2,
+        },
+        {
+          'texto': 'Verde',
+          'pontuacao': 3,
+        },
+        {
+          'texto': 'Branco',
+          'pontuacao': 4,
+        },
+        {
+          'texto': 'Azul',
+          'pontuacao': 5,
+        },
       ]
     },
     {
       'texto': '02) Qual é a Seu animal favorito?',
       'resposta': [
-        {'texto': 'Cachorro'  ,'pontuacao': 1,},
-        {'texto': 'Gato'      ,'pontuacao': 2,},
-        {'texto': 'Peixe'     ,'pontuacao': 3,},
-        {'texto': 'Coelho'    ,'pontuacao': 4,},
-        {'texto': 'Passaro'   ,'pontuacao': 5,},
-        {'texto': 'Tartaruga' ,'pontuacao': 6,},
+        {
+          'texto': 'Cachorro',
+          'pontuacao': 1,
+        },
+        {
+          'texto': 'Gato',
+          'pontuacao': 2,
+        },
+        {
+          'texto': 'Peixe',
+          'pontuacao': 3,
+        },
+        {
+          'texto': 'Coelho',
+          'pontuacao': 4,
+        },
+        {
+          'texto': 'Passaro',
+          'pontuacao': 5,
+        },
+        {
+          'texto': 'Tartaruga',
+          'pontuacao': 6,
+        },
       ]
     },
     {
       'texto': '03) Qual é a sua Comida favorita?',
       'resposta': [
-        {'texto': 'Pizza'          ,'pontuacao': 2},
-        {'texto': 'Hamburguer'     ,'pontuacao': 3},
-        {'texto': 'Cachorro quente','pontuacao': 4},
-        {'texto': 'feijoada'       ,'pontuacao': 5},
-        {'texto': 'Coxinha!'       ,'pontuacao': 6},
+        {'texto': 'Pizza', 'pontuacao': 2},
+        {'texto': 'Hamburguer', 'pontuacao': 3},
+        {'texto': 'Cachorro quente', 'pontuacao': 4},
+        {'texto': 'feijoada', 'pontuacao': 5},
+        {'texto': 'Coxinha!', 'pontuacao': 6},
       ]
     },
     {
       'texto': '04) O Samuel é lindo?',
       'resposta': [
-        {'texto':'Não'          ,'pontuacao': 0,}, 
-        {'texto':'Com certeza'  ,'pontuacao': 5,}, 
-        {'texto':'mais ou menos','pontuacao': 1,},
-        ]
+        {
+          'texto': 'Não',
+          'pontuacao': 0,
+        },
+        {
+          'texto': 'Com certeza',
+          'pontuacao': 5,
+        },
+        {
+          'texto': 'mais ou menos',
+          'pontuacao': 1,
+        },
+      ]
     },
   ];
 
   void _responder(int pontuacao) {
-    String st_log = 'Pontuacao Anterior: $_pontuacaoFinal >> Pontuacao Recebida: $pontuacao';
+    String stLog =
+        'Pontuacao Anterior: $_pontuacaoFinal >> Pontuacao Recebida: $pontuacao';
     setState(() {
       perguntaSelecionada++;
-      _pontuacaoFinal+=pontuacao;
+      _pontuacaoFinal += pontuacao;
     });
-    st_log += ' >> Pontuacao Final $_pontuacaoFinal';
-    debugPrint(st_log);
+    stLog += ' >> Pontuacao Final $_pontuacaoFinal';
+    debugPrint(stLog);
   }
 
   void _reiniciarQuestoes() {
@@ -67,27 +114,53 @@ class _PerguntaAppState extends State<_PerguntaApp> {
     _responder(0);
   }
 
-  void _finalizarQuestionario() {
+  void _reiniciarQuestionario() {
     setState(() {
-      _blFinalizarQuestionario = true;
+      perguntaSelecionada = 0;
+      _pontuacaoFinal = 0;
     });
+  }
+
+  void _finalizarQuestionario() {
+    if (blExibirOpcaoRessetar) {
+      setState(() {
+        _blFinalizarQuestionario = true;
+      });
+    } else {
+      _blFinalizarQuestionario = (perguntaSelecionada > _perguntas.length);
+    }
+    print(
+        'Pergunta selecionada $perguntaSelecionada | $_blFinalizarQuestionario');
+  }
+
+  bool exibirResultado() {
+    bool exibe = false;
+    if (blExibirOpcaoRessetar) {
+      exibe = _blFinalizarQuestionario;
+    } else {
+      exibe = perguntaSelecionada >= _perguntas.length;
+    }
+    return exibe;
   }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        home: Scaffold(
-            appBar: AppBar(
-                title: const Text('Perguntas'),
-                backgroundColor: Theme.of(context).colorScheme.secondary),
-            body: _blFinalizarQuestionario
-                ? (  Resultado(_pontuacaoFinal))
-                : Questionario(
-                    perguntas: _perguntas,
-                    perguntaSelecionada: perguntaSelecionada,
-                    responder: _responder,
-                    reiniciarQuestoes: _reiniciarQuestoes,
-                    finalizarQuestionario: _finalizarQuestionario)));
+      home: Scaffold(
+        appBar: AppBar(
+            title: const Text('Perguntas'),
+            backgroundColor: Theme.of(context).colorScheme.secondary),
+        body: exibirResultado()
+            ? (Resultado(_pontuacaoFinal, _reiniciarQuestoes))
+            : Questionario(
+                perguntas: _perguntas,
+                perguntaSelecionada: perguntaSelecionada,
+                responder: _responder,
+                reiniciarQuestoes: _reiniciarQuestoes,
+                finalizarQuestionario: _finalizarQuestionario,
+                blExibirOpcaoRessetar: blExibirOpcaoRessetar),
+      ),
+    );
   }
 }
 
