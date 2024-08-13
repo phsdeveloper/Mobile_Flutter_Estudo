@@ -1,29 +1,36 @@
 import 'package:flutter/material.dart';
 
-main()=> runApp(const ExpensesApp());
+main() => runApp(const ExpensesApp());
 
 class ExpensesApp extends StatelessWidget {
   const ExpensesApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: MyHomePage()
-
-
-    );
+    return const MaterialApp(home: MyHomePage());
   }
 }
-
 
 class MyHomePage extends StatelessWidget {
   const MyHomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       appBar: AppBar(title: const Text('Despesas Pessoais')),
-      body: const Center(child: Text('Versao Inicial')),
+      body: const Column(
+        children: [
+           SizedBox(
+            width: double.infinity,
+            child: Card(
+              color: Colors.blue,
+              elevation: 5,
+              child: Text('Gráfico'),
+            ),
+          ),
+           Card(child: Text('Lista de Transações')),
+        ],
+      ),
     );
   }
 }
