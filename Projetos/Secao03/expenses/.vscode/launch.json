@@ -1,0 +1,29 @@
+{
+    // Use o IntelliSense para saber mais sobre os atributos possíveis.
+    // Focalizar para exibir as descrições dos atributos existentes.
+    // Para obter mais informações, acesse: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Android",
+            "request": "launch",
+            "type": "dart",
+            "deviceId": "emulator-5554"
+        },
+        {
+            "name": "iOS 15 Pro Max",
+            "request": "launch",
+            "type": "dart",
+            "deviceId": "A205CC17-6B32-4386-BE62-85D5363707AF"
+        },
+    ],
+    "compounds": [
+        {
+            "name": "Android and iOS",
+            "configurations": [
+                "Android",
+                "iOS 15 Pro Max",
+            ]
+        }
+    ]
+}
