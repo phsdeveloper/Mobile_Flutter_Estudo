@@ -57,8 +57,8 @@ if(perguntaSelecionada<perguntas.length)
         (
           Column(children: [
             Questao('Deseja finalizar o questionario?'.toString()),
-            Resposta_desafio('Sim - Finalizar','',finalizarQuestionario),
-            Resposta_desafio('Nao - Reiniciar', '',reiniciarQuestoes )
+            Resposta_desafio('Sim - Finalizar!','',finalizarQuestionario),
+            Resposta_desafio('Nao - Reiniciar!', '',reiniciarQuestoes )
           ])
         )
         : 

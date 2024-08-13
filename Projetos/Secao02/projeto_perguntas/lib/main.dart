@@ -12,7 +12,7 @@ class _PerguntaAppState extends State<_PerguntaApp> {
   int perguntaSelecionada = 0;
   int _pontuacaoFinal = 0;
   
-  final blExibirOpcaoRessetar = false;//aqui habilita e desabilita a implementacao que fiz
+  final blExibirOpcaoRessetar = true;//aqui habilita e desabilita a implementacao que fiz
   final List<Map<String, Object>> _perguntas = const [
     {
       'texto': '01) Qual é a sua cor favorita?',
@@ -109,6 +109,7 @@ class _PerguntaAppState extends State<_PerguntaApp> {
   }
 
   void _reiniciarQuestoes() {
+        _blFinalizarQuestionario = false;
     perguntaSelecionada = -1;
     _pontuacaoFinal = 0;
     _responder(0);
