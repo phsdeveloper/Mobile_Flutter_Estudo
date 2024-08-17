@@ -19,9 +19,11 @@ class MyHomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: const Text('Despesas Pessoais')),
       body: const Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
            SizedBox(
-            width: double.infinity,
+            //width: double.infinity,
             child: Card(
               color: Colors.blue,
               elevation: 5,
