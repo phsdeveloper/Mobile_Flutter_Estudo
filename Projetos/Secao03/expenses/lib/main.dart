@@ -1,3 +1,5 @@
+
+
 import 'package:expenses/models/transaction.dart';
 import 'package:flutter/material.dart';
 
@@ -33,11 +35,11 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Despesas Pessoais')),
-      body: const Column(
+      body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          SizedBox(
+          const SizedBox(
             //width: double.infinity,
             child: Card(
               color: Colors.blue,
@@ -45,7 +47,9 @@ class MyHomePage extends StatelessWidget {
               child: Text('Gráfico'),
             ),
           ),
-          Card(child: Text('Lista de Transações')),
+          Column(
+            children:_transactions.map((tr) {return Card(child: Text(tr.title));}).toList(),
+          ),
         ],
       ),
     );
