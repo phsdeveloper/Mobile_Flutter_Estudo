@@ -100,8 +100,5 @@ class MyHomePage extends StatelessWidget {
   }
 }
 /**
- * Nessa aula tive dificuldade para realizar o alinhamento do titulo e da data.
- * mas foi adicionar o código
- * crossAxisAlignment: CrossAxisAlignment.start,
- * Na linha 74 que ficou tudo de boas
+Não alterou nada nesta aula que eu fiz na aula anterior
  */
