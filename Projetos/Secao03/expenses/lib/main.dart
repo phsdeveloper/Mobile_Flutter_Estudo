@@ -19,11 +19,11 @@ class MyHomePage extends StatelessWidget {
   final _transactions = [
     Transaction(
         id: 't1',
-        title: 'Novo Tenis dde Corrida',
+        title: 'Novo Tenis de Corrida',
         value: 310.76,
         date: DateTime.now()),
     Transaction(
-        id: 't2', title: 'Conta dde Luz', value: 211.30, date: DateTime.now()),
+        id: 't2', title: 'Conta de Luz', value: 211.30, date: DateTime.now()),
   ];
 
   @override
@@ -35,7 +35,6 @@ class MyHomePage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           const SizedBox(
-            //width: double.infinity,
             child: Card(
               color: Colors.blue,
               elevation: 5,
@@ -43,6 +42,8 @@ class MyHomePage extends StatelessWidget {
             ),
           ),
           Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: _transactions.map((tr) {
               return Card(
                 child: Row(
@@ -56,7 +57,7 @@ class MyHomePage extends StatelessWidget {
                         border: Border.all(
                           color: Colors.purple,
                           width: 2,
-                        )
+                        ),
                       ),
                       padding: const EdgeInsets.all(10),
                       child: Text(
@@ -64,18 +65,32 @@ class MyHomePage extends StatelessWidget {
                         style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
-                          color: Colors.purple
+                          color: Colors.purple,
                         ),
                       ),
                     ),
+                    //-----------------------------------------------------------------------------
                     Column(
+                     crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Text(tr.title),
-                        Text(tr.date.toString()),
+                        Text(
+                          tr.title,
+                          style: const TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Text(
+                          tr.date.toString(),
+                          style: const TextStyle(
+                            color: Colors.grey,
+                          ),
+                        ),
                       ],
                     ),
+                    //-------------------------------------------------------------------------------
                   ],
-                  ),
+                ),
               );
             }).toList(),
           ),
@@ -84,3 +99,9 @@ class MyHomePage extends StatelessWidget {
     );
   }
 }
+/**
+ * Nessa aula tive dificuldade para realizar o alinhamento do titulo e da data.
+ * mas foi adicionar o código
+ * crossAxisAlignment: CrossAxisAlignment.start,
+ * Na linha 74 que ficou tudo de boas
+ */
