@@ -61,7 +61,7 @@ class MyHomePage extends StatelessWidget {
                       ),
                       padding: const EdgeInsets.all(10),
                       child: Text(
-                        tr.value.toString(),
+                        'R\$ ${tr.value.toStringAsFixed(2)}',
                         style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
@@ -100,5 +100,5 @@ class MyHomePage extends StatelessWidget {
   }
 }
 /**
-Não alterou nada nesta aula que eu fiz na aula anterior
+Nessa aula foi adicionado apenas duas casas decimais no preco e adicionado o R$ no valor
  */
