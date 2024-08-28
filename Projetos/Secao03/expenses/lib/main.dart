@@ -32,11 +32,9 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
       appBar: AppBar(title: const Text('Despesas Pessoais')),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           const SizedBox(
@@ -76,7 +74,7 @@ class MyHomePage extends StatelessWidget {
                     ),
                     //-----------------------------------------------------------------------------
                     Column(
-                     crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(
                           tr.title,
@@ -99,13 +97,44 @@ class MyHomePage extends StatelessWidget {
               );
             }).toList(),
           ),
+          const Card(
+            elevation: 5,
+            child: Padding(
+              padding: EdgeInsets.all(10.0),
+              child: Column(
+                children: <Widget>[
+                  TextField(
+                    decoration: InputDecoration(
+                      labelText: 'Titulo',
+                    ),
+                  ),
+                  TextField(
+                    decoration: InputDecoration(
+                      labelText: 'Valor (R\$)',
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      TextButton(
+                        onPressed: null,
+                        child: Text(
+                          'Nova Transacao',
+                          style: TextStyle(color: Colors.purple),
+                        ),
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            ),
+          ),
         ],
       ),
     );
   }
 }
 /**
-Nessa aula foi adicionado no projeto o pacote intl para realizar a formatacao da 
-data, entretanto esta no padrao americano.
-Olhando os comentarios da Aula achei uma forma de deixar no padrão PT BR
+Nessa aula foi adicionado os cmpos text para receber os dados e tambem o botao para adicionar uma nova transacao
+
  */
