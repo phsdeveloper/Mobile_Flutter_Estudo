@@ -1,6 +1,5 @@
 import 'package:expenses/models/transaction.dart';
 import 'package:flutter/material.dart';
-//import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
@@ -19,6 +18,9 @@ class ExpensesApp extends StatelessWidget {
 
 class MyHomePage extends StatelessWidget {
   MyHomePage({super.key});
+
+  final titleController = TextEditingController();
+  final valueController = TextEditingController();
 
   final _transactions = [
     Transaction(
@@ -97,7 +99,7 @@ class MyHomePage extends StatelessWidget {
               );
             }).toList(),
           ),
-          const Card(
+          Card(
             elevation: 5,
             child: Padding(
               padding: EdgeInsets.all(10.0),
@@ -107,17 +109,22 @@ class MyHomePage extends StatelessWidget {
                     decoration: InputDecoration(
                       labelText: 'Titulo',
                     ),
+                    controller: titleController,
                   ),
                   TextField(
                     decoration: InputDecoration(
                       labelText: 'Valor (R\$)',
                     ),
+                    controller: valueController,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       TextButton(
-                        onPressed: null,
+                        onPressed: () {
+                          print(titleController.text);
+                          print(valueController.text);
+                        },
                         child: Text(
                           'Nova Transacao',
                           style: TextStyle(color: Colors.purple),
@@ -135,6 +142,8 @@ class MyHomePage extends StatelessWidget {
   }
 }
 /**
-Nessa aula foi adicionado os cmpos text para receber os dados e tambem o botao para adicionar uma nova transacao
+Nessa aula foi implementado a obtencao dos dados que foram digitados no inputs
+Entretanto nao consegui utilizar o onchange do text..
+Depois pesquisar mais sobre esse item.
 
  */
