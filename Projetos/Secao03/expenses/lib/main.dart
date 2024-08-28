@@ -1,7 +1,8 @@
 import 'package:expenses/models/transaction.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+//import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
 main() => runApp(const ExpensesApp());
 
@@ -10,6 +11,8 @@ class ExpensesApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Intl.defaultLocale = 'pt_BR';
+    initializeDateFormatting('pt_BR', null);
     return MaterialApp(home: MyHomePage());
   }
 }
@@ -104,4 +107,5 @@ class MyHomePage extends StatelessWidget {
 /**
 Nessa aula foi adicionado no projeto o pacote intl para realizar a formatacao da 
 data, entretanto esta no padrao americano.
+Olhando os comentarios da Aula achei uma forma de deixar no padrão PT BR
  */
