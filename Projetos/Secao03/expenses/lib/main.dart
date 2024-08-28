@@ -1,6 +1,7 @@
 import 'package:expenses/models/transaction.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:intl/intl.dart';
 
 main() => runApp(const ExpensesApp());
 
@@ -28,6 +29,7 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
       appBar: AppBar(title: const Text('Despesas Pessoais')),
       body: Column(
@@ -81,7 +83,7 @@ class MyHomePage extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          tr.date.toString(),
+                          DateFormat('d MMM y').format(tr.date),
                           style: const TextStyle(
                             color: Colors.grey,
                           ),
@@ -100,5 +102,6 @@ class MyHomePage extends StatelessWidget {
   }
 }
 /**
-Nessa aula foi adicionado apenas duas casas decimais no preco e adicionado o R$ no valor
+Nessa aula foi adicionado no projeto o pacote intl para realizar a formatacao da 
+data, entretanto esta no padrao americano.
  */
