@@ -12,11 +12,14 @@ final List<Transaction> transactions;
     Intl.defaultLocale = 'pt_BR';
     initializeDateFormatting('pt_BR', null);
 
-    return Container(
-      height: 400,
-      child: ListView(
-              children: transactions.map((tr) {
-                return Card(
+    return SizedBox(
+      height: 430,
+      child: ListView.builder(
+              itemCount: transactions.length,
+              itemBuilder: (context, index) 
+              {
+                final tr = transactions[index];
+                  return Card(
                   child: Row(
                     children: [
                       Container(
@@ -52,7 +55,7 @@ final List<Transaction> transactions;
                             ),
                           ),
                           Text(
-                            DateFormat('d MMM y').format(tr.date),
+                            DateFormat('d MMM y HH:mm:ss').format(tr.date),
                             style: const TextStyle(
                               color: Colors.grey,
                             ),
@@ -63,7 +66,7 @@ final List<Transaction> transactions;
                     ],
                   ),
                 );
-              }).toList(),
+              },
             ),
     );
   }
