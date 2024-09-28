@@ -43,11 +43,7 @@ class MyHomePage extends StatelessWidget {
   }
 }
 /**
-Nesta aula foi feito a alteracao no arquivo transaction_user.dart 
-para que uma nova transacao seja adicionada a lista e realizando a alteracao do componetente filho;
-Uma explicacao importante da aula foi: 
-"Como o componente user é do tipo StatefulWidget, ou seja, quando o status muda automaticamente a arvore de componentes tambem
-muda e a unica coisa que pode alterar a visualizacao de um componente Stateless é 
-vc passar um novo dado pelo construtor do componente ai o componente se atualiza" 
-
+Nesta aula foi adicionado a passagem de uma funcao via construtor
+Com isso é possivel realizar a uma acao no componente pai a partir de 
+uma acao ou evendo que ocorra no componente filho. 
  */
