@@ -25,25 +25,32 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Despesas Pessoais')),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          const SizedBox(
-            child: Card(
-              color: Colors.blue,
-              elevation: 5,
-              child: Text('Gráfico.'),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            const SizedBox(
+              child: Card(
+                color: Colors.blue,
+                elevation: 5,
+                child: Text('Gráfico.'),
+              ),
             ),
-          ),
-          
-          TransactionUser()
-        ],
+            
+            TransactionUser()
+          ],
+        ),
       ),
     );
   }
 }
 /**
-Nesta aula foi adicionado a passagem de uma funcao via construtor
-Com isso é possivel realizar a uma acao no componente pai a partir de 
-uma acao ou evendo que ocorra no componente filho. 
+nessa aula foi apresenatado o componente SingleChildScrollView que adiciona
+uma rolagem na tela, mas para que o exemplo da aula ficasse funcional foi necessário os 
+seguintes passos:
+    ● Adicionar o Widget SingleChildScrollView no componente principal, ou seja, no arquivo main.dart
+    ● Adicionar o Widget controller no componente que faz a lista, ou seja, no arquivo transaction_list.dart e adicionarmos um tamanho fixo, pois sem esse tamanho não há rolagem na lista.
+    ● Adicionar o Widget SingleChildScrollView componente que faz a lista, ou seja, no arquivo transaction_list.dart e com isso conseguir uma rolagem interna no componente
+
+
  */
