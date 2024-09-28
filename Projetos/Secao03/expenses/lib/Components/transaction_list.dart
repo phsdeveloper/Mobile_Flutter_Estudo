@@ -14,61 +14,57 @@ final List<Transaction> transactions;
 
     return Container(
       height: 400,
-      child: SingleChildScrollView(
-        child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: transactions.map((tr) {
-                  return Card(
-                    child: Row(
-                      children: [
-                        Container(
-                          margin: const EdgeInsets.symmetric(
-                            horizontal: 15,
-                            vertical: 10,
+      child: ListView(
+              children: transactions.map((tr) {
+                return Card(
+                  child: Row(
+                    children: [
+                      Container(
+                        margin: const EdgeInsets.symmetric(
+                          horizontal: 15,
+                          vertical: 10,
+                        ),
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Colors.purple,
+                            width: 2,
                           ),
-                          decoration: BoxDecoration(
-                            border: Border.all(
-                              color: Colors.purple,
-                              width: 2,
-                            ),
+                        ),
+                        padding: const EdgeInsets.all(10),
+                        child: Text(
+                          'R\$ ${tr.value.toStringAsFixed(2)}',
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                            color: Colors.purple,
                           ),
-                          padding: const EdgeInsets.all(10),
-                          child: Text(
-                            'R\$ ${tr.value.toStringAsFixed(2)}',
+                        ),
+                      ),
+                      //-----------------------------------------------------------------------------
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Text(
+                            tr.title,
                             style: const TextStyle(
+                              fontSize: 16,
                               fontWeight: FontWeight.bold,
-                              fontSize: 20,
-                              color: Colors.purple,
                             ),
                           ),
-                        ),
-                        //-----------------------------------------------------------------------------
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Text(
-                              tr.title,
-                              style: const TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                              ),
+                          Text(
+                            DateFormat('d MMM y').format(tr.date),
+                            style: const TextStyle(
+                              color: Colors.grey,
                             ),
-                            Text(
-                              DateFormat('d MMM y').format(tr.date),
-                              style: const TextStyle(
-                                color: Colors.grey,
-                              ),
-                            ),
-                          ],
-                        ),
-                        //-------------------------------------------------------------------------------
-                      ],
-                    ),
-                  );
-                }).toList(),
-              ),
-      ),
+                          ),
+                        ],
+                      ),
+                      //-------------------------------------------------------------------------------
+                    ],
+                  ),
+                );
+              }).toList(),
+            ),
     );
   }
 }
