@@ -45,12 +45,8 @@ class MyHomePage extends StatelessWidget {
   }
 }
 /**
-nessa aula foi apresenatado o componente SingleChildScrollView que adiciona
-uma rolagem na tela, mas para que o exemplo da aula ficasse funcional foi necessário os 
-seguintes passos:
-    ● Adicionar o Widget SingleChildScrollView no componente principal, ou seja, no arquivo main.dart
-    ● Adicionar o Widget controller no componente que faz a lista, ou seja, no arquivo transaction_list.dart e adicionarmos um tamanho fixo, pois sem esse tamanho não há rolagem na lista.
-    ● Adicionar o Widget SingleChildScrollView componente que faz a lista, ou seja, no arquivo transaction_list.dart e com isso conseguir uma rolagem interna no componente
-
-
+Nessa aula foi configurado o teclado numerico e tambem adicionado a configiracao para realizar a chamada da funcao de cada um dos campos do cadastro, para isso os seguintes passos foram realizados.
+    ● Arquivo transaction_form.dart:
+      ⭢ Em cada widget TextField foi adiconado a funcao onSubmitted, um ponto importante aqui é se atentar que aqui temos que chamar a funcao e nao passar ela como referencia.
+      ⭢ Encapsular a chamada a funcao onSubmit para que cada Widget poder chamar com seus respectivos eventos
  */
