@@ -24,7 +24,15 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Despesas Pessoais')),
+      appBar: AppBar(
+        title: const Text('Despesas Pessoais'),
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(Icons.add_circle),
+            onPressed: (){}
+          ),
+        ],
+        ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -41,12 +49,14 @@ class MyHomePage extends StatelessWidget {
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.add_circle),
+        onPressed: (){},
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked ,
     );
   }
 }
 /**
-Nessa aula foi configurado o teclado numerico e tambem adicionado a configiracao para realizar a chamada da funcao de cada um dos campos do cadastro, para isso os seguintes passos foram realizados.
-    ● Arquivo transaction_form.dart:
-      ⭢ Em cada widget TextField foi adiconado a funcao onSubmitted, um ponto importante aqui é se atentar que aqui temos que chamar a funcao e nao passar ela como referencia.
-      ⭢ Encapsular a chamada a funcao onSubmit para que cada Widget poder chamar com seus respectivos eventos
+Nessa aula foi exemplificado como adicionar botões na tela usando o Widget FloatingActionButton juntamente com o icone.
  */
