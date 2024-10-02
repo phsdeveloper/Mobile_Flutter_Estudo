@@ -4,6 +4,7 @@ class TransactionForm extends StatefulWidget {
   TransactionForm(this.onSubmit, {super.key});
 
   final void Function(String, double) onSubmit;
+  String teste = 'teste';
 
   @override
   State<TransactionForm> createState() => _TransactionFormState();
@@ -18,12 +19,21 @@ class _TransactionFormState extends State<TransactionForm> {
     mensagem += "Data: ${DateTime.now()}";
     mensagem += ' >> Titulo: "$titleForm"';
     mensagem += " >> Valor: $valueForm";
+    mensagem += '>> Antes teste widget=${widget.teste}';
+    widget.teste = 'alterado';
+    mensagem += ' depois teste widget=${widget.teste}';
     debugPrint(mensagem);
     if (titleForm.isEmpty || valueForm <= 0) {
       print("SO: ${Platform.isIOS?'iOS':'Android'} >> Despesa nao cadastrada");
       return;
     }
+    /**
+     * Esse atributo widget nos perminte acessar todos os métodos e propriedades
+     * existentes na classe Stateles ou statefull
+     */
     widget.onSubmit(titleForm, valueForm);
+
+    
   }
 
   final titleController = TextEditingController();

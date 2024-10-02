@@ -91,7 +91,8 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 /**
-Nessa aula foi alterado o componente transaction_form de Stateless para Stateful...
-Para a minha aplicação não notei diferença no cadastramento das informações, pois com ambos 
-os dados não somem.
+Nessa aula foi apresentado como o estado de um componente consegue acessar e interagir com 
+os campos e funções do widget, seja ele Statles ou Stateful.
+Mas não teve código nem nada..
+o teste que fiz esta no arquivo transaction_form.dart
  */
