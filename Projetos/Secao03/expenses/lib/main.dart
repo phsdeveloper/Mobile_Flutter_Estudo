@@ -91,13 +91,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 /**
-Nessa aula foi realizada uma refatoracao para excluir o componente user, e todos so dados
-foram incorporados no main.dart
-e tambem para exibir a modar que segue os seguintes passos:
-
- - foi criado o metodo/funcao _openTransactionFormModal(BuildContext context)
- - e depois os parametros recebidos passados para o widget showModalBottomSheet, que cria e reinderiza a modal na tela
-
-Na minha opinião falta limitar mais o tamanho da modal e ter um botão cancelar para poder fechar a modal sem ter
-que clicar na parte de cima.
+Nessa aula foi alterado o componente transaction_form de Stateless para Stateful...
+Para a minha aplicação não notei diferença no cadastramento das informações, pois com ambos 
+os dados não somem.
  */

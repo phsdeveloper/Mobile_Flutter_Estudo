@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
 import 'dart:io';
-class TransactionForm extends StatelessWidget {
+class TransactionForm extends StatefulWidget {
   TransactionForm(this.onSubmit, {super.key});
 
+  final void Function(String, double) onSubmit;
+
+  @override
+  State<TransactionForm> createState() => _TransactionFormState();
+}
+
+class _TransactionFormState extends State<TransactionForm> {
   _submitForm() {
     final titleForm = titleController.text;
     final valueForm = double.tryParse(valueController.text.replaceAll(",", ".")) ?? 0.0;
@@ -16,12 +23,13 @@ class TransactionForm extends StatelessWidget {
       print("SO: ${Platform.isIOS?'iOS':'Android'} >> Despesa nao cadastrada");
       return;
     }
-    onSubmit(titleForm, valueForm);
+    widget.onSubmit(titleForm, valueForm);
   }
 
-  final void Function(String, double) onSubmit;
   final titleController = TextEditingController();
+
   final valueController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Card(
