@@ -1,7 +1,7 @@
-import 'package:expenses/Components/transaction_user.dart';
 import 'package:flutter/material.dart';
 import 'Components/export_all_components.dart';
-
+import 'dart:math';
+import 'models/transaction.dart';
 
 main() => runApp(const ExpensesApp());
 
@@ -10,16 +10,49 @@ class ExpensesApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return MaterialApp(home: MyHomePage());
   }
 }
 
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends StatefulWidget {
   MyHomePage({super.key});
 
-  
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
 
+class _MyHomePageState extends State<MyHomePage> {
+  final _transactions = [
+    Transaction(
+        id: 't1',
+        title: 'Novo Tenis de Corrida.',
+        value: 310.76,
+        date: DateTime.now()),
+    Transaction(
+        id: 't2', title: 'Conta de Luz.', value: 211.30, date: DateTime.now())
+  ];
+
+  _addTransaction(String title, double value) {
+    final newTransaction = Transaction(
+      id: Random().nextDouble().toString(),
+      title: title,
+      value: value,
+      date: DateTime.now(),
+    );
+
+    setState(() {
+      _transactions.add(newTransaction);
+    });
+  }
+
+  _openTransactionFormModal(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      builder: (_) {
+        return TransactionForm(_addTransaction);
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,12 +60,11 @@ class MyHomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Despesas Pessoais'),
         actions: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.add_circle),
-            onPressed: (){}
-          ),
+          IconButton(icon: const Icon(Icons.add_circle), onPressed: () {
+            _openTransactionFormModal(context);
+          }),
         ],
-        ),
+      ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -44,19 +76,28 @@ class MyHomePage extends StatelessWidget {
                 child: Text('Gráfico.'),
               ),
             ),
-            
-            TransactionUser()
+            TransactionList(_transactions),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add_circle),
-        onPressed: (){},
+        onPressed: () {
+          _openTransactionFormModal(context);
+        },
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked ,
+      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
     );
   }
 }
 /**
-Nessa aula foi exemplificado como adicionar botões na tela usando o Widget FloatingActionButton juntamente com o icone.
+Nessa aula foi realizada uma refatoracao para excluir o componente user, e todos so dados
+foram incorporados no main.dart
+e tambem para exibir a modar que segue os seguintes passos:
+
+ - foi criado o metodo/funcao _openTransactionFormModal(BuildContext context)
+ - e depois os parametros recebidos passados para o widget showModalBottomSheet, que cria e reinderiza a modal na tela
+
+Na minha opinião falta limitar mais o tamanho da modal e ter um botão cancelar para poder fechar a modal sem ter
+que clicar na parte de cima.
  */
