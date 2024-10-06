@@ -3,14 +3,24 @@ import 'Components/export_all_components.dart';
 import 'dart:math';
 import 'models/transaction.dart';
 
-main() => runApp(const ExpensesApp());
+main() => runApp(ExpensesApp());
 
 class ExpensesApp extends StatelessWidget {
-  const ExpensesApp({super.key});
+  ExpensesApp({super.key});
+
+  final ThemeData tema = ThemeData();
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: MyHomePage());
+    return MaterialApp(
+        home: MyHomePage(),
+        theme: tema.copyWith(
+          colorScheme: tema.colorScheme.copyWith(
+            primary: Colors.purple,
+            secondary: Colors.amber,
+          ),
+        )
+        );
   }
 }
 
@@ -61,10 +71,13 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Despesas Pessoais'),
+        backgroundColor: Theme.of(context).colorScheme.primary,
         actions: <Widget>[
-          IconButton(icon: const Icon(Icons.add_circle), onPressed: () {
-            _openTransactionFormModal(context);
-          }),
+          IconButton(
+              icon: const Icon(Icons.add_circle),
+              onPressed: () {
+                _openTransactionFormModal(context);
+              }),
         ],
       ),
       body: SingleChildScrollView(
@@ -84,6 +97,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add_circle),
+        backgroundColor: Theme.of(context).colorScheme.primary,
         onPressed: () {
           _openTransactionFormModal(context);
         },
@@ -93,6 +107,10 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 /**
-Nessa aula foi implementado a funcionalidade de realizar o fechamendo da modal ao realizar o cadastramento de um
-registro a partir do transaction_form.
+Nessa aula foi implementado a centralização do estilo do aplicativo.
+Entretanto a cor do botão precisa ser alterada diretamente no componente, como os
+demais assim como o appbar
+Nesse link tem mais informações
+https://blog.formacao.dev/botoes-no-flutter/
+
  */

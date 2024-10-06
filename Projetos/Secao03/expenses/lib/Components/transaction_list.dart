@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../models/transaction.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
+
 class TransactionList extends StatelessWidget {
    const TransactionList(this.transactions,{super.key});
 
@@ -29,17 +30,18 @@ final List<Transaction> transactions;
                         ),
                         decoration: BoxDecoration(
                           border: Border.all(
-                            color: Colors.purple,
+                            color: Theme.of(context).colorScheme.primary,
                             width: 2,
                           ),
                         ),
                         padding: const EdgeInsets.all(10),
                         child: Text(
                           'R\$ ${tr.value.toStringAsFixed(2)}',
-                          style: const TextStyle(
+                          style:  TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 20,
-                            color: Colors.purple,
+                            //color: Colors.blue,
+                            color: Theme.of(context).colorScheme.primary,
                           ),
                         ),
                       ),
