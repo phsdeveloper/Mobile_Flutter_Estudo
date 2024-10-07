@@ -19,24 +19,22 @@ class ExpensesApp extends StatelessWidget {
             primary: Colors.purple,
             secondary: Colors.amber,
           ),
-         textTheme:  tema.textTheme.copyWith(
-           titleLarge: const TextStyle(
-             fontFamily: 'OpenSans',
-             fontSize: 18,
-             fontWeight: FontWeight.normal,
-            color: Colors.black,
-           ),
-         ),
-         appBarTheme: const AppBarTheme(
+          textTheme: tema.textTheme.copyWith(
+            titleLarge: const TextStyle(
+              fontFamily: 'OpenSans',
+              fontSize: 18,
+              fontWeight: FontWeight.normal,
+              color: Colors.black,
+            ),
+          ),
+          appBarTheme: const AppBarTheme(
             titleTextStyle: TextStyle(
               fontFamily: 'OpenSans',
               fontSize: 20,
               fontWeight: FontWeight.bold,
             ),
-           
-           ),
-        )
-        );
+          ),
+        ));
   }
 }
 
@@ -48,14 +46,18 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final _transactions = [
-    Transaction(
-        id: 't1',
-        title: 'Novo Tenis de Corrida.',
-        value: 310.76,
-        date: DateTime.now()),
-    Transaction(
-        id: 't2', title: 'Conta de Luz.', value: 211.30, date: DateTime.now())
+  final List<Transaction>_transactions = [
+    // Transaction(
+    //     id: 't1',
+    //     title: 'Novo Tenis de Corrida.',
+    //     value: 310.76,
+    //     date: DateTime.now()),
+    // Transaction(
+    //   id: 't2',
+    //   title: 'Conta de Luz.',
+    //   value: 211.30,
+    //   date: DateTime.now(),
+    // )
   ];
 
   _addTransaction(String title, double value) {
@@ -111,7 +113,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-      floatingActionButton:  FloatingActionButton(
+      floatingActionButton: FloatingActionButton(
         backgroundColor: Theme.of(context).colorScheme.secondary,
         onPressed: () {
           _openTransactionFormModal(context);
@@ -123,13 +125,12 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 /**
-Link para fontes do Google: https://fonts.google.com
-
-1º) Criar o diretório e adicionar as fontes baixadas no diretório assets/fonts
-2º) Alterar o arquivo pubspec.yaml para que as fontes sejam adicionadas ao aplicativo
-3º) Para utilizar nos widget Text é necessário retirar o TextStyle e passar apenas Theme.of(context).textTheme.titleLarge
-4º) Para o appBar foi apenas a implementação que está no inicio deste arquivo.                           
-
-
-
+Nesta aula foi adicionado uma imagem e um texto caso não tenha nenhum registro cadastro, e para realizar a adição dessa imagem os seguintes passos foram executados.
+1º) Foi criado uma pasta chamada images dentro da pasta assets
+2º) A imagem foi copiada para a pasta.
+3º) A imagem foi registrada no arquivo pubspec.yaml 
+4º) No arquivo Components/transaction_list.dart foi adicionado um operador ternario onde
+    será verificado se há algum regitro na lista.
+    Caso não tenha será exibido uma mensagem e uma imagem
+    Caso tenha o texto e imagem não será exibido.            
  */

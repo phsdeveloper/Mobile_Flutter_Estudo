@@ -15,7 +15,27 @@ final List<Transaction> transactions;
 
     return SizedBox(
       height: 430,
-      child: ListView.builder(
+      child: transactions.isEmpty? Column(
+        children: <Widget>[
+          const SizedBox(height: 20),
+          Text(
+            'Nenhuma transação cadastrada',
+            style: Theme.of(context).textTheme.titleLarge,
+          ),
+          const SizedBox(height: 20),
+          SizedBox(
+            height: 200,
+            
+            child: Image.asset(
+              'assets/images/waiting.png',
+              fit: BoxFit.cover,
+            ),
+          )
+        ],
+
+      ) 
+      :  
+      ListView.builder(
               itemCount: transactions.length,
               itemBuilder: (context, index) 
               {
