@@ -51,10 +51,8 @@ final List<Transaction> transactions;
                         children: <Widget>[
                           Text(
                             tr.title,
-                            style: const TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                            ),
+                            style: Theme.of(context).textTheme.titleLarge,
+                          
                           ),
                           Text(
                             DateFormat('d MMM y HH:mm:ss').format(tr.date),

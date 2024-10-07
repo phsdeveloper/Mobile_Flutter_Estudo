@@ -19,6 +19,22 @@ class ExpensesApp extends StatelessWidget {
             primary: Colors.purple,
             secondary: Colors.amber,
           ),
+         textTheme:  tema.textTheme.copyWith(
+           titleLarge: const TextStyle(
+             fontFamily: 'OpenSans',
+             fontSize: 18,
+             fontWeight: FontWeight.normal,
+            color: Colors.black,
+           ),
+         ),
+         appBarTheme: const AppBarTheme(
+            titleTextStyle: TextStyle(
+              fontFamily: 'OpenSans',
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
+           
+           ),
         )
         );
   }
@@ -95,22 +111,25 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.add_circle),
-        backgroundColor: Theme.of(context).colorScheme.primary,
+      floatingActionButton:  FloatingActionButton(
+        backgroundColor: Theme.of(context).colorScheme.secondary,
         onPressed: () {
           _openTransactionFormModal(context);
         },
+        child: const Icon(Icons.add_circle),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
     );
   }
 }
 /**
-Nessa aula foi implementado a centralização do estilo do aplicativo.
-Entretanto a cor do botão precisa ser alterada diretamente no componente, como os
-demais assim como o appbar
-Nesse link tem mais informações
-https://blog.formacao.dev/botoes-no-flutter/
+Link para fontes do Google: https://fonts.google.com
+
+1º) Criar o diretório e adicionar as fontes baixadas no diretório assets/fonts
+2º) Alterar o arquivo pubspec.yaml para que as fontes sejam adicionadas ao aplicativo
+3º) Para utilizar nos widget Text é necessário retirar o TextStyle e passar apenas Theme.of(context).textTheme.titleLarge
+4º) Para o appBar foi apenas a implementação que está no inicio deste arquivo.                           
+
+
 
  */
