@@ -125,12 +125,8 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 /**
-Nesta aula foi adicionado uma imagem e um texto caso não tenha nenhum registro cadastro, e para realizar a adição dessa imagem os seguintes passos foram executados.
-1º) Foi criado uma pasta chamada images dentro da pasta assets
-2º) A imagem foi copiada para a pasta.
-3º) A imagem foi registrada no arquivo pubspec.yaml 
-4º) No arquivo Components/transaction_list.dart foi adicionado um operador ternario onde
-    será verificado se há algum regitro na lista.
-    Caso não tenha será exibido uma mensagem e uma imagem
-    Caso tenha o texto e imagem não será exibido.            
+Nessa aula foi iniciado a exibição do chart da aplicação que consistiu em:
+ ● Criar o componente/arquivo chart.dart
+ ● Foi utilizado o List.generate para gerar uma lista com um tamanho pré-determinado (Ainda não sei para que serve) 
+ ● E foi elaborado a lógica de como obter os dias.
  */
