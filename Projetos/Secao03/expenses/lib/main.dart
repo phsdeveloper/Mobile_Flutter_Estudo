@@ -146,6 +146,11 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 /**
-Nessa aula foi implementado a obtenção do percentual para o preenchimento do Container que está dentro do FractionallySizedBox
- ● 
+Nesta aula foi implementado o ajuste visual para não quebrar quando um valor tiver muitos caracteres e foi utilizado os seguintes componentes
+
+ ● FittedBox: esse Widget é utilizado para definir e redimensionar um widget filho proporcionalmente ao estabelecido
+
+ ● Flexible: Esse widget é usado para organizar o espaço ocupado por itens em Rows, Columns e Flex. Ele faz com que 
+             esse item ocupe o espaço vago dentro do seu pai. Quando a renderização acontece, primeiro é construido 
+             os filhos que não são flexiveis e depois os que são flexíveis vão ser calculados com o espaço restante.
  */
