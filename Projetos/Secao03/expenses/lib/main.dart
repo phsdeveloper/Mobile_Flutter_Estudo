@@ -140,12 +140,13 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 /**
-Nessa aula a parte visual foi implementado um pouco mais com as etapas
- ● Passando os valores para montar o grafico
- ● montando a estrutura inicial do grafico
- ● E eu errei os parametros que seriam necessários para poder ser passado no construtor do 
-   componente.
-   
-
+Nessa aula foi implementado as barras do grafico juntamente com o preechimento, widgtes utilizados:
+ ● Stack: esse widget permite que outros widgets sejam sobreposto um ao outro
+ ● Container: O Container é um widget versátil que pode ser usado para aplicar decorações, margens, preenchimentos e 
+              alinhamentos, além de definir restrições de tamanho. Ele é mais adequado quando você precisa de mais
+              personalização visual, como adicionar uma borda, uma cor de fundo ou sombras. 
+ ● FractionallySizedBox: esse  widget dimensiona o seu widget filho de forma proporcional
+ ● SizedBox: O SizedBox é um widget simples usado para impor um tamanho específico a um widget filho. Ele é útil quando
+             você precisa apenas definir um tamanho fixo para o widget sem a necessidade de outras personalizações visuais.
 
  */
