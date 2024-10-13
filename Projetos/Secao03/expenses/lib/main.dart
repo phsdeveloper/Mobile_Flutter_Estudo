@@ -140,9 +140,10 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 /**
-Nessa aula foi implementado uma função/metodo para listar as transações que atendem a regra de hoje = 7 dias
- ● Ajustei o groupedTransactions pois acabei copiando e colando, e não alterei as propriedades para obter o mes e ano.
- ● Foi implementado a funcao/metodo _recentTransactions que faz um filter utilizando o where.
- ● E foi passado os registro recentes e feito o print dos dados com sucesso
+Nessa aula foi iniciado a exibição do compenente visual com os valore necessários para poder popular o compoente 
+ ● Foi adicionado um componente texto apenas para exibir os dados na tela
+ ● Foi criado o componente chart_bar.dart e deixado um desafio que foi:
+   Criar o construtor necessário para que o componente criado funcione.
+
 
  */
