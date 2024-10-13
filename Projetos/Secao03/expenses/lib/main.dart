@@ -140,10 +140,12 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 /**
-Nessa aula foi iniciado a exibição do compenente visual com os valore necessários para poder popular o compoente 
- ● Foi adicionado um componente texto apenas para exibir os dados na tela
- ● Foi criado o componente chart_bar.dart e deixado um desafio que foi:
-   Criar o construtor necessário para que o componente criado funcione.
+Nessa aula a parte visual foi implementado um pouco mais com as etapas
+ ● Passando os valores para montar o grafico
+ ● montando a estrutura inicial do grafico
+ ● E eu errei os parametros que seriam necessários para poder ser passado no construtor do 
+   componente.
+   
 
 
  */
