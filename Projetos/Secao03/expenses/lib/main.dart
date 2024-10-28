@@ -65,16 +65,22 @@ class _MyHomePageState extends State<MyHomePage> {
       value: 211.30,
       date: DateTime.now().subtract(const Duration(days: 4)),
     ),
-     Transaction(
+    Transaction(
       id: 't3',
       title: 'Internet',
       value: 100,
       date: DateTime.now().subtract(const Duration(days: 4)),
     ),
-       Transaction(
-      id: 't3',
+    Transaction(
+      id: 't4',
       title: 'Internet',
       value: 150,
+      date: DateTime.now().subtract(const Duration(days: 4)),
+    ),
+    Transaction(
+      id: 't5',
+      title: 'Cartão de credito',
+      value: 100211.50,
       date: DateTime.now().subtract(const Duration(days: 4)),
     ),
   ];
@@ -146,11 +152,18 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 /**
-Nesta aula foi implementado o ajuste visual para não quebrar quando um valor tiver muitos caracteres e foi utilizado os seguintes componentes
+Nesta aula foi modificado o layout de apresentação da listagem de gastos utlizando os componentes
+ ● ListTile: Esse widget é bem util quando queremos separar os elementos por seção
+    ● leading: é o inicio do widget
+    ● title: é o titulo que aparece no centro do componente
+    ● subtitle: é o subtitulo que aparece no componente
+    ● trailing: é o final do componente.
+ ● CircleAvatar: Esse widget serve para adicionar os dados em um circulo, entretando na minha opinião é mas apropriado para usar como
+                 avatar no perfil, ou para contados ou coisas do tipo.
 
- ● FittedBox: esse Widget é utilizado para definir e redimensionar um widget filho proporcionalmente ao estabelecido
 
- ● Flexible: Esse widget é usado para organizar o espaço ocupado por itens em Rows, Columns e Flex. Ele faz com que 
-             esse item ocupe o espaço vago dentro do seu pai. Quando a renderização acontece, primeiro é construido 
-             os filhos que não são flexiveis e depois os que são flexíveis vão ser calculados com o espaço restante.
+
+
+
+
  */
