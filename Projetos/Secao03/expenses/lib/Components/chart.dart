@@ -29,10 +29,10 @@ class Chart extends StatelessWidget {
       //print('Dia ${DateFormat.E().format(weekDay)} [${DateFormat.E().format(weekDay)[0]}] >> Total Sum: $totalSum');
 
       return {
-        'day': DateFormat.E().format(weekDay)[0],
+        'day': DateFormat.E().format(weekDay).substring(0,3).toUpperCase(),
         'value': totalSum,
       };
-    });
+    }).reversed.toList();
   }
 
   double get _weekTotalValue{

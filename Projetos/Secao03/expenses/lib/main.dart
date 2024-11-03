@@ -80,8 +80,8 @@ class _MyHomePageState extends State<MyHomePage> {
     Transaction(
       id: 't5',
       title: 'Cartão de credito',
-      value: 100211.50,
-      date: DateTime.now().subtract(const Duration(days: 4)),
+      value: 6000.50,
+      date: DateTime.now().subtract(const Duration(days: 0)),
     ),
   ];
 
@@ -152,18 +152,17 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 /**
-Nesta aula foi modificado o layout de apresentação da listagem de gastos utlizando os componentes
- ● ListTile: Esse widget é bem util quando queremos separar os elementos por seção
-    ● leading: é o inicio do widget
-    ● title: é o titulo que aparece no centro do componente
-    ● subtitle: é o subtitulo que aparece no componente
-    ● trailing: é o final do componente.
- ● CircleAvatar: Esse widget serve para adicionar os dados em um circulo, entretando na minha opinião é mas apropriado para usar como
-                 avatar no perfil, ou para contados ou coisas do tipo.
+Nessa aula foi apenas ajustes visuais 
+ ● Adicionado o SizeBox para poder deixar todos os elementos do mesmo tamanho.
+ ● Austado a ordem que os dados são exibidos no grafico usando o reverse, onde o dia mais atual fica a direita e não a esquerda
+ ● 
+  */
 
-
-
-
-
-
- */
+  /**
+   * Duvidas aulas:
+   * ⚑ Aula 128) Quando abro ou reinicio a aplicação os nomes da semana vem em inglês e ao salvar mesmo sem alterar laguma linha o padrão volta a ser em português.
+   * 
+   * 
+   * 
+   * 
+   */
