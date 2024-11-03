@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:io';
+
+// ignore: must_be_immutable
 class TransactionForm extends StatefulWidget {
   TransactionForm(this.onSubmit, {super.key});
 
@@ -13,9 +15,10 @@ class TransactionForm extends StatefulWidget {
 class _TransactionFormState extends State<TransactionForm> {
   _submitForm() {
     final titleForm = titleController.text;
-    final valueForm = double.tryParse(valueController.text.replaceAll(",", ".")) ?? 0.0;
+    final valueForm =
+        double.tryParse(valueController.text.replaceAll(",", ".")) ?? 0.0;
     String mensagem = "";
-    mensagem += "SO: ${Platform.isIOS?'iOS':'Android'}";
+    mensagem += "SO: ${Platform.isIOS ? 'iOS' : 'Android'}";
     mensagem += "Data: ${DateTime.now()}";
     mensagem += ' >> Titulo: "$titleForm"';
     mensagem += " >> Valor: $valueForm";
@@ -24,7 +27,8 @@ class _TransactionFormState extends State<TransactionForm> {
     mensagem += ' depois teste widget=${widget.teste}';
     debugPrint(mensagem);
     if (titleForm.isEmpty || valueForm <= 0) {
-      print("SO: ${Platform.isIOS?'iOS':'Android'} >> Despesa nao cadastrada");
+      print(
+          "SO: ${Platform.isIOS ? 'iOS' : 'Android'} >> Despesa nao cadastrada");
       return;
     }
     /**
@@ -32,8 +36,6 @@ class _TransactionFormState extends State<TransactionForm> {
      * existentes na classe Stateles ou statefull
      */
     widget.onSubmit(titleForm, valueForm);
-
-    
   }
 
   final titleController = TextEditingController();
@@ -66,14 +68,30 @@ class _TransactionFormState extends State<TransactionForm> {
               onSubmitted: (_) =>
                   _submitForm(), //Esse "_" indica que estamos ingnorando o parametro que a funcao esta passando
             ),
+            SizedBox(
+              height: 70,
+              child: Row(
+                children: <Widget>[
+                  const Text('Nenhuma data Selecionada'),
+                  TextButton(
+                    onPressed: () {},
+                    child: const Text("Selecionar uma data"),
+                  )
+                ],
+              ),
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                TextButton(
+                ElevatedButton(
                   onPressed: _submitForm,
-                  child: const Text(
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: Theme.of(context).colorScheme.primary),
+                  child: Text(
                     'Nova Transacao',
-                    style: TextStyle(color: Colors.purple),
+                    style: TextStyle(
+                      color: Theme.of(context).textTheme.labelLarge?.color,
+                    ),
                   ),
                 ),
               ],

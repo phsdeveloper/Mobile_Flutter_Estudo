@@ -26,6 +26,10 @@ class ExpensesApp extends StatelessWidget {
               fontWeight: FontWeight.normal,
               color: Colors.black,
             ),
+            labelLarge: const TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold
+            )
           ),
           appBarTheme: const AppBarTheme(
             titleTextStyle: TextStyle(
@@ -152,9 +156,10 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 /**
-Nessa aula foi apenas ajustes visuais 
- ● Adicionado o SizeBox para poder deixar todos os elementos do mesmo tamanho.
- ● Austado a ordem que os dados são exibidos no grafico usando o reverse, onde o dia mais atual fica a direita e não a esquerda
+Nessa aula foi adicionado um campo para selecionar uma data especifica e foi realizado as seguintes alterações:
+ ● Adicionado um campo texto para receber o valor da data selecionada
+ ● Adicionado um novo estilo no arquivo main.dart para poder controlar o estilo do botão do arquivo transaction_form.dart
+ ● Alterado o tipo do botão que é responsavel por gerar uma nova transação.
  ● 
   */
 
