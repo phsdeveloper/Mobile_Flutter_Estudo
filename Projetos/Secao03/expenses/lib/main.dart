@@ -50,44 +50,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final List<Transaction> _transactions = [
-    Transaction(
-      id: 't0',
-      title: 'Conta Antiga',
-      value: 400,
-      date: DateTime.now().subtract(const Duration(days: 33)),
-    ),
-    Transaction(
-      id: 't1',
-      title: 'Novo Tenis de Corrida.',
-      value: 310.76,
-      date: DateTime.now().subtract(const Duration(days: 3)),
-    ),
-    Transaction(
-      id: 't2',
-      title: 'Conta de Luz.',
-      value: 211.30,
-      date: DateTime.now().subtract(const Duration(days: 4)),
-    ),
-    Transaction(
-      id: 't3',
-      title: 'Internet',
-      value: 100,
-      date: DateTime.now().subtract(const Duration(days: 4)),
-    ),
-    Transaction(
-      id: 't4',
-      title: 'Internet',
-      value: 150,
-      date: DateTime.now().subtract(const Duration(days: 4)),
-    ),
-    Transaction(
-      id: 't5',
-      title: 'Cartão de credito',
-      value: 6000.50,
-      date: DateTime.now().subtract(const Duration(days: 0)),
-    ),
-  ];
+  final List<Transaction> _transactions = [];
 
   List<Transaction> get _recentTransactions {
     return _transactions.where((tr) {
@@ -97,12 +60,12 @@ class _MyHomePageState extends State<MyHomePage> {
     }).toList();
   }
 
-  _addTransaction(String title, double value) {
+  _addTransaction(String title, double value,DateTime? data) {
     final newTransaction = Transaction(
       id: Random().nextDouble().toString(),
       title: title,
       value: value,
-      date: DateTime.now(),
+      date: data!,
     );
 
     setState(() {
@@ -156,13 +119,8 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 /**
-Nessa aula foi implementado a obtenção da data com as seguintes alterações no arquivo transaction_form.dart
- ● Criado a função/Metodo chamado _showDatePicker
-     • Adicionado a chamada ao método showDatePicker que contém os seguintes parametros de incicialização
-      - lastDate
-      - firstDate
-      - initialDate
-    • Chamado a funcão then 
+Nessa aula foi realizado as alterações para que a data seja cadastrada na lista de transação.
+ ● 
  ●  
   */
 

@@ -7,7 +7,7 @@ import 'package:intl/intl.dart';
 class TransactionForm extends StatefulWidget {
   TransactionForm(this.onSubmit, {super.key});
 
-  final void Function(String, double) onSubmit;
+  final void Function(String, double,DateTime?) onSubmit;
   String teste = 'teste';
 
   @override
@@ -28,7 +28,7 @@ class _TransactionFormState extends State<TransactionForm> {
     widget.teste = 'alterado';
     mensagem += ' depois teste widget=${widget.teste}';
     debugPrint(mensagem);
-    if (titleForm.isEmpty || valueForm <= 0) {
+    if (titleForm.isEmpty || valueForm <= 0 || _selectedDate == null) {
       print(
           "SO: ${Platform.isIOS ? 'iOS' : 'Android'} >> Despesa nao cadastrada");
       return;
@@ -37,12 +37,12 @@ class _TransactionFormState extends State<TransactionForm> {
      * Esse atributo widget nos perminte acessar todos os métodos e propriedades
      * existentes na classe Stateles ou statefull
      */
-    widget.onSubmit(titleForm, valueForm);
+    widget.onSubmit(titleForm, valueForm,_selectedDate);
   }
 
   final _titleController = TextEditingController();
   final valueController = TextEditingController();
-  DateTime? _selectedDate;
+  DateTime? _selectedDate = DateTime.now();
 
   _showDatePicker() {
     showDatePicker(
