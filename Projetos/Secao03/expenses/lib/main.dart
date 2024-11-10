@@ -156,11 +156,14 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 /**
-Nessa aula foi adicionado um campo para selecionar uma data especifica e foi realizado as seguintes alterações:
- ● Adicionado um campo texto para receber o valor da data selecionada
- ● Adicionado um novo estilo no arquivo main.dart para poder controlar o estilo do botão do arquivo transaction_form.dart
- ● Alterado o tipo do botão que é responsavel por gerar uma nova transação.
- ● 
+Nessa aula foi implementado a obtenção da data com as seguintes alterações no arquivo transaction_form.dart
+ ● Criado a função/Metodo chamado _showDatePicker
+     • Adicionado a chamada ao método showDatePicker que contém os seguintes parametros de incicialização
+      - lastDate
+      - firstDate
+      - initialDate
+    • Chamado a funcão then 
+ ●  
   */
 
   /**
