@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:intl/date_symbol_data_local.dart';
+import 'package:intl/intl.dart';
 import 'Components/export_all_components.dart';
 import 'dart:math';
 import 'models/transaction.dart';
 
-main() => runApp(ExpensesApp());
+void main() async {
+  Intl.defaultLocale = 'pt_BR';
+  await initializeDateFormatting('pt_BR', null);
+  runApp(ExpensesApp());
+} 
 
 class ExpensesApp extends StatelessWidget {
   ExpensesApp({super.key});
@@ -127,7 +133,9 @@ Nessa aula foi realizado as alterações para que a data seja cadastrada na list
   /**
    * Duvidas aulas:
    * ⚑ Aula 128) Quando abro ou reinicio a aplicação os nomes da semana vem em inglês e ao salvar mesmo sem alterar laguma linha o padrão volta a ser em português.
-   * 
+   * Fiz a alteração no código conforme indicação na duvida postada
+   * Intl.defaultLocale = 'pt_BR';
+   * await initializeDateFormatting('pt_BR', null);
    * 
    * 
    * 
