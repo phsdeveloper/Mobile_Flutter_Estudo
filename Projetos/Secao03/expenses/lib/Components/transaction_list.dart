@@ -4,9 +4,10 @@ import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
 class TransactionList extends StatelessWidget {
-  const TransactionList(this.transactions, {super.key});
+  const TransactionList(this.transactions, this.onRemove, {super.key});
 
   final List<Transaction> transactions;
+  final void Function(String) onRemove;
   @override
   Widget build(BuildContext context) {
     Intl.defaultLocale = 'pt_BR';
@@ -37,12 +38,14 @@ class TransactionList extends StatelessWidget {
               itemBuilder: (context, index) {
                 final tr = transactions[index];
                 return Card(
-                  elevation: 5,//Essa propriedade adiciona um sombreamento ao elemendo, proporcionando visualização melhor
+                  elevation:
+                      5, //Essa propriedade adiciona um sombreamento ao elemendo, proporcionando visualização melhor
                   margin: const EdgeInsets.symmetric(
                     vertical: 8,
                     horizontal: 5,
                   ),
                   child: ListTile(
+                    //-----------------------------------
                     leading: CircleAvatar(
                       radius: 30,
                       backgroundColor: Theme.of(context).colorScheme.primary,
@@ -56,12 +59,19 @@ class TransactionList extends StatelessWidget {
                         ),
                       ),
                     ),
+                    //--------------------------------------------
                     title: Text(
                       tr.title,
                       style: Theme.of(context).textTheme.titleLarge,
                     ),
                     subtitle: Text(
                       DateFormat('dd MMMM y').format(tr.date),
+                    ),
+                    //-----------------------------------------------
+                    trailing: IconButton(
+                      icon: const Icon(Icons.delete),
+                      color: Theme.of(context).colorScheme.error,
+                      onPressed: ()=> onRemove(tr.id),
                     ),
                   ),
                 );

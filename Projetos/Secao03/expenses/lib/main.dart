@@ -81,6 +81,14 @@ class _MyHomePageState extends State<MyHomePage> {
     Navigator.of(context).pop();
   }
 
+
+  _removeTransaction(String id)
+  {
+    setState(() {
+      _transactions.removeWhere((tr) => tr.id == id);
+    });
+  }
+
   _openTransactionFormModal(BuildContext context) {
     showModalBottomSheet(
       context: context,
@@ -109,7 +117,7 @@ class _MyHomePageState extends State<MyHomePage> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Chart(_recentTransactions),
-            TransactionList(_transactions),
+            TransactionList(_transactions,_removeTransaction),
           ],
         ),
       ),
@@ -125,9 +133,13 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 /**
-Nessa aula foi realizado as alterações para que a data seja cadastrada na lista de transação.
- ● 
- ●  
+Nessa aula implementado a exclusão do registro, com as seguintes alteraçoes.
+ ● Arquivo main.dart
+    • Criação da função _removeTransaction(String id) que remove um elemento da lista com base no id.
+    • Passando essa função por parametro para o wdget transaction_list.dart.
+ ●  Arquivo transaction_list.dart
+    • Criação da funcão onRemove que vai receber por parametro a função que vai remover efetivamente o elemento da lista.
+    • Implementação do trailing no ListTile que é a parte final do widget.
   */
 
   /**
