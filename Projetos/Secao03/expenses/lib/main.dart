@@ -133,13 +133,13 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 /**
-Nessa aula implementado a exclusão do registro, com as seguintes alteraçoes.
- ● Arquivo main.dart
-    • Criação da função _removeTransaction(String id) que remove um elemento da lista com base no id.
-    • Passando essa função por parametro para o wdget transaction_list.dart.
- ●  Arquivo transaction_list.dart
-    • Criação da funcão onRemove que vai receber por parametro a função que vai remover efetivamente o elemento da lista.
-    • Implementação do trailing no ListTile que é a parte final do widget.
+Nessa aula não foi feito nada apenas exibindo uma deficiencia do aplicativo devido ao tamanho da tela mas essa correção será 
+realizada na proxima secao.
+
+A unica alteracao que fiz foi adicionar o nome do dia que diferente do C# que é ddd e no flutter é EEE
+
+ ● 
+    • 
   */
 
   /**
