@@ -9,7 +9,7 @@ void main() async {
   Intl.defaultLocale = 'pt_BR';
   await initializeDateFormatting('pt_BR', null);
   runApp(ExpensesApp());
-} 
+}
 
 class ExpensesApp extends StatelessWidget {
   ExpensesApp({super.key});
@@ -26,17 +26,14 @@ class ExpensesApp extends StatelessWidget {
             secondary: Colors.amber,
           ),
           textTheme: tema.textTheme.copyWith(
-            titleLarge: const TextStyle(
-              fontFamily: 'OpenSans',
-              fontSize: 18,
-              fontWeight: FontWeight.normal,
-              color: Colors.black,
-            ),
-            labelLarge: const TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.bold
-            )
-          ),
+              titleLarge: const TextStyle(
+                fontFamily: 'OpenSans',
+                fontSize: 18,
+                fontWeight: FontWeight.normal,
+                color: Colors.black,
+              ),
+              labelLarge: const TextStyle(
+                  color: Colors.white, fontWeight: FontWeight.bold)),
           appBarTheme: const AppBarTheme(
             titleTextStyle: TextStyle(
               fontFamily: 'OpenSans',
@@ -66,7 +63,7 @@ class _MyHomePageState extends State<MyHomePage> {
     }).toList();
   }
 
-  _addTransaction(String title, double value,DateTime? data) {
+  _addTransaction(String title, double value, DateTime? data) {
     final newTransaction = Transaction(
       id: Random().nextDouble().toString(),
       title: title,
@@ -81,9 +78,7 @@ class _MyHomePageState extends State<MyHomePage> {
     Navigator.of(context).pop();
   }
 
-
-  _removeTransaction(String id)
-  {
+  _removeTransaction(String id) {
     setState(() {
       _transactions.removeWhere((tr) => tr.id == id);
     });
@@ -100,9 +95,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Despesas Pessoais'),
+
+    final appBar = AppBar(
+        title: const Text('Despesas Pessoais!'),
         backgroundColor: Theme.of(context).colorScheme.primary,
         actions: <Widget>[
           IconButton(
@@ -111,13 +106,26 @@ class _MyHomePageState extends State<MyHomePage> {
                 _openTransactionFormModal(context);
               }),
         ],
-      ),
+      );
+
+    final appBarHeight = appBar.preferredSize.height;
+
+    final availablelHeigth = MediaQuery.of(context).size.height - appBarHeight - MediaQuery.of(context).padding.top;
+
+    return Scaffold(
+      appBar: appBar,
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Chart(_recentTransactions),
-            TransactionList(_transactions,_removeTransaction),
+            SizedBox(
+              height: availablelHeigth * 0.25,
+              child: Chart(_recentTransactions),
+            ),
+            SizedBox(
+              height: availablelHeigth * 0.7,
+              child: TransactionList(_transactions, _removeTransaction),
+            ),
           ],
         ),
       ),
@@ -133,13 +141,21 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 /**
-Nessa aula não foi feito nada apenas exibindo uma deficiencia do aplicativo devido ao tamanho da tela mas essa correção será 
-realizada na proxima secao.
+Nessa aula foi apresentado o recurso MediaQuery.of(context).size e appBar.preferredSize.height e foi realizado as seguintes alterações no projeto.
 
-A unica alteracao que fiz foi adicionar o nome do dia que diferente do C# que é ddd e no flutter é EEE
+ ● Arquivo: main.dart
+    • adicionado a variavel availablelHeigth: foi criada para armazenar o tamanho disponivel para a reiderização dos componentes na tela.
+    • criado a variavel appbar: nessa variavel foi atribuido todo o widget AppBar, para poder extrair o tamanho que que esse elemento
+                                está ocupando na tela, com a seguinte sintaxe: appBar.preferredSize.height
+    
+   ● Arquivo: Transaction_list
+    • Foi alterado o valor da propriedade heigth para MediaQuery.of(context).size.height * 0.6
 
- ● 
+   ● Arquivo: chart
+    • O componente card foi envolvido pelo widget SizeBox e adicionado na propriedade heigth o valor MediaQuery.of(context).size.height * 0.4,
     • 
+    • 
+      
   */
 
   /**
