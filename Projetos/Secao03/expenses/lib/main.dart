@@ -95,22 +95,29 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-
+    
     final appBar = AppBar(
-        title: const Text('Despesas Pessoais!'),
-        backgroundColor: Theme.of(context).colorScheme.primary,
-        actions: <Widget>[
-          IconButton(
-              icon: const Icon(Icons.add_circle),
-              onPressed: () {
-                _openTransactionFormModal(context);
-              }),
-        ],
-      );
+      title: Text(
+        'Despesas Pessoais',
+        style: TextStyle(
+          fontSize: 20 * MediaQuery.textScalerOf(context).scale(1),
+        ),
+      ),
+      backgroundColor: Theme.of(context).colorScheme.primary,
+      actions: <Widget>[
+        IconButton(
+            icon: const Icon(Icons.add_circle),
+            onPressed: () {
+              _openTransactionFormModal(context);
+            }),
+      ],
+    );
 
     final appBarHeight = appBar.preferredSize.height;
 
-    final availablelHeigth = MediaQuery.of(context).size.height - appBarHeight - MediaQuery.of(context).padding.top;
+    final availablelHeigth = MediaQuery.of(context).size.height -
+        appBarHeight -
+        MediaQuery.of(context).padding.top;
 
     return Scaffold(
       appBar: appBar,
@@ -141,24 +148,15 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 /**
-Nessa aula foi apresentado o recurso MediaQuery.of(context).size e appBar.preferredSize.height e foi realizado as seguintes alterações no projeto.
-
+Nessa aula foi implementado como obter o valor do dispositivo o tamnho da fonte de forma dinamica
+pelas configurações do proprio aparelho
  ● Arquivo: main.dart
-    • adicionado a variavel availablelHeigth: foi criada para armazenar o tamanho disponivel para a reiderização dos componentes na tela.
-    • criado a variavel appbar: nessa variavel foi atribuido todo o widget AppBar, para poder extrair o tamanho que que esse elemento
-                                está ocupando na tela, com a seguinte sintaxe: appBar.preferredSize.height
-    
-   ● Arquivo: Transaction_list
-    • Foi alterado o valor da propriedade heigth para MediaQuery.of(context).size.height * 0.6
-
-   ● Arquivo: chart
-    • O componente card foi envolvido pelo widget SizeBox e adicionado na propriedade heigth o valor MediaQuery.of(context).size.height * 0.4,
-    • 
-    • 
-      
+    • foi adicionado apenas um foit soze com o metodo MediaQuery.textScalerOf(context).scale(1)    
   */
 
   /**
+   *    ● 
+    • 
    * Duvidas aulas:
    * ⚑ Aula 128) Quando abro ou reinicio a aplicação os nomes da semana vem em inglês e ao salvar mesmo sem alterar laguma linha o padrão volta a ser em português.
    * Fiz a alteração no código conforme indicação na duvida postada
