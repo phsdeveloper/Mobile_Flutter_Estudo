@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 import 'Components/export_all_components.dart';
@@ -19,11 +19,6 @@ class ExpensesApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp
-    ]);
-
-
     return MaterialApp(
         home: MyHomePage(),
         theme: tema.copyWith(
@@ -60,7 +55,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final List<Transaction> _transactions = [];
-
+  bool _showChart = false;
   List<Transaction> get _recentTransactions {
     return _transactions.where((tr) {
       return tr.date.isAfter(DateTime.now().subtract(
@@ -101,7 +96,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    
     final appBar = AppBar(
       title: Text(
         'Despesas Pessoais',
@@ -131,10 +125,27 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            SizedBox(
-              height: availablelHeigth * 0.25,
-              child: Chart(_recentTransactions),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(_showChart ? 'Ocultar Gráfico' : 'Exibir Gráfico'),
+                Switch(
+                  value: _showChart,
+                  onChanged: (value) {
+                    setState(() {
+                      _showChart = value;
+                    });
+                  },
+                ),
+              ],
             ),
+            if (_showChart)
+              SizedBox(
+                height: availablelHeigth * 0.3,
+                child: Chart(_recentTransactions),
+              ),
+              //-----------------------------------
+              if(!_showChart)
             SizedBox(
               height: availablelHeigth * 0.7,
               child: TransactionList(_transactions, _removeTransaction),
@@ -154,10 +165,11 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 /**
-Nessa aula foi apresentado como especificar qual orientacao o aplicativo irá se manter
+Nessa aula foi adicionado um Switch para controlar a exibição entre as transações e o grafico
+
  ● Arquivo: main.dart
-      SystemChrome.setPreferredOrientations([ DeviceOrientation.portraitUp]);
-      
+      Adicionado um wdget Switch para controlar o layout
+
   
   */
 
