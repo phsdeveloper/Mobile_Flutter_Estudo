@@ -148,10 +148,10 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 /**
-Nessa aula foi implementado como obter o valor do dispositivo o tamnho da fonte de forma dinamica
-pelas configurações do proprio aparelho
- ● Arquivo: main.dart
-    • foi adicionado apenas um foit soze com o metodo MediaQuery.textScalerOf(context).scale(1)    
+Nessa aula foi ajustado o layout do chart para que sejam responsivos também com as seguintes alterações: 
+ ● Arquivo: chart_bar.dart
+    • Foi adicionado o widget LayoutBuilder e ele tem a propriedade builder onde é relizado mais
+      configurações para poder realizar a redimensionamento com base no tamanho da tela.
   */
 
   /**
