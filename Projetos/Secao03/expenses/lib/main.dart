@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 import 'Components/export_all_components.dart';
@@ -18,6 +19,11 @@ class ExpensesApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp
+    ]);
+
+
     return MaterialApp(
         home: MyHomePage(),
         theme: tema.copyWith(
@@ -148,10 +154,11 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 /**
-Nessa aula foi ajustado o layout do chart para que sejam responsivos também com as seguintes alterações: 
- ● Arquivo: chart_bar.dart
-    • Foi adicionado o widget LayoutBuilder e ele tem a propriedade builder onde é relizado mais
-      configurações para poder realizar a redimensionamento com base no tamanho da tela.
+Nessa aula foi apresentado como especificar qual orientacao o aplicativo irá se manter
+ ● Arquivo: main.dart
+      SystemChrome.setPreferredOrientations([ DeviceOrientation.portraitUp]);
+      
+  
   */
 
   /**
