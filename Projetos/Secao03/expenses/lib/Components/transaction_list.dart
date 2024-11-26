@@ -16,23 +16,25 @@ class TransactionList extends StatelessWidget {
     return SizedBox(
       height: MediaQuery.of(context).size.height * 0.6,
       child: transactions.isEmpty
-          ? Column(
-              children: <Widget>[
-                const SizedBox(height: 20),
-                Text(
-                  'Nenhuma transação cadastrada',
-                  style: Theme.of(context).textTheme.titleLarge,
-                ),
-                const SizedBox(height: 20),
-                SizedBox(
-                  height: 200,
-                  child: Image.asset(
-                    'assets/images/waiting.png',
-                    fit: BoxFit.cover,
+          ? LayoutBuilder(builder: (ctx, constraints) {
+              return Column(
+                children: <Widget>[
+                  SizedBox(height: constraints.maxHeight * 0.05),
+                  Text(
+                    'Nenhuma transação cadastrada',
+                    style: Theme.of(context).textTheme.titleLarge,
                   ),
-                )
-              ],
-            )
+                  SizedBox(height: constraints.maxHeight * 0.05),
+                  SizedBox(
+                    height: constraints.maxHeight * 0.6,
+                    child: Image.asset(
+                      'assets/images/waiting.png',
+                      fit: BoxFit.cover,
+                    ),
+                  )
+                ],
+              );
+            })
           : ListView.builder(
               itemCount: transactions.length,
               itemBuilder: (context, index) {
@@ -71,7 +73,7 @@ class TransactionList extends StatelessWidget {
                     trailing: IconButton(
                       icon: const Icon(Icons.delete),
                       color: Theme.of(context).colorScheme.error,
-                      onPressed: ()=> onRemove(tr.id),
+                      onPressed: () => onRemove(tr.id),
                     ),
                   ),
                 );

@@ -4,6 +4,7 @@
     // Para obter mais informações, acesse: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+
     
         {
             "name": "Android",
@@ -15,7 +16,7 @@
             "name": "iOS 15 Pro Max",
             "request": "launch",
             "type": "dart",
-            "deviceId": "A205CC17-6B32-4386-BE62-85D5363707AF"
+            "deviceId": "4B37813C-FFA9-4073-960D-D7AA2C5214FE"
         },
     ],
     "compounds": [

@@ -165,10 +165,10 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 /**
-Nessa aula foi adicionado um Switch para controlar a exibição entre as transações e o grafico
+Nesta aula foi ajustado o temanho da imagem para que seja calculada em tempos de execução
 
- ● Arquivo: main.dart
-      Adicionado um wdget Switch para controlar o layout
+ ● Arquivo: transaction_list.dart
+      Adicionado um widget LayoutBuilder para controlar o tamanho da da imagem
 
   
   */
