@@ -96,6 +96,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    bool isLandscape = MediaQuery.of(context).orientation == Orientation.landscape;
+
     final appBar = AppBar(
       title: Text(
         'Despesas Pessoais',
@@ -125,31 +127,34 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(_showChart ? 'Ocultar Gráfico' : 'Exibir Gráfico'),
-                Switch(
-                  value: _showChart,
-                  onChanged: (value) {
-                    setState(() {
-                      _showChart = value;
-                    });
-                  },
-                ),
-              ],
-            ),
-            if (_showChart)
+            if (isLandscape)
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(_showChart ? 'Ocultar Gráfico' : 'Exibir Gráfico'),
+                  Switch(
+                    value: _showChart,
+                    onChanged: (value) {
+                      setState(() {
+                        _showChart = value;
+                      });
+                    },
+                  ),
+                ],
+              ),
+              //-----------------------------------------------------------------------
+
+            if (_showChart || !isLandscape)
               SizedBox(
-                height: availablelHeigth * 0.3,
+                height: availablelHeigth * ( isLandscape ? 0.7: 0.3),
                 child: Chart(_recentTransactions),
               ),
-              //-----------------------------------
-              if(!_showChart)
-            SizedBox(
-              height: availablelHeigth * 0.7,
-              child: TransactionList(_transactions, _removeTransaction),
-            ),
+            //-----------------------------------
+            if (!_showChart || !isLandscape)
+              SizedBox(
+                height: availablelHeigth * 0.7,
+                child: TransactionList(_transactions, _removeTransaction),
+              ),
           ],
         ),
       ),
@@ -165,10 +170,9 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 /**
-Nesta aula foi ajustado o temanho da imagem para que seja calculada em tempos de execução
-
- ● Arquivo: transaction_list.dart
-      Adicionado um widget LayoutBuilder para controlar o tamanho da da imagem
+Nesta aula foi implementado o calculo do tamanho que o grafico ocupa na tela de acordo com a orietação do aplicativo
+ ● Arquivo: main.dart
+      Adicionado a verificação se está na orientação landScape (em pé) bool isLandscape = MediaQuery.of(context).orientation == Orientation.landscape;
 
   
   */
