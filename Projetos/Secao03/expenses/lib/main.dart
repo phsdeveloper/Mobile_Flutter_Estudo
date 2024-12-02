@@ -162,7 +162,7 @@ class _MyHomePageState extends State<MyHomePage> {
             //-----------------------------------
             if (!_showChart || !isLandscape)
               SizedBox(
-                height: availablelHeigth * 0.7,
+                height: availablelHeigth * (isLandscape ? 0.8 : 0.3),
                 child: TransactionList(_transactions, _removeTransaction),
               ),
           ],
@@ -180,9 +180,11 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 /**
-Nesta aula foi realizado um ajuste para que o tamanho da lista não fique o teclado sobreposto a tela.
- ● Arquivo: transaction_form.dart
-      foi modificado o padding para que possa ficar 
+Nessa aula foi implementado a adição de um novo wdget não pela orientação mas sim pela largura disponivel.
+Foi adicionado um texto e um icone para o excluir.
+ ● Arquivo: transaction_List.dart
+     • MediaQuery.of(context).size.width > 480 : verifica se a largura é maior que 48.
+     • TextButton.icon : esse componente comporta um texto com um icone e é adicionado caso a largura disponivel seja maior que 480  
 
   
   */
