@@ -96,7 +96,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    bool isLandscape = MediaQuery.of(context).orientation == Orientation.landscape;
+    bool isLandscape =
+        MediaQuery.of(context).orientation == Orientation.landscape;
 
     final appBar = AppBar(
       title: Text(
@@ -108,10 +109,19 @@ class _MyHomePageState extends State<MyHomePage> {
       backgroundColor: Theme.of(context).colorScheme.primary,
       actions: <Widget>[
         IconButton(
-            icon: const Icon(Icons.add_circle),
+            icon: const Icon(Icons.add_circle,color: Colors.white,size: 35,),
             onPressed: () {
               _openTransactionFormModal(context);
             }),
+        if (isLandscape)
+          IconButton(
+              icon: Icon(_showChart ? Icons.list : Icons.bar_chart,color: Colors.white,size: 35,),
+                            
+              onPressed: () {
+                setState(() {
+                  _showChart = !_showChart;
+                });
+              }),
       ],
     );
 
@@ -127,26 +137,26 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            if (isLandscape)
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(_showChart ? 'Ocultar Gráfico' : 'Exibir Gráfico'),
-                  Switch(
-                    value: _showChart,
-                    onChanged: (value) {
-                      setState(() {
-                        _showChart = value;
-                      });
-                    },
-                  ),
-                ],
-              ),
-              //-----------------------------------------------------------------------
+            //if (isLandscape)
+            //  Row(
+            //    mainAxisAlignment: MainAxisAlignment.center,
+            //    children: [
+            //      Text(_showChart ? 'Ocultar Gráfico' : 'Exibir Gráfico'),
+            //      Switch(
+            //        value: _showChart,
+            //        onChanged: (value) {
+            //          setState(() {
+            //            _showChart = value;
+            //          });
+            //        },
+            //      ),
+            //    ],
+            //  ),
+            //-----------------------------------------------------------------------
 
             if (_showChart || !isLandscape)
               SizedBox(
-                height: availablelHeigth * ( isLandscape ? 0.7: 0.3),
+                height: availablelHeigth * (isLandscape ? 0.8 : 0.3),
                 child: Chart(_recentTransactions),
               ),
             //-----------------------------------
@@ -170,9 +180,9 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 /**
-Nesta aula foi implementado o calculo do tamanho que o grafico ocupa na tela de acordo com a orietação do aplicativo
+Nesta aula foi adicionado o um IconButton no appBar para controlar a exibição do grafico ou da lista
  ● Arquivo: main.dart
-      Adicionado a verificação se está na orientação landScape (em pé) bool isLandscape = MediaQuery.of(context).orientation == Orientation.landscape;
+      Adicionado mais um IconButton e comentado o Switch
 
   
   */
