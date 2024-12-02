@@ -63,64 +63,71 @@ class _TransactionFormState extends State<TransactionForm> {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 5,
-      child: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Column(
-          children: <Widget>[
-            TextField(
-              decoration: const InputDecoration(
-                labelText: 'Titulo',
+    return SingleChildScrollView(
+      child: Card(
+        elevation: 5,
+        child: Padding(
+          padding: EdgeInsets.only(
+            top: 10,
+            right: 10,
+            left: 10,
+            bottom: 10 + MediaQuery.of(context).viewInsets.bottom,
+          ),
+          child: Column(
+            children: <Widget>[
+              TextField(
+                decoration: const InputDecoration(
+                  labelText: 'Titulo',
+                ),
+                controller: _titleController,
+                onSubmitted: (_) => //Esse "_" indica que estamos ingnorando o parametro que a funcao esta passando
+                    _submitForm(), 
               ),
-              controller: _titleController,
-              onSubmitted: (_) => //Esse "_" indica que estamos ingnorando o parametro que a funcao esta passando
-                  _submitForm(), 
-            ),
-            TextField(
-              decoration: const InputDecoration(
-                labelText: 'Valor (R\$)',
+              TextField(
+                decoration: const InputDecoration(
+                  labelText: 'Valor (R\$)',
+                ),
+                controller: valueController,
+                keyboardType: const TextInputType.numberWithOptions(
+                    decimal: true, signed: true),
+                onSubmitted: (_) => //Esse "_" indica que estamos ingnorando o parametro que a funcao esta passando
+                    _submitForm(), 
               ),
-              controller: valueController,
-              keyboardType: const TextInputType.numberWithOptions(
-                  decimal: true, signed: true),
-              onSubmitted: (_) => //Esse "_" indica que estamos ingnorando o parametro que a funcao esta passando
-                  _submitForm(), 
-            ),
-            SizedBox(
-              height: 70,
-              child: Row(
-                children: <Widget>[
-                  Expanded(
-                      child: Text(
-                    _selectedDate == null
-                        ? 'Nenhuma data Selecionada'
-                        : 'Data Selecionada: ${DateFormat('dd/MM/yyyy').format(_selectedDate!)}',
-                  )),
-                  TextButton(
-                    onPressed: _showDatePicker,
-                    child: const Text("Selecionar uma data"),
-                  )
-                ],
+              SizedBox(
+                height: 70,
+                child: Row(
+                  children: <Widget>[
+                    Expanded(
+                        child: Text(
+                      _selectedDate == null
+                          ? 'Nenhuma data Selecionada'
+                          : 'Data Selecionada: ${DateFormat('dd/MM/yyyy').format(_selectedDate!)}',
+                    )),
+                    TextButton(
+                      onPressed: _showDatePicker,
+                      child: const Text("Selecionar uma data"),
+                    )
+                  ],
+                ),
               ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                ElevatedButton(
-                  onPressed: _submitForm,
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: Theme.of(context).colorScheme.primary),
-                  child: Text(
-                    'Nova Transacao',
-                    style: TextStyle(
-                      color: Theme.of(context).textTheme.labelLarge?.color,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  ElevatedButton(
+                    onPressed: _submitForm,
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: Theme.of(context).colorScheme.primary),
+                    child: Text(
+                      'Nova Transacao',
+                      style: TextStyle(
+                        color: Theme.of(context).textTheme.labelLarge?.color,
+                      ),
                     ),
                   ),
-                ),
-              ],
-            )
-          ],
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );

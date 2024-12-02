@@ -180,9 +180,9 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 /**
-Nesta aula foi adicionado o um IconButton no appBar para controlar a exibição do grafico ou da lista
- ● Arquivo: main.dart
-      Adicionado mais um IconButton e comentado o Switch
+Nesta aula foi realizado um ajuste para que o tamanho da lista não fique o teclado sobreposto a tela.
+ ● Arquivo: transaction_form.dart
+      foi modificado o padding para que possa ficar 
 
   
   */
@@ -191,11 +191,15 @@ Nesta aula foi adicionado o um IconButton no appBar para controlar a exibição 
    *    ● 
     • 
    * Duvidas aulas:
+   * ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
    * ⚑ Aula 128) Quando abro ou reinicio a aplicação os nomes da semana vem em inglês e ao salvar mesmo sem alterar laguma linha o padrão volta a ser em português.
    * Fiz a alteração no código conforme indicação na duvida postada
    * Intl.defaultLocale = 'pt_BR';
    * await initializeDateFormatting('pt_BR', null);
-   * 
-   * 
-   * 
+   * ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+   * ⚑ Aula 148. Ajustando Formulário
+   * quando a aplicação está em modo paisagem mesmo com essa alteração o formulário não é exibido.
+   * Vou deixar essa alteração para o final do módulo.
+   * Tem uma implementação mais adequada nos recursos da aula
+   * ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
    */
