@@ -96,8 +96,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final _mediaQuery = MediaQuery.of(context);
     bool isLandscape =
-        MediaQuery.of(context).orientation == Orientation.landscape;
+        _mediaQuery.orientation == Orientation.landscape;
 
     final appBar = AppBar(
       title: Text(
@@ -127,9 +128,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
     final appBarHeight = appBar.preferredSize.height;
 
-    final availablelHeigth = MediaQuery.of(context).size.height -
+    final availablelHeigth = _mediaQuery.size.height -
         appBarHeight -
-        MediaQuery.of(context).padding.top;
+        _mediaQuery.padding.top;
 
     return Scaffold(
       appBar: appBar,
@@ -180,12 +181,10 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 /**
-Nessa aula foi implementado a adição de um novo wdget não pela orientação mas sim pela largura disponivel.
+Nessa aula foi realizado apenas uma refatoração para não ter a necessidade de chamar o MediaQuery varias vezes
 Foi adicionado um texto e um icone para o excluir.
- ● Arquivo: transaction_List.dart
-     • MediaQuery.of(context).size.width > 480 : verifica se a largura é maior que 48.
-     • TextButton.icon : esse componente comporta um texto com um icone e é adicionado caso a largura disponivel seja maior que 480  
-
+ ● Arquivo: main.dart
+     • foi criada a variavel _mediaQuery 
   
   */
 
