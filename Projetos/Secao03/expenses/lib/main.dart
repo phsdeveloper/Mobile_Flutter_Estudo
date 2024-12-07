@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 import 'package:intl/date_symbol_data_local.dart';
@@ -138,38 +140,39 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            //if (isLandscape)
-            //  Row(
-            //    mainAxisAlignment: MainAxisAlignment.center,
-            //    children: [
-            //      Text(_showChart ? 'Ocultar Gráfico' : 'Exibir Gráfico'),
-            //      Switch(
-            //        value: _showChart,
-            //        onChanged: (value) {
-            //          setState(() {
-            //            _showChart = value;
-            //          });
-            //        },
-            //      ),
-            //    ],
-            //  ),
+            if (isLandscape)
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(_showChart ? 'Ocultar Gráfico!' : 'Exibir Gráfico!'),
+                  Switch.adaptive(
+                    activeColor: Theme.of(context).colorScheme.secondary,
+                    value: _showChart,
+                    onChanged: (value) {
+                      setState(() {
+                        _showChart = value;
+                      });
+                    },
+                  ),
+                ],
+              ),
             //-----------------------------------------------------------------------
 
             if (_showChart || !isLandscape)
               SizedBox(
-                height: availablelHeigth * (isLandscape ? 0.8 : 0.3),
+                height: availablelHeigth * (isLandscape ? 0.70 : 0.3),
                 child: Chart(_recentTransactions),
               ),
             //-----------------------------------
             if (!_showChart || !isLandscape)
               SizedBox(
-                height: availablelHeigth * (isLandscape ? 0.8 : 0.3),
+                height: availablelHeigth * (isLandscape ? 0.70 : 0.3),
                 child: TransactionList(_transactions, _removeTransaction),
               ),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: Platform.isIOS? const SizedBox(): FloatingActionButton(
         backgroundColor: Theme.of(context).colorScheme.secondary,
         onPressed: () {
           _openTransactionFormModal(context);
@@ -181,10 +184,11 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 /**
-Nessa aula foi realizado apenas uma refatoração para não ter a necessidade de chamar o MediaQuery varias vezes
-Foi adicionado um texto e um icone para o excluir.
- ● Arquivo: main.dart
-     • foi criada a variavel _mediaQuery 
+Nessa aula foi implementado as funcionalidades
+  ● Auto adaptação ao SO: No componente switch foi chamado a function/Metodo Switch.adaptive que altera a reinderização 
+    de acordo com o SO em que o aplicativo está sendo executado. 
+  ● Obter em qual SO o aplicativo está executando: atraves do Platform.isIOS que está presente no dart:io
+
   
   */
 
