@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:intl/date_symbol_data_local.dart';
@@ -98,96 +99,116 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final _mediaQuery = MediaQuery.of(context);
-    bool isLandscape =
-        _mediaQuery.orientation == Orientation.landscape;
+    final mediaQuery = MediaQuery.of(context);
+    bool isLandscape = mediaQuery.orientation == Orientation.landscape;
+
+    //------------------------------------------------------------------------------------------------------------------------------------
+
+    Widget funGetIconButton(IconData icon, Function() fn) {
+      return Platform.isIOS
+          ? GestureDetector(onTap: fn, child: Icon(icon))
+          : IconButton(onPressed: fn, icon: Icon(icon));
+    }
+//------------------------------------------------------------------------------------------------------------------------------------
+
+    final actions = <Widget>[
+      funGetIconButton(
+          Platform.isIOS?CupertinoIcons.add : Icons.add_circle, () => _openTransactionFormModal(context)),
+      if (isLandscape)
+        funGetIconButton(_showChart ? Icons.list : Icons.bar_chart, () {
+          setState(() {
+            _showChart = !_showChart;
+          });
+        }),
+    ];
 
     final appBar = AppBar(
-      title: Text(
-        'Despesas Pessoais',
-        style: TextStyle(
-          fontSize: 20 * MediaQuery.textScalerOf(context).scale(1),
+        title: Text(
+          'Despesas Pessoais Android',
+          style: TextStyle(
+            fontSize: 20 * MediaQuery.textScalerOf(context).scale(1),
+          ),
         ),
-      ),
-      backgroundColor: Theme.of(context).colorScheme.primary,
-      actions: <Widget>[
-        IconButton(
-            icon: const Icon(Icons.add_circle,color: Colors.white,size: 35,),
-            onPressed: () {
-              _openTransactionFormModal(context);
-            }),
-        if (isLandscape)
-          IconButton(
-              icon: Icon(_showChart ? Icons.list : Icons.bar_chart,color: Colors.white,size: 35,),
-                            
-              onPressed: () {
-                setState(() {
-                  _showChart = !_showChart;
-                });
-              }),
-      ],
-    );
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        actions: actions);
 
     final appBarHeight = appBar.preferredSize.height;
 
-    final availablelHeigth = _mediaQuery.size.height -
-        appBarHeight -
-        _mediaQuery.padding.top;
+    final availablelHeigth =
+        mediaQuery.size.height - appBarHeight - mediaQuery.padding.top;
 
-    return Scaffold(
-      appBar: appBar,
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            if (isLandscape)
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(_showChart ? 'Ocultar Gráfico!' : 'Exibir Gráfico!'),
-                  Switch.adaptive(
-                    activeColor: Theme.of(context).colorScheme.secondary,
-                    value: _showChart,
-                    onChanged: (value) {
-                      setState(() {
-                        _showChart = value;
-                      });
-                    },
-                  ),
-                ],
-              ),
-            //-----------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------------------
+    final bodyPage = SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          if (isLandscape)
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(_showChart ? 'Ocultar Gráfico!' : 'Exibir Gráfico!'),
+                Switch.adaptive(
+                  activeColor: Theme.of(context).colorScheme.secondary,
+                  value: _showChart,
+                  onChanged: (value) {
+                    setState(() {
+                      _showChart = value;
+                    });
+                  },
+                ),
+              ],
+            ),
+//------------------------------------------------------------------------------------------------------------------------------------
 
-            if (_showChart || !isLandscape)
-              SizedBox(
-                height: availablelHeigth * (isLandscape ? 0.70 : 0.3),
-                child: Chart(_recentTransactions),
-              ),
-            //-----------------------------------
-            if (!_showChart || !isLandscape)
-              SizedBox(
-                height: availablelHeigth * (isLandscape ? 0.70 : 0.3),
-                child: TransactionList(_transactions, _removeTransaction),
-              ),
-          ],
-        ),
+          if (_showChart || !isLandscape)
+            SizedBox(
+              height: availablelHeigth * (isLandscape ? 0.70 : 0.3),
+              child: Chart(_recentTransactions),
+            ),
+          //-----------------------------------
+          if (!_showChart || !isLandscape)
+            SizedBox(
+              height: availablelHeigth * (isLandscape ? 0.70 : 0.3),
+              child: TransactionList(_transactions, _removeTransaction),
+            ),
+        ],
       ),
-      floatingActionButton: Platform.isIOS? const SizedBox(): FloatingActionButton(
-        backgroundColor: Theme.of(context).colorScheme.secondary,
-        onPressed: () {
-          _openTransactionFormModal(context);
-        },
-        child: const Icon(Icons.add_circle),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
     );
+
+    return Platform.isIOS
+        ? CupertinoPageScaffold(
+            navigationBar: CupertinoNavigationBar(
+              middle: const Text('Despesas Pessoais iOS'),
+              trailing: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: actions,
+              ),
+            ),
+            child: bodyPage,
+          )
+        : Scaffold(
+            appBar: appBar,
+            body: bodyPage,
+            floatingActionButton: Platform.isIOS
+                ? const SizedBox()
+                : FloatingActionButton(
+                    backgroundColor: Theme.of(context).colorScheme.secondary,
+                    onPressed: () {
+                      _openTransactionFormModal(context);
+                    },
+                    child: const Icon(Icons.add_circle),
+                  ),
+            floatingActionButtonLocation:
+                FloatingActionButtonLocation.endDocked,
+          );
   }
 }
 /**
-Nessa aula foi implementado as funcionalidades
-  ● Auto adaptação ao SO: No componente switch foi chamado a function/Metodo Switch.adaptive que altera a reinderização 
-    de acordo com o SO em que o aplicativo está sendo executado. 
-  ● Obter em qual SO o aplicativo está executando: atraves do Platform.isIOS que está presente no dart:io
+Nessa aula foi iniciado a implementação dos componentes visuais de cada plataforma (iOS e Android), foi implementado muitas alteraçoes
+ ● Atribuido os Widgets a variaveis para serem reutilizadas em outras partes do código
+ ● Implementado o uso do Cupertino para utilizar os elementos graficos o iOS
+
+ Para essa aula o aplicativo no iOs ainda esta com erro, mas na proxima será ajustado
 
   
   */
