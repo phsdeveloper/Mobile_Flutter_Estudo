@@ -96,40 +96,40 @@ class _MyHomePageState extends State<MyHomePage> {
       },
     );
   }
+  //------------------------------------------------------------------------------------------------------------------------------------
+    Widget _getIconButton(IconData icon, Function() fn) {
+      return Platform.isIOS
+          ? GestureDetector(onTap: fn, child: Icon(icon))
+          : IconButton(onPressed: fn, icon: Icon(icon));
+    }
+
+//------------------------------------------------------------------------------------------------------------------------------------
 
   @override
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context);
     bool isLandscape = mediaQuery.orientation == Orientation.landscape;
 
-    //------------------------------------------------------------------------------------------------------------------------------------
+    
+    final iconList = Platform.isIOS ? CupertinoIcons.refresh : Icons.list;
+    final chartList = Platform.isIOS ? CupertinoIcons.refresh : Icons.bar_chart;
 
-    Widget funGetIconButton(IconData icon, Function() fn) {
-      return Platform.isIOS
-          ? GestureDetector(onTap: fn, child: Icon(icon))
-          : IconButton(onPressed: fn, icon: Icon(icon));
-    }
 //------------------------------------------------------------------------------------------------------------------------------------
 
-    final actions = <Widget>[
-      funGetIconButton(
+    final actions = [
+      _getIconButton(
           Platform.isIOS?CupertinoIcons.add : Icons.add_circle, () => _openTransactionFormModal(context)),
       if (isLandscape)
-        funGetIconButton(_showChart ? Icons.list : Icons.bar_chart, () {
+        _getIconButton(_showChart ? iconList : chartList, () {
           setState(() {
             _showChart = !_showChart;
           });
         }),
     ];
 
-    final appBar = AppBar(
-        title: Text(
-          'Despesas Pessoais Android',
-          style: TextStyle(
-            fontSize: 20 * MediaQuery.textScalerOf(context).scale(1),
-          ),
-        ),
-        backgroundColor: Theme.of(context).colorScheme.primary,
+//------------------------------------------------------------------------------------------------------------------------------------
+    final PreferredSizeWidget appBar = AppBar(
+        title: const Text('Despesas Pessoais Android'),
         actions: actions);
 
     final appBarHeight = appBar.preferredSize.height;
@@ -138,40 +138,42 @@ class _MyHomePageState extends State<MyHomePage> {
         mediaQuery.size.height - appBarHeight - mediaQuery.padding.top;
 
 //------------------------------------------------------------------------------------------------------------------------------------
-    final bodyPage = SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          if (isLandscape)
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(_showChart ? 'Ocultar Gráfico!' : 'Exibir Gráfico!'),
-                Switch.adaptive(
-                  activeColor: Theme.of(context).colorScheme.secondary,
-                  value: _showChart,
-                  onChanged: (value) {
-                    setState(() {
-                      _showChart = value;
-                    });
-                  },
-                ),
-              ],
-            ),
-//------------------------------------------------------------------------------------------------------------------------------------
-
-          if (_showChart || !isLandscape)
-            SizedBox(
-              height: availablelHeigth * (isLandscape ? 0.70 : 0.3),
-              child: Chart(_recentTransactions),
-            ),
-          //-----------------------------------
-          if (!_showChart || !isLandscape)
-            SizedBox(
-              height: availablelHeigth * (isLandscape ? 0.70 : 0.3),
-              child: TransactionList(_transactions, _removeTransaction),
-            ),
-        ],
+    final bodyPage = SafeArea(
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            // if (isLandscape)
+            //   Row(
+            //     mainAxisAlignment: MainAxisAlignment.center,
+            //     children: [
+            //       Text(_showChart ? 'Ocultar Gráfico!' : 'Exibir Gráfico!'),
+            //       Switch.adaptive(
+            //         activeColor: Theme.of(context).colorScheme.secondary,
+            //         value: _showChart,
+            //         onChanged: (value) {
+            //           setState(() {
+            //             _showChart = value;
+            //           });
+            //         },
+            //       ),
+            //     ],
+            //   ),
+      //------------------------------------------------------------------------------------------------------------------------------------
+      
+            if (_showChart || !isLandscape)
+              SizedBox(
+                height: availablelHeigth * (isLandscape ? 0.70 : 0.3),
+                child: Chart(_recentTransactions),
+              ),
+            //-----------------------------------
+            if (!_showChart || !isLandscape)
+              SizedBox(
+                height: availablelHeigth * (isLandscape ? 0.70 : 0.3),
+                child: TransactionList(_transactions, _removeTransaction),
+              ),
+          ],
+        ),
       ),
     );
 
@@ -204,11 +206,10 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 /**
-Nessa aula foi iniciado a implementação dos componentes visuais de cada plataforma (iOS e Android), foi implementado muitas alteraçoes
- ● Atribuido os Widgets a variaveis para serem reutilizadas em outras partes do código
- ● Implementado o uso do Cupertino para utilizar os elementos graficos o iOS
+Nessa aula foi ajustado o problema da aula anterior e eu ajustei o código que estava com erro
+ ● Adicionado o SafeArea no appBody
 
- Para essa aula o aplicativo no iOs ainda esta com erro, mas na proxima será ajustado
+ 
 
   
   */
