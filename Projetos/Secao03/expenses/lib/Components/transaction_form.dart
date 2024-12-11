@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'dart:io';
 import 'package:intl/intl.dart';
 
+import 'adaptative_button.dart';
 // ignore: must_be_immutable
 class TransactionForm extends StatefulWidget {
   TransactionForm(this.onSubmit, {super.key});
@@ -113,17 +114,18 @@ class _TransactionFormState extends State<TransactionForm> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  ElevatedButton(
-                    onPressed: _submitForm,
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: Theme.of(context).colorScheme.primary),
-                    child: Text(
-                      'Nova Transacao',
-                      style: TextStyle(
-                        color: Theme.of(context).textTheme.labelLarge?.color,
-                      ),
-                    ),
-                  ),
+                  AdaptativeButton("Nova Transação", _submitForm)
+                  // ElevatedButton(
+                  //   onPressed: _submitForm,
+                  //   style: ElevatedButton.styleFrom(
+                  //       backgroundColor: Theme.of(context).colorScheme.primary),
+                  //   child: Text(
+                  //     'Nova Transacao',
+                  //     style: TextStyle(
+                  //       color: Theme.of(context).textTheme.labelLarge?.color,
+                  //     ),
+                  //   ),
+                  // ),
                 ],
               )
             ],

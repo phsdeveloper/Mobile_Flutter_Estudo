@@ -96,12 +96,18 @@ class _MyHomePageState extends State<MyHomePage> {
       },
     );
   }
+
   //------------------------------------------------------------------------------------------------------------------------------------
-    Widget _getIconButton(IconData icon, Function() fn) {
-      return Platform.isIOS
-          ? GestureDetector(onTap: fn, child: Icon(icon))
-          : IconButton(onPressed: fn, icon: Icon(icon));
-    }
+  Widget _getIconButton(IconData icon, Function() fn) {
+    return Platform.isIOS
+        ? GestureDetector(onTap: fn, child: Icon(icon))
+        : IconButton(
+            onPressed: fn,
+            icon: Icon(icon),
+            iconSize: 40,
+            color: Colors.white,
+          );
+  }
 
 //------------------------------------------------------------------------------------------------------------------------------------
 
@@ -110,15 +116,14 @@ class _MyHomePageState extends State<MyHomePage> {
     final mediaQuery = MediaQuery.of(context);
     bool isLandscape = mediaQuery.orientation == Orientation.landscape;
 
-    
     final iconList = Platform.isIOS ? CupertinoIcons.refresh : Icons.list;
     final chartList = Platform.isIOS ? CupertinoIcons.refresh : Icons.bar_chart;
 
 //------------------------------------------------------------------------------------------------------------------------------------
 
     final actions = [
-      _getIconButton(
-          Platform.isIOS?CupertinoIcons.add : Icons.add_circle, () => _openTransactionFormModal(context)),
+      _getIconButton(Platform.isIOS ? CupertinoIcons.add : Icons.add_circle,
+          () => _openTransactionFormModal(context)),
       if (isLandscape)
         _getIconButton(_showChart ? iconList : chartList, () {
           setState(() {
@@ -129,8 +134,10 @@ class _MyHomePageState extends State<MyHomePage> {
 
 //------------------------------------------------------------------------------------------------------------------------------------
     final PreferredSizeWidget appBar = AppBar(
-        title: const Text('Despesas Pessoais Android'),
-        actions: actions);
+      title: const Text('Despesas Pessoais Android'),
+      actions: actions,
+      backgroundColor: Theme.of(context).colorScheme.primary,
+    );
 
     final appBarHeight = appBar.preferredSize.height;
 
@@ -159,8 +166,8 @@ class _MyHomePageState extends State<MyHomePage> {
             //       ),
             //     ],
             //   ),
-      //------------------------------------------------------------------------------------------------------------------------------------
-      
+            //------------------------------------------------------------------------------------------------------------------------------------
+
             if (_showChart || !isLandscape)
               SizedBox(
                 height: availablelHeigth * (isLandscape ? 0.70 : 0.3),
@@ -180,7 +187,11 @@ class _MyHomePageState extends State<MyHomePage> {
     return Platform.isIOS
         ? CupertinoPageScaffold(
             navigationBar: CupertinoNavigationBar(
-              middle: const Text('Despesas Pessoais iOS'),
+              backgroundColor: Theme.of(context).colorScheme.primary,
+              middle: const Text(
+                'Despesas Pessoais iOS',
+                style: TextStyle(color: Colors.white),
+              ),
               trailing: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: actions,
@@ -206,8 +217,10 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 /**
-Nessa aula foi ajustado o problema da aula anterior e eu ajustei o código que estava com erro
- ● Adicionado o SafeArea no appBody
+Nesta aulla foi implementado uma encapulacao para o notrao de nova transacao utilizadno uma classe chamada adaptative_button
+onde todo o codigo referente a reinderizacao do componente é realizada.
+Essa classe foi implementada no arquivo transaction_form.dart
+ 
 
  
 
