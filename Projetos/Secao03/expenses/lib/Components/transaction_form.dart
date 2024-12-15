@@ -4,11 +4,12 @@ import 'dart:io';
 import 'package:intl/intl.dart';
 
 import 'adaptative_button.dart';
+
 // ignore: must_be_immutable
 class TransactionForm extends StatefulWidget {
   TransactionForm(this.onSubmit, {super.key});
 
-  final void Function(String, double,DateTime?) onSubmit;
+  final void Function(String, double, DateTime?) onSubmit;
   String teste = 'teste';
 
   @override
@@ -18,27 +19,16 @@ class TransactionForm extends StatefulWidget {
 class _TransactionFormState extends State<TransactionForm> {
   _submitForm() {
     final titleForm = _titleController.text;
-    final valueForm =
-        double.tryParse(valueController.text.replaceAll(",", ".")) ?? 0.0;
-    String mensagem = "";
-    mensagem += "SO: ${Platform.isIOS ? 'iOS' : 'Android'}";
-    mensagem += "Data: ${DateTime.now()}";
-    mensagem += ' >> Titulo: "$titleForm"';
-    mensagem += " >> Valor: $valueForm";
-    mensagem += '>> Antes teste widget=${widget.teste}';
-    widget.teste = 'alterado';
-    mensagem += ' depois teste widget=${widget.teste}';
-    debugPrint(mensagem);
+    final valueForm = double.tryParse(valueController.text.replaceAll(",", ".")) ?? 0.0;
+
     if (titleForm.isEmpty || valueForm <= 0 || _selectedDate == null) {
-      print(
-          "SO: ${Platform.isIOS ? 'iOS' : 'Android'} >> Despesa nao cadastrada");
       return;
     }
     /**
      * Esse atributo widget nos perminte acessar todos os métodos e propriedades
      * existentes na classe Stateles ou statefull
      */
-    widget.onSubmit(titleForm, valueForm,_selectedDate);
+    widget.onSubmit(titleForm, valueForm, _selectedDate);
   }
 
   final _titleController = TextEditingController();
@@ -48,15 +38,20 @@ class _TransactionFormState extends State<TransactionForm> {
   _showDatePicker() {
     showDatePicker(
       context: context,
-      lastDate: DateTime.now(), //Indica a ultima data que o usuário pode selecionar
-      firstDate: DateTime(2019), //Indica a data inicial que o usuário pode selecionar
-      initialDate: DateTime.now(), // Indica a data que vai estar selecionada por default no calendario
+      lastDate:
+          DateTime.now(), //Indica a ultima data que o usuário pode selecionar
+      firstDate:
+          DateTime(2019), //Indica a data inicial que o usuário pode selecionar
+      initialDate: DateTime
+          .now(), // Indica a data que vai estar selecionada por default no calendario
       //locale: const Locale('pt', 'BR'),
-    ).then((pickedDate) { //Fica aguardando a ação do usuário (tipo um evento de um botão na tela)
+    ).then((pickedDate) {
+      //Fica aguardando a ação do usuário (tipo um evento de um botão na tela)
       if (pickedDate == null) {
         return;
       }
-      setState(() {//Indica para o Flutter que os dados relacionados a essa variavel necessita ser alterado
+      setState(() {
+        //Indica para o Flutter que os dados relacionados a essa variavel necessita ser alterado
         _selectedDate = pickedDate;
       });
     });
@@ -81,8 +76,9 @@ class _TransactionFormState extends State<TransactionForm> {
                   labelText: 'Titulo',
                 ),
                 controller: _titleController,
-                onSubmitted: (_) => //Esse "_" indica que estamos ingnorando o parametro que a funcao esta passando
-                    _submitForm(), 
+                onSubmitted:
+                    (_) => //Esse "_" indica que estamos ingnorando o parametro que a funcao esta passando
+                        _submitForm(),
               ),
               TextField(
                 decoration: const InputDecoration(
@@ -91,8 +87,9 @@ class _TransactionFormState extends State<TransactionForm> {
                 controller: valueController,
                 keyboardType: const TextInputType.numberWithOptions(
                     decimal: true, signed: true),
-                onSubmitted: (_) => //Esse "_" indica que estamos ingnorando o parametro que a funcao esta passando
-                    _submitForm(), 
+                onSubmitted:
+                    (_) => //Esse "_" indica que estamos ingnorando o parametro que a funcao esta passando
+                        _submitForm(),
               ),
               SizedBox(
                 height: 70,
@@ -115,17 +112,6 @@ class _TransactionFormState extends State<TransactionForm> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   AdaptativeButton("Nova Transação", _submitForm)
-                  // ElevatedButton(
-                  //   onPressed: _submitForm,
-                  //   style: ElevatedButton.styleFrom(
-                  //       backgroundColor: Theme.of(context).colorScheme.primary),
-                  //   child: Text(
-                  //     'Nova Transacao',
-                  //     style: TextStyle(
-                  //       color: Theme.of(context).textTheme.labelLarge?.color,
-                  //     ),
-                  //   ),
-                  // ),
                 ],
               )
             ],

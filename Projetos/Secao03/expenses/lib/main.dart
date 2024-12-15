@@ -216,16 +216,12 @@ class _MyHomePageState extends State<MyHomePage> {
           );
   }
 }
-/**
-Nesta aulla foi implementado uma encapulacao para o notrao de nova transacao utilizadno uma classe chamada adaptative_button
-onde todo o codigo referente a reinderizacao do componente é realizada.
-Essa classe foi implementada no arquivo transaction_form.dart
- 
-
- 
-
-  
-  */
+/***********************************************************************************************
+ * Nesta aula não cheguei a implementar nada pois nem faço ideia por onde começar              *
+ ***********************************************************************************************
+ * MARCADORES                                                                                  *  
+ * ● | •                                                                                       *
+************************************************************************************************/
 
   /**
    *    ● 
