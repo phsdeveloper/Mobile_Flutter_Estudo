@@ -217,7 +217,9 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 /***********************************************************************************************
- * Nesta aula não cheguei a implementar nada pois nem faço ideia por onde começar              *
+ * Nesta aula foi implementado o textBox de acordo com o SO em que o aplicativo está           *
+ * executando.                                                                                 *
+ *                                                                                             *
  ***********************************************************************************************
  * MARCADORES                                                                                  *  
  * ● | •                                                                                       *

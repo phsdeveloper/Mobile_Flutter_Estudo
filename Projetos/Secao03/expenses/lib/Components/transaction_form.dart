@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'dart:io';
 import 'package:intl/intl.dart';
 
 import 'adaptative_button.dart';
+import 'adaptative_textField.dart';
 
 // ignore: must_be_immutable
 class TransactionForm extends StatefulWidget {
@@ -71,26 +70,38 @@ class _TransactionFormState extends State<TransactionForm> {
           ),
           child: Column(
             children: <Widget>[
-              TextField(
-                decoration: const InputDecoration(
-                  labelText: 'Titulo',
-                ),
-                controller: _titleController,
-                onSubmitted:
-                    (_) => //Esse "_" indica que estamos ingnorando o parametro que a funcao esta passando
-                        _submitForm(),
-              ),
-              TextField(
-                decoration: const InputDecoration(
-                  labelText: 'Valor (R\$)',
-                ),
-                controller: valueController,
-                keyboardType: const TextInputType.numberWithOptions(
-                    decimal: true, signed: true),
-                onSubmitted:
-                    (_) => //Esse "_" indica que estamos ingnorando o parametro que a funcao esta passando
-                        _submitForm(),
-              ),
+             AdaptativeTextField
+             (
+             controller: _titleController,
+             label: 'Titulo',
+             onSubmitted: (_)=> _submitForm(),
+             ),
+             AdaptativeTextField(
+              controller: valueController,
+              label: 'Valor (R\$)',
+              onSubmitted: (_)=> _submitForm(),
+              keyboardType: const TextInputType.numberWithOptions(decimal: true, signed: true),
+             ),
+              // TextField(
+              //   decoration: const InputDecoration(
+              //     labelText: 'Titulo',
+              //   ),
+              //   controller: _titleController,
+              //   onSubmitted:
+              //       (_) => //Esse "_" indica que estamos ingnorando o parametro que a funcao esta passando
+              //           _submitForm(),
+              // ),
+              // TextField(
+              //   decoration: const InputDecoration(
+              //     labelText: 'Valor (R\$)',
+              //   ),
+              //   controller: valueController,
+              //   keyboardType: const TextInputType.numberWithOptions(
+              //       decimal: true, signed: true),
+              //   onSubmitted:
+              //       (_) => //Esse "_" indica que estamos ingnorando o parametro que a funcao esta passando
+              //           _submitForm(),
+              // ),
               SizedBox(
                 height: 70,
                 child: Row(
