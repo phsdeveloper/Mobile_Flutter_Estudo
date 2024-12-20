@@ -4,9 +4,6 @@
     // Para obter mais informações, acesse: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-        
-
-    
         {
             "name": "Android",
             "request": "launch",
@@ -19,6 +16,12 @@
             "type": "dart",
             "deviceId": "4B37813C-FFA9-4073-960D-D7AA2C5214FE"
         },
+        {
+            "name": "AndroidS10",
+            "request": "launch",
+            "type": "dart",
+            "deviceId": "127.0.0.1:6555"
+        }
     ],
     "compounds": [
         {
