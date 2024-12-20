@@ -217,8 +217,8 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 /***********************************************************************************************
- * Nesta aula foi implementado o textBox de acordo com o SO em que o aplicativo está           *
- * executando.                                                                                 *
+ * Nessa aula foi realizado a implementação da seleção da data de acordo com o sistema         *
+ * operacional                                                                                 *
  *                                                                                             *
  ***********************************************************************************************
  * MARCADORES                                                                                  *  
@@ -240,4 +240,12 @@ class _MyHomePageState extends State<MyHomePage> {
    * Vou deixar essa alteração para o final do módulo.
    * Tem uma implementação mais adequada nos recursos da aula
    * ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+   * ⚑ Aula 159. DatePicker Adaptativo
+   * Ao adicionar a seleção da data e ao aparecer o teclado, o componente fica atras do teclado, vai precisar ajustar para que o 
+   * o componente fique acima do teclado.
+   * 
+   * 
+   * 
+   * 
+   * 
    */
