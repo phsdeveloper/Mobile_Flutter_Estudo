@@ -23,6 +23,10 @@ class MyApp extends StatelessWidget {
 /***************************************************************************************************
  *                      Anotações importantes sobre o código:                                      *
  ***************************************************************************************************
+ * 181. Componente Item Categoria: nessa aula foi alterado o componente CategoryItem para exibir   *
+ * cada categoria em um card, com um gradiente de cores e um título.                               *
+ * Ficando cada categoria em um card, com um gradiente de cores e um título.                       *
+ ***************************************************************************************************
  * Aula 180. Tela de Categorias:                                                                   *
  * ● Arquivo main.dart: foi retirado a classe MyHomePage e o método main foi alterado para chamar  *
  *                      a classe CategoriesScreen, que é a nova classe que iniciará a aplicação.   *
