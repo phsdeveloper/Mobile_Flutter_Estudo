@@ -39,6 +39,14 @@ class MyApp extends StatelessWidget {
 /***************************************************************************************************
  *                      Anotações importantes sobre o código:                                      *
  ***************************************************************************************************
+ * ★ Aula 183. Navegando para uma Nova Tela:                                                       *
+ * Nessa aula foi criado um método para navegar para a tela de receitas de uma categoria,          *
+ *  quando um card de categoria é clicado.                                                         *
+ * Arquivos alterados:                                                                             *
+ *  - lib/components/category_item.dart                                                            *
+ *  - lib/screens/categories_meals_screen.dart                                                     *
+ *  - lib/screens/categories_screen.dart                                                           *
+ ***************************************************************************************************
  * ⚑ 182. Tema & Estilo                                                                            *
  * Nessa aula foi adicionado as fontes Raleway e RobotoCondensed ao tema da aplicação, e foi       *
  * alterado o esquema de cores padrão do tema.                                                     *
