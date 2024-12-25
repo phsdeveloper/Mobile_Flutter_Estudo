@@ -43,6 +43,11 @@ class MyApp extends StatelessWidget {
 /***************************************************************************************************
  *                      Anotações importantes sobre o código:                                      *
  ***************************************************************************************************
+ * ★ Aula 189. Componente Item Refeição #01:                                                       *
+ * Nessa aula foi iniciado a eleboracao do componente MealItem, que representa um item de refeição,*
+ * onde foi implementado a exibição da imagem da refeição, e foi adicionado um gradiente sobre a   *
+ * imagem para melhorar a visualização.                                                            *
+ ***************************************************************************************************
  * ★ 188. Selecionando Refeições por Categoria                                                     *
  * Nesta aula foi implementado:                                                                    *
  * ● No arquivo categorry_meals_screen.dart: foi implementado a obtencao dos alimentos que fazem   *
