@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'screens/categories_meals_screen.dart';
 import 'screens/categories_screen.dart';
 
 void main() {
@@ -31,6 +32,9 @@ class MyApp extends StatelessWidget {
             ),
       ),
       home: const CategoriesScreen(),
+      routes: {
+        '/categories-meals': (ctx) => CategoriesMealsScreen(),
+      },
     );
   }
 }
@@ -38,6 +42,11 @@ class MyApp extends StatelessWidget {
 
 /***************************************************************************************************
  *                      Anotações importantes sobre o código:                                      *
+ ***************************************************************************************************
+ * ★ 185. Rotas Nomeadas #01:                                                                      *
+ * Nesa aula foi implementado rotas nomeadas para navegar entre as telas da aplicação, onde foi    *
+ * criado um mapa de rotas nomeadas no MaterialApp, e foi alterado o método _selectCategory para   *
+ * navegar para a tela de receitas da categoria através de uma rota nomeada.                       *
  ***************************************************************************************************
  * Aula 184. Passando Dados via Construtor:                                                        *
  * Nessa aula foi alterado o construtor da classe CategoriesMealsScreen para receber um objeto da  *
