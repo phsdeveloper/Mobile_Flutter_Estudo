@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'screens/categories_meals_screen.dart';
 import 'screens/categories_screen.dart';
-
+import 'Utils/app_routes.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -31,9 +31,9 @@ class MyApp extends StatelessWidget {
               color: Colors.pink,
             ),
       ),
-      home: const CategoriesScreen(),
       routes: {
-        '/categories-meals': (ctx) => CategoriesMealsScreen(),
+        AppRoutes.home:(ctx) => const CategoriesScreen(),//Substitui o home, para que a rota '/' seja a tela inicial.
+        AppRoutes.categoriesMeals: (ctx) => const CategoriesMealsScreen(),
       },
     );
   }
@@ -42,6 +42,11 @@ class MyApp extends StatelessWidget {
 
 /***************************************************************************************************
  *                      Anotações importantes sobre o código:                                      *
+ ***************************************************************************************************
+ * ★ Aula 186. Rotas Nomeadas #02:                                                                 *              
+ * Nessa aula foi implementado uma melhor encapsulação das rotas nomeadas, onde foi criado uma     *
+ * classe AppRoutes para gerenciar as rotas nomeadas, e foi alterado o MaterialApp para utilizar   *
+ * as rotas nomeadas.                                                                              *
  ***************************************************************************************************
  * ★ 185. Rotas Nomeadas #01:                                                                      *
  * Nesa aula foi implementado rotas nomeadas para navegar entre as telas da aplicação, onde foi    *
