@@ -43,6 +43,12 @@ class MyApp extends StatelessWidget {
 /***************************************************************************************************
  *                      Anotações importantes sobre o código:                                      *
  ***************************************************************************************************
+ * ★ 188. Selecionando Refeições por Categoria                                                     *
+ * Nesta aula foi implementado:                                                                    *
+ * ● No arquivo categorry_meals_screen.dart: foi implementado a obtencao dos alimentos que fazem   *
+ *  parte da categoria selecionada, e foi implementado um ListView para exibir apenas o titulo dos *
+ * alimentos                                                                                       *
+ ***************************************************************************************************
  * Aula 187. Criando Modelo Refeição:                                                              *
  * Nesta aula foi implementado:                                                                    *
  * ● A classe Meal, que representa uma refeição, com todos atributos necessários para exibir       *
