@@ -39,6 +39,11 @@ class MyApp extends StatelessWidget {
 /***************************************************************************************************
  *                      Anotações importantes sobre o código:                                      *
  ***************************************************************************************************
+ * Aula 184. Passando Dados via Construtor:                                                        *
+ * Nessa aula foi alterado o construtor da classe CategoriesMealsScreen para receber um objeto da  *
+ * classe Category, e foi alterado o método _selectCategory para passar o objeto da categoria para *
+ * a tela de receitas da categoria.                                                                *
+ ***************************************************************************************************
  * ★ Aula 183. Navegando para uma Nova Tela:                                                       *
  * Nessa aula foi criado um método para navegar para a tela de receitas de uma categoria,          *
  *  quando um card de categoria é clicado.                                                         *
