@@ -43,6 +43,11 @@ class MyApp extends StatelessWidget {
 /***************************************************************************************************
  *                      Anotações importantes sobre o código:                                      *
  ***************************************************************************************************
+ * Aula 187. Criando Modelo Refeição:                                                              *
+ * Nesta aula foi implementado:                                                                    *
+ * ● A classe Meal, que representa uma refeição, com todos atributos necessários para exibir       *
+ * ● Adicionado códigos no arquivo dummy_data.dart para criar uma lista de refeições fictícias     *
+ ***************************************************************************************************
  * ★ Aula 186. Rotas Nomeadas #02:                                                                 *              
  * Nessa aula foi implementado uma melhor encapsulação das rotas nomeadas, onde foi criado uma     *
  * classe AppRoutes para gerenciar as rotas nomeadas, e foi alterado o MaterialApp para utilizar   *
