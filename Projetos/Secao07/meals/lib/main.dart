@@ -45,6 +45,11 @@ class MyApp extends StatelessWidget {
 /***************************************************************************************************
  *                      Anotações importantes sobre o código:                                      *
  ***************************************************************************************************
+ * Aula 194. Tela Detalhe Refeição #02:                                                            *
+ * Nessa aula foi implementado a encapulação dos widgets que servem para exibir os ingredientes e  *
+ * o titulo do bloco (Ingredientes e passos).                                                      *
+ * Foi adicionado tambem o widget SingleChildScrollView para que tenha rolagem na tela.            *
+ ***************************************************************************************************
  * ★ Aula 193. Tela Detalhe Refeição #01:                                                          *
  * Nessa aula foi implementado a tela de detalhes da refeição com as seguintes implementações:     *
  * Adicionado a imagem da refeição, os ingredientes e o passo a passo da refeição.                 *
