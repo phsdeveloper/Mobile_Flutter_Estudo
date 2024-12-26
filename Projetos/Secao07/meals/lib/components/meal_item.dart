@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:meals/models/meal.dart';
 
 class MealItem extends StatelessWidget {
@@ -21,6 +22,7 @@ class MealItem extends StatelessWidget {
           margin: const EdgeInsets.all(10),
           child: Column(
             children: <Widget>[
+              //--------------------------------------------------------------------------------
               Stack(
                 children: <Widget>[
                   ClipRRect(
@@ -35,7 +37,58 @@ class MealItem extends StatelessWidget {
                       fit: BoxFit.cover,
                     ),
                   ),
+                  Positioned(
+                    bottom: 20,
+                    right: 10,
+                    child: Container(
+                      width: 300,
+                      color: Colors.black54,
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 5,
+                        horizontal: 20,
+                      ),
+                      child: Text(
+                        meal.title,
+                        style: const TextStyle(
+                          fontSize: 26,
+                          color: Colors.white,
+                        ),
+                        softWrap: true, //Permite quebra de linha
+                        overflow: TextOverflow.fade, //Efeito de fade: ver mais
+                      ),
+                    ),
+                  ),
                 ],
+              ),
+              //--------------------------------------------------------------------------------
+              Padding(
+                padding: const EdgeInsets.all(20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Row(
+                      children: <Widget>[
+                        const Icon(Icons.schedule),
+                        const SizedBox(width: 6),
+                        Text('${meal.duration} min'),
+                      ],
+                    ),
+                    Row(
+                      children: <Widget>[
+                        const Icon(Icons.work),
+                        const SizedBox(width: 6),
+                        Text(meal.complexityText),
+                      ],
+                    ),
+                    Row(
+                      children: <Widget>[
+                        const Icon(Icons.attach_money),
+                        const SizedBox(width: 6),
+                        Text(meal.costText),
+                      ],
+                    ),
+                  ],
+                ),
               )
             ],
           )),

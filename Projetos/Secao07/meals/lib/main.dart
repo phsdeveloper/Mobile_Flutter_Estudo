@@ -43,6 +43,11 @@ class MyApp extends StatelessWidget {
 /***************************************************************************************************
  *                      Anotações importantes sobre o código:                                      *
  ***************************************************************************************************
+ * Aula ★ 190. Componente Item Refeição #02:                                                       *
+ * Nesta aula foi implemantado mais elementos no componente MealItem, como a duração, complexidade *
+ * e custo da refeição, e foi adicionado um gradiente sobre o texto da refeição para melhorar a    *
+ * visualização.                                                                                   *
+ ***************************************************************************************************
  * ★ Aula 189. Componente Item Refeição #01:                                                       *
  * Nessa aula foi iniciado a eleboracao do componente MealItem, que representa um item de refeição,*
  * onde foi implementado a exibição da imagem da refeição, e foi adicionado um gradiente sobre a   *
