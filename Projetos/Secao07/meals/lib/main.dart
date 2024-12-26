@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'screens/categories_meals_screen.dart';
 import 'screens/categories_screen.dart';
 import 'Utils/app_routes.dart';
+import 'screens/meal_detail_screen.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -34,6 +35,7 @@ class MyApp extends StatelessWidget {
       routes: {
         AppRoutes.home:(ctx) => const CategoriesScreen(),//Substitui o home, para que a rota '/' seja a tela inicial.
         AppRoutes.categoriesMeals: (ctx) => const CategoriesMealsScreen(),
+        AppRoutes.mealDetail: (ctx) => const MealDetailScreen(),
       },
     );
   }
@@ -42,6 +44,11 @@ class MyApp extends StatelessWidget {
 
 /***************************************************************************************************
  *                      Anotações importantes sobre o código:                                      *
+ ***************************************************************************************************
+ * Aula 191. Navegando para Tela de Detalhe da Refeição:                                           *
+ * Nessa aula foi implementado a tela de detalhes da refeição e a navegação para essa tela, onde   *
+ * foi criado o componente MealDetailScreen, que exibe o título da refeição na app bar e um texto  *
+ * na tela.                                                                                        *
  ***************************************************************************************************
  * Aula ★ 190. Componente Item Refeição #02:                                                       *
  * Nesta aula foi implemantado mais elementos no componente MealItem, como a duração, complexidade *
