@@ -3,6 +3,7 @@ import 'screens/categories_meals_screen.dart';
 import 'screens/categories_screen.dart';
 import 'Utils/app_routes.dart';
 import 'screens/meal_detail_screen.dart';
+import 'screens/tabs_screen.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
             ),
       ),
       routes: {
-        AppRoutes.home:(ctx) => const CategoriesScreen(),//Substitui o home, para que a rota '/' seja a tela inicial.
+        AppRoutes.home:(ctx) => const TabsScreen(),//Substitui o home, para que a rota '/' seja a tela inicial.
         AppRoutes.categoriesMeals: (ctx) => const CategoriesMealsScreen(),
         AppRoutes.mealDetail: (ctx) => const MealDetailScreen(),
       },
@@ -44,6 +45,15 @@ class MyApp extends StatelessWidget {
 
 /***************************************************************************************************
  *                      Anotações importantes sobre o código:                                      *
+ ***************************************************************************************************
+ * ★ Aula 195. Adicionando TabBar na AppBar
+ * Nesta aula foi inciado a implementação das abas no AppBar.                                      *
+ * Foi criado um novo widget chamado TabsScreen, que é um widget que representa a tela principal   *
+ * da aplicação, onde as abas são exibidas na AppBar.                                              *
+ * Foi adicionado um DefaultTabController para gerenciar as abas, e foi adicionado um TabBar na    *
+ * AppBar para exibir as abas.                                                                     *
+ * Foi adicionado um TabBarView para exibir o conteúdo de cada aba.                                *
+ * Foi retirado o Scaffold da tela categories_screen.dart pois ela não é mais a pagina home        *
  ***************************************************************************************************
  * Aula 194. Tela Detalhe Refeição #02:                                                            *
  * Nessa aula foi implementado a encapulação dos widgets que servem para exibir os ingredientes e  *
