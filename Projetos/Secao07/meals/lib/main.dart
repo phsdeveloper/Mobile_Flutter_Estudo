@@ -35,7 +35,25 @@ class MyApp extends StatelessWidget {
       routes: {
         AppRoutes.home:(ctx) => const CategoriesScreen(),//Substitui o home, para que a rota '/' seja a tela inicial.
         AppRoutes.categoriesMeals: (ctx) => const CategoriesMealsScreen(),
-        AppRoutes.mealDetail: (ctx) => const MealDetailScreen(),
+        //AppRoutes.mealDetail: (ctx) => const MealDetailScreen(),
+      },
+      onGenerateRoute: (settings)  {
+       
+        if (settings.name == '/alguma-coisa') {
+          return null;
+        } else if (settings.name == '/outra-coisa') {
+          return null;
+        } else {
+          return MaterialPageRoute(builder: (_) {
+            return const CategoriesScreen();
+          });
+        }
+       
+      },
+      onUnknownRoute: (settings) {
+        return MaterialPageRoute(builder: (_) {
+          return const CategoriesScreen();
+        });
       },
     );
   }
@@ -44,6 +62,17 @@ class MyApp extends StatelessWidget {
 
 /***************************************************************************************************
  *                      Anotações importantes sobre o código:                                      *
+ ***************************************************************************************************
+ * ★ ⚑ Aula 192. onGenerateRoute & onUnknownRoute:                                                   *
+ * Nessa aula foi apresentado duas opções para lidar com rotas desconhecidas                       *
+ * ● onGenerateRoute: é uma função que é chamada quando uma rota nomeada é chamada, mas não foi    *
+ *                    definida no atributo routes do MaterialApp.                                  *
+ * ● onUnknownRoute: é uma função que é chamada quando uma rota nomeada é chamada, mas não foi     *
+ *                   definida no atributo routes e nem no onGenerateRoute do MaterialApp.          *
+ * Ideal para quando há a necessidade de ter um redirecionamento para uma tela padrão, quando      *
+ * uma rota não cadastrada é chamada.                                                              *
+ * Mas não acho bacana colocar para a tela inicial, pois acaba ficando na pilha, ver depois se     *
+ * tem como limpar a pilha de chamadas e deixar apenas a tela inicial.                             *
  ***************************************************************************************************
  * Aula 191. Navegando para Tela de Detalhe da Refeição:                                           *
  * Nessa aula foi implementado a tela de detalhes da refeição e a navegação para essa tela, onde   *
