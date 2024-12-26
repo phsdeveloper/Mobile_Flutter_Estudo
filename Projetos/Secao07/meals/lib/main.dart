@@ -35,25 +35,7 @@ class MyApp extends StatelessWidget {
       routes: {
         AppRoutes.home:(ctx) => const CategoriesScreen(),//Substitui o home, para que a rota '/' seja a tela inicial.
         AppRoutes.categoriesMeals: (ctx) => const CategoriesMealsScreen(),
-        //AppRoutes.mealDetail: (ctx) => const MealDetailScreen(),
-      },
-      onGenerateRoute: (settings)  {
-       
-        if (settings.name == '/alguma-coisa') {
-          return null;
-        } else if (settings.name == '/outra-coisa') {
-          return null;
-        } else {
-          return MaterialPageRoute(builder: (_) {
-            return const CategoriesScreen();
-          });
-        }
-       
-      },
-      onUnknownRoute: (settings) {
-        return MaterialPageRoute(builder: (_) {
-          return const CategoriesScreen();
-        });
+        AppRoutes.mealDetail: (ctx) => const MealDetailScreen(),
       },
     );
   }
@@ -63,7 +45,11 @@ class MyApp extends StatelessWidget {
 /***************************************************************************************************
  *                      Anotações importantes sobre o código:                                      *
  ***************************************************************************************************
- * ★ ⚑ Aula 192. onGenerateRoute & onUnknownRoute:                                                   *
+ * ★ Aula 193. Tela Detalhe Refeição #01:                                                          *
+ * Nessa aula foi implementado a tela de detalhes da refeição com as seguintes implementações:     *
+ * Adicionado a imagem da refeição, os ingredientes e o passo a passo da refeição.                 *
+ ***************************************************************************************************
+ * ★ ⚑ Aula 192. onGenerateRoute & onUnknownRoute:                                                 *
  * Nessa aula foi apresentado duas opções para lidar com rotas desconhecidas                       *
  * ● onGenerateRoute: é uma função que é chamada quando uma rota nomeada é chamada, mas não foi    *
  *                    definida no atributo routes do MaterialApp.                                  *
