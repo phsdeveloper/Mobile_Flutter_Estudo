@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'screens/categories_meals_screen.dart';
-import 'screens/categories_screen.dart';
+//import 'screens/categories_screen.dart';
 import 'Utils/app_routes.dart';
 import 'screens/meal_detail_screen.dart';
 import 'screens/tabs_screen.dart';
@@ -46,7 +46,13 @@ class MyApp extends StatelessWidget {
 /***************************************************************************************************
  *                      Anotações importantes sobre o código:                                      *
  ***************************************************************************************************
- * ★ Aula 195. Adicionando TabBar na AppBar
+ * ★ 197. Adicionar TabBar na Parte Inferior:                                                      *
+ * Nesta aula foi implementado a navegação na parte inferior da tela.                              *
+ * - Retirou boa parte do coódigo da aula passsada.                                                *
+ * - Foi mostrado como adicionar uma forma diferente de navegar entre as abas onde o nome da aba   *
+ *  aparece apnas na que esta selecionada.                                                         *
+ ***************************************************************************************************
+ * ★ Aula 195. Adicionando TabBar na AppBar:                                                       *
  * Nesta aula foi inciado a implementação das abas no AppBar.                                      *
  * Foi criado um novo widget chamado TabsScreen, que é um widget que representa a tela principal   *
  * da aplicação, onde as abas são exibidas na AppBar.                                              *
