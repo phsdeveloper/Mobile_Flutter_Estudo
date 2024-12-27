@@ -46,6 +46,12 @@ class MyApp extends StatelessWidget {
 /***************************************************************************************************
  *                      Anotações importantes sobre o código:                                      *
  ***************************************************************************************************
+ * ★ Aula 198. Adicionar Drawer Personalizado:                                                     *
+ * Nessa aula foi implementado o menu lateral personalizado.                                       *
+ * Foi criado um novo widget chamado MainDrawer, que é um widget que representa o menu lateral da  *
+ * aplicação, onde foi adicionado um Drawer para exibir o menu lateral.                            *
+ * Foi adicionado um ListTile para exibir os itens do menu lateral.                                *
+ ***************************************************************************************************
  * ★ 197. Adicionar TabBar na Parte Inferior:                                                      *
  * Nesta aula foi implementado a navegação na parte inferior da tela.                              *
  * - Retirou boa parte do coódigo da aula passsada.                                                *
