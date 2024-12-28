@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:meals/models/meal.dart';
 import '../Utils/app_routes.dart';
@@ -7,7 +8,31 @@ class MealItem extends StatelessWidget {
 
   final Meal meal;
   void selectMeal(BuildContext context) {
-    Navigator.of(context).pushNamed(AppRoutes.mealDetail,arguments: meal);
+    Navigator.of(context).pushNamed(AppRoutes.mealDetail,arguments: meal).then((value) {
+      if(value == null){
+        mensagemiOS(context,'Nenhuma refeição foi selecionada!');
+      }else{
+         mensagemiOS(context,'O nome da refeição é $value');
+      }
+    });
+  }
+
+  void mensagemiOS(BuildContext context,String mensagem) {
+    showDialog(
+      context: context,
+      builder: (ctx) => CupertinoAlertDialog(
+      title: const Text('Atenção'),
+      content: Text(mensagem),
+      actions: <Widget>[
+        CupertinoDialogAction(
+        child: const Text('Ok'),
+        onPressed: () {
+          Navigator.of(ctx).pop();
+        },
+        ),
+      ],
+      ),
+    );
   }
 
   @override

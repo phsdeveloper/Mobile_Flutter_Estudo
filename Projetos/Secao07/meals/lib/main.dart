@@ -47,6 +47,22 @@ class MyApp extends StatelessWidget {
 /***************************************************************************************************
  *                      Anotações importantes sobre o código:                                      *
  ***************************************************************************************************
+ * ★ 201. Fechando a Tela & Passando Dados de Volta:                                               *
+ * Nesta aula foi implementado uma forma de obter os dados da tela que está em primeiro plano,     *
+ * para a tela que está em segundo plano.                                                          *
+ * Isso é possível pois o método pushNamed retorna um Future, onde é possível aguardar que a tela  *
+ * em primeiro plano seja fechada.                                                                 *
+ * Arquivos alterados:                                                                             *
+ * - lib/components/meal_item.dart                                                                 *
+ * - lib/screens/categories_meals_screen.dart                                                      *
+ ***************************************************************************************************
+ * ★ Aula 200. Substituindo Telas:                                                                 *
+ * Nesta aula foi implementado o método pushReplacementNamed para substituir a tela atual pela     *
+ * tela que foi selecionada no menu lateral.                                                       *
+ * Diferente do pushNamed que empilha a tela atual e a nova tela, o pushReplacementNamed substitui *
+ * a tela atual pela nova tela.                                                                    *
+ * Evitando que tenhamos muitas telas empilhadas sem necessidade.                                  *
+ ***************************************************************************************************
  * Aula 199. Adicionando Links no Drawer:                                                          *
  * Nesta aula foi implementado a navegação entre as telas através do menu lateral, onde foi        *
  * adicionado um método para navegar para a tela de configurações juntamente com as rotas.         *
