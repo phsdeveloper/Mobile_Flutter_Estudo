@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'screens/categories_meals_screen.dart';
-//import 'screens/categories_screen.dart';
 import 'Utils/app_routes.dart';
 import 'screens/meal_detail_screen.dart';
+import 'screens/settings_screen.dart';
 import 'screens/tabs_screen.dart';
 void main() {
   runApp(const MyApp());
@@ -37,6 +37,7 @@ class MyApp extends StatelessWidget {
         AppRoutes.home:(ctx) => const TabsScreen(),//Substitui o home, para que a rota '/' seja a tela inicial.
         AppRoutes.categoriesMeals: (ctx) => const CategoriesMealsScreen(),
         AppRoutes.mealDetail: (ctx) => const MealDetailScreen(),
+        AppRoutes.settings: (ctx) => const SettingsScreen(),
       },
     );
   }
@@ -45,6 +46,10 @@ class MyApp extends StatelessWidget {
 
 /***************************************************************************************************
  *                      Anotações importantes sobre o código:                                      *
+ ***************************************************************************************************
+ * Aula 199. Adicionando Links no Drawer:                                                          *
+ * Nesta aula foi implementado a navegação entre as telas através do menu lateral, onde foi        *
+ * adicionado um método para navegar para a tela de configurações juntamente com as rotas.         *
  ***************************************************************************************************
  * ★ Aula 198. Adicionar Drawer Personalizado:                                                     *
  * Nessa aula foi implementado o menu lateral personalizado.                                       *

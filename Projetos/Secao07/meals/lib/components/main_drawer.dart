@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import '../Utils/app_routes.dart';
 
 class MainDrawer extends StatelessWidget {
   const MainDrawer({super.key});
 
-  Widget createItem(IconData icon, String label) {
+  Widget createItem(IconData icon, String label, Function() onTap) {
     return ListTile(
       leading: Icon(
         icon,
@@ -17,7 +18,7 @@ class MainDrawer extends StatelessWidget {
           fontWeight: FontWeight.bold,
         ),
       ),
-      onTap: () {},
+      onTap: onTap,
     );
   }
 
@@ -42,8 +43,16 @@ class MainDrawer extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 20),
-          createItem(Icons.restaurant, 'Refeições'),
-          createItem(Icons.settings, 'Configurações'),
+          createItem(
+            Icons.restaurant,
+            'Refeições',
+            ()=> Navigator.of(context).pushNamed(AppRoutes.home),
+          ),
+          createItem(
+            Icons.settings,
+            'Configurações',
+            ()=> Navigator.of(context).pushNamed(AppRoutes.settings),
+          ),
         ],
       ),
     );
