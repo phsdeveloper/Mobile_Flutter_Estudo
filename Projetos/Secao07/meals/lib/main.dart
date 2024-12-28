@@ -47,6 +47,15 @@ class MyApp extends StatelessWidget {
 /***************************************************************************************************
  *                      Anotações importantes sobre o código:                                      *
  ***************************************************************************************************
+ * Aula 202. Tela de Configurações:                                                                *
+ * Incio do desenvolvimento dos filtos da tela de configuração.                                    *
+ * Nesta aul doi implementado um método para criar e salvar o estado de cada selecao de filtro.    *
+ * Entretanto ainda esta apenas no layout, sem funcionalidade.                                     *
+ * arquivos alterados:                                                                             *
+ * - lib/screens/settings_screen.dart                                                              *
+ * - lib/components/main_drawer.dart                                                               *
+ * - models/settings.dart                                                                          *
+ ***************************************************************************************************
  * ★ 201. Fechando a Tela & Passando Dados de Volta:                                               *
  * Nesta aula foi implementado uma forma de obter os dados da tela que está em primeiro plano,     *
  * para a tela que está em segundo plano.                                                          *
