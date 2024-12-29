@@ -21,9 +21,13 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   List<Meal> _availableMeals = dummyMeals;
+Settings settings = Settings();
+
 
   void filterMeals(Settings settings) {
     setState(() {
+      this.settings = settings;
+
       _availableMeals = dummyMeals.where((meal) {
         final filterGluten = settings.isGlutenFree && !meal.isGlutenFree;
         final filterLactose = settings.isLactoseFree && !meal.isLactoseFree;
@@ -66,7 +70,7 @@ class _MyAppState extends State<MyApp> {
         AppRoutes.categoriesMeals: (ctx) =>
             CategoriesMealsScreen(_availableMeals),
         AppRoutes.mealDetail: (ctx) => const MealDetailScreen(),
-        AppRoutes.settings: (ctx) => SettingsScreen(filterMeals),
+        AppRoutes.settings: (ctx) => SettingsScreen(filterMeals, settings),
       },
     );
   }
@@ -75,6 +79,23 @@ class _MyAppState extends State<MyApp> {
 
 /***************************************************************************************************
  *                      Anotações importantes sobre o código:                                      *
+ ***************************************************************************************************
+ * ★★⚑ Aula 206. Filtrando os Dados #03:                                                            *
+ * Nesta aula foi implementado a persistencia dos dados selacionados para realizar o filtro nas    *
+ * refeições.                                                                                      *
+ * Arquivos alterados:                                                                             *
+ *  - lib/main.dart                                                                                *
+ *    - Neste arquivo foi adicionado uma variavel do tipo Settings para armazenar as configurações *
+ *      selecionadas.                                                                              *
+ *    - Na função filterMeals foi adicionado a variavel settings para armazenar as configurações   *
+ *      e atualizar o estado da tela.                                                              *
+ *  - lib/models/settings.dart                                                                     *
+ *     - Nesse arquivo foi adicionado uma propriedade chamada settings que é do tipo Settings.     *
+ *       que será alimentada diretamente pelo parametro passado no construtor da classe.           *
+ *     - Na classe _SettingsScreenState foi feito um override no metodo initState para inicializar *
+ *       a variavel settings com o valor passado no construtor.                                    * 
+ *                                                                                                 *
+ * ⚑ Pesquisar mais sobre o estado em flutter.                                                     * 
  ***************************************************************************************************
  * ★ Aula 205. Filtrando os Dados #02:                                                             *
  * Nessa aula foi implementado a filtragem dos dados e para isso foi realizado as seguintes        *
