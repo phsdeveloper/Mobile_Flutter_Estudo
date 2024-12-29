@@ -3,8 +3,8 @@ import '../components/main_drawer.dart';
 import '../models/settings.dart';
 
 class SettingsScreen extends StatefulWidget {
-  const SettingsScreen({super.key});
-
+  const SettingsScreen(this.onSettingsChanged,{super.key});
+  final Function(Settings) onSettingsChanged;
   @override
   State<SettingsScreen> createState() => _SettingsScreenState();
 }
@@ -18,7 +18,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
       title: Text(Title),
       subtitle: Text(subtitle),
       value: value,
-      onChanged: onChange,
+      onChanged: (value){
+        onChange(value);
+        widget.onSettingsChanged(settings);
+      }
     );
   }
 

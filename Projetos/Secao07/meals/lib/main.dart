@@ -6,6 +6,7 @@ import 'screens/settings_screen.dart';
 import 'screens/tabs_screen.dart';
 import 'models/meal.dart';
 import 'data/dummy_data.dart';
+import '../models/settings.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,8 +20,23 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-final List<Meal> _availableMeals = dummyMeals;
+  List<Meal> _availableMeals = dummyMeals;
 
+  void filterMeals(Settings settings) {
+    setState(() {
+      _availableMeals = dummyMeals.where((meal) {
+        final filterGluten = settings.isGlutenFree && !meal.isGlutenFree;
+        final filterLactose = settings.isLactoseFree && !meal.isLactoseFree;
+        final filterVegan = settings.isVegan && !meal.isVegan;
+        final filterVegetarian = settings.isVegetarian && !meal.isVegetarian;
+
+        return !filterGluten &&
+            !filterLactose &&
+            !filterVegan &&
+            !filterVegetarian;
+      }).toList();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,10 +61,12 @@ final List<Meal> _availableMeals = dummyMeals;
             ),
       ),
       routes: {
-        AppRoutes.home:(ctx) => const TabsScreen(),//Substitui o home, para que a rota '/' seja a tela inicial.
-        AppRoutes.categoriesMeals: (ctx) => CategoriesMealsScreen(_availableMeals),
+        AppRoutes.home: (ctx) =>
+            const TabsScreen(), //Substitui o home, para que a rota '/' seja a tela inicial.
+        AppRoutes.categoriesMeals: (ctx) =>
+            CategoriesMealsScreen(_availableMeals),
         AppRoutes.mealDetail: (ctx) => const MealDetailScreen(),
-        AppRoutes.settings: (ctx) => const SettingsScreen(),
+        AppRoutes.settings: (ctx) => SettingsScreen(filterMeals),
       },
     );
   }
@@ -58,7 +76,17 @@ final List<Meal> _availableMeals = dummyMeals;
 /***************************************************************************************************
  *                      Anotações importantes sobre o código:                                      *
  ***************************************************************************************************
- * Aula 203. Filtrando os Dados #01:                                                                    *
+ * ★ Aula 205. Filtrando os Dados #02:                                                             *
+ * Nessa aula foi implementado a filtragem dos dados e para isso foi realizado as seguintes        *
+ * alterações:                                                                                     *
+ * - Arquivo main.dart:                                                                            *
+ *   - Foi criado um método filterMeals que recebe um objeto da classe Settings e filtra as        *
+ *     refeições.                                                                                  *
+ * - Arquivo settings_screen.dart:                                                                 *
+ *   - foi criado a referencia a uma função chamada onSettingsChanged que vai receber via          *
+ *     construtor uma função que irá filtrar as refeições de acordo com as configurações.          *
+ ***************************************************************************************************
+ * Aula 203. Filtrando os Dados #01:                                                               *
  * Nessa aula foi inicializado as alterações necessárias para a implementação dos filtros          *
  * e para isso as seguintes alterações foram feitas:                                               *
  * - Arquivo main.dart:
