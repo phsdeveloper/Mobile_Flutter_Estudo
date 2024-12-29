@@ -4,12 +4,23 @@ import 'Utils/app_routes.dart';
 import 'screens/meal_detail_screen.dart';
 import 'screens/settings_screen.dart';
 import 'screens/tabs_screen.dart';
+import 'models/meal.dart';
+import 'data/dummy_data.dart';
+
 void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+final List<Meal> _availableMeals = dummyMeals;
+
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +46,7 @@ class MyApp extends StatelessWidget {
       ),
       routes: {
         AppRoutes.home:(ctx) => const TabsScreen(),//Substitui o home, para que a rota '/' seja a tela inicial.
-        AppRoutes.categoriesMeals: (ctx) => const CategoriesMealsScreen(),
+        AppRoutes.categoriesMeals: (ctx) => CategoriesMealsScreen(_availableMeals),
         AppRoutes.mealDetail: (ctx) => const MealDetailScreen(),
         AppRoutes.settings: (ctx) => const SettingsScreen(),
       },
@@ -46,6 +57,18 @@ class MyApp extends StatelessWidget {
 
 /***************************************************************************************************
  *                      Anotações importantes sobre o código:                                      *
+ ***************************************************************************************************
+ * Aula 203. Filtrando os Dados #01:                                                                    *
+ * Nessa aula foi inicializado as alterações necessárias para a implementação dos filtros          *
+ * e para isso as seguintes alterações foram feitas:                                               *
+ * - Arquivo main.dart:
+ *  - Foi modificado de StatefulWidget para StatelessWidget, pois não há necessidade de ter estado *
+ *    para a aplicação.                                                                            *
+ *  - Foi criado uma lista de refeições disponíveis, que irá conter as refeições de acordo com o   * 
+ *    filtro selecionado.                                                                          *
+ *  - Arquivo caregorias_meals_screen.dart:                                                        *
+ *    - foi adicionado no construtor da classe CategoriesMealsScreen um parâmetro meals, que       *
+ *      representa a lista de refeições de acordo com o(s) filtro(s) selecionado(s).               *
  ***************************************************************************************************
  * Aula 202. Tela de Configurações:                                                                *
  * Incio do desenvolvimento dos filtos da tela de configuração.                                    *
