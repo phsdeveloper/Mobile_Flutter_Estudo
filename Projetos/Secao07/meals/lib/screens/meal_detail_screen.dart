@@ -5,7 +5,10 @@ import 'package:flutter/material.dart';
 import '../models/meal.dart';
 
 class MealDetailScreen extends StatelessWidget {
-  const MealDetailScreen({super.key});
+  const MealDetailScreen(this.onToggleFavorite,this.isFavorite,{super.key});
+
+  final Function(Meal) onToggleFavorite;
+  final bool Function(Meal) isFavorite;
 
   Widget createSectionTitle(BuildContext context, String title) {
     return Container(
@@ -90,15 +93,16 @@ class MealDetailScreen extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.star),
         backgroundColor: Theme.of(context).colorScheme.secondary, 
         onPressed: () {
-          Navigator.of(context).pop(meal.title);
+          onToggleFavorite(meal);
+          //Navigator.of(context).pop(meal.title);
           //Essa implementação permite que dados da tela que está aberta no momento
           //envie dados para a tela anterior, por exemplo,
           //Caso tenha alterações em algum dado, podemos passar os dados alterados 
           //Para a tela anterior, pois o pop aceita como paramentro um T.
         },
+        child: Icon(isFavorite(meal)?Icons.star:Icons.star_border),
       ),
     );
   }

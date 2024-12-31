@@ -21,8 +21,8 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   List<Meal> _availableMeals = dummyMeals;
-Settings settings = Settings();
-
+  final List<Meal> _favoriteMeals = [];
+  Settings settings = Settings();
 
   void filterMeals(Settings settings) {
     setState(() {
@@ -41,38 +41,49 @@ Settings settings = Settings();
       }).toList();
     });
   }
+  //-----------------------------------------------------------------------------
+
+  void toogleFavorite(Meal meal){
+    setState(() {
+      _favoriteMeals.contains(meal)? _favoriteMeals.remove(meal):_favoriteMeals.add(meal);
+    });
+  }
+
+  //--------------------------------------------------------------------------------
+bool isFavorite(Meal meal){
+ return _favoriteMeals.contains(meal);
+  }
+
+  //--------------------------------------------------------------------------------
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Vamos Cozinhar?',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSwatch().copyWith(
-          primary: Colors.pink,
-          secondary: Colors.amber,
-          background: const Color.fromRGBO(255, 254, 229, 1),
-        ),
-        canvasColor: const Color.fromRGBO(255, 254, 229, 1),
-        fontFamily: 'Raleway',
-        textTheme: ThemeData.light().textTheme.copyWith(
-              headlineSmall: const TextStyle(
-                fontSize: 20,
-                fontFamily: 'RobotoCondensed',
+        title: 'Vamos Cozinhar?',
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSwatch().copyWith(
+            primary: Colors.pink,
+            secondary: Colors.amber,
+            background: const Color.fromRGBO(255, 254, 229, 1),
+          ),
+          canvasColor: const Color.fromRGBO(255, 254, 229, 1),
+          fontFamily: 'Raleway',
+          textTheme: ThemeData.light().textTheme.copyWith(
+                headlineSmall: const TextStyle(
+                  fontSize: 20,
+                  fontFamily: 'RobotoCondensed',
+                ),
               ),
-            ),
-        appBarTheme: ThemeData.light().appBarTheme.copyWith(
-              color: Colors.pink,
-            ),
-      ),
-      routes: {
-        AppRoutes.home: (ctx) =>
-            const TabsScreen(), //Substitui o home, para que a rota '/' seja a tela inicial.
-        AppRoutes.categoriesMeals: (ctx) =>
-            CategoriesMealsScreen(_availableMeals),
-        AppRoutes.mealDetail: (ctx) => const MealDetailScreen(),
-        AppRoutes.settings: (ctx) => SettingsScreen(filterMeals, settings),
-      },
-    );
+          appBarTheme: ThemeData.light().appBarTheme.copyWith(
+                color: Colors.pink,
+              ),
+        ),
+        routes: {
+          AppRoutes.home: (ctx) => TabsScreen(_favoriteMeals),
+          AppRoutes.categoriesMeals:(ctx)=>CategoriesMealsScreen(_availableMeals),
+          AppRoutes.mealDetail: (ctx) =>  MealDetailScreen(toogleFavorite,isFavorite),
+          AppRoutes.settings: (ctx) => SettingsScreen(filterMeals, settings)
+        });
   }
 }
 
@@ -80,7 +91,28 @@ Settings settings = Settings();
 /***************************************************************************************************
  *                      Anotações importantes sobre o código:                                      *
  ***************************************************************************************************
- * ★★⚑ Aula 206. Filtrando os Dados #03:                                                            *
+ * ★ Aula 207. Marcar como Favorito:                                                               * 
+ * Nesta aula foi implementado a marcação das comifas favoritadas, com as seguintes alteracoes     *
+ * - Arquivo main.dart:                                                                            *
+ *   - Fucao toogleFavorite: foi criado um metodo para marcar ou desmarcar uma refeição como       *
+ *                           favorita.                                                             *
+ *   - Funcao isFavorite: foi criado um metodo para verificar se uma refeição é favorita.          *
+ * - Arquivo favorite_screen.dart:                                                                 *
+ *   - Neste arquivo foi implementado a tela de favoritos, reutilizando o componente MealItem para *
+ *     reinderizar as refeições favoritas.                                                         *
+ * - Arquivo meal_detail_screen.dart:                                                              *
+ *   - Neste arquivo foi implementado as funcões onToggleFavorite e isFavorite que são passadas    *
+ *     via construtor para serem aplicadas nos elementos da tela.                                  *
+ *  - Arquivo tabs_screen.dart:                                                                    *
+ *    Nesse arquivo foi realizada muitas alteracoes:                                               *
+ *     1. A inicializacao da variavel _screns foi alterada para ser inicicializada no método       *
+ *        initState.                                                                               *
+ *        Esse método serve para inicializar as variaveis de estado da tela, e é chamado uma vez   *
+ *        quando o widget é inserido na árvore de widgets.                                         *
+ *    2. Foi adicionado a variavel favoriteMeals, tanto na classe quanto no construtor, e essa     *
+ *       varivel é passada pela classe pai. que é a classe main.dart.                              *                                                       
+ *************************************************************************************************** 
+ * ★★⚑ Aula 206. Filtrando os Dados #03:                                                           *
  * Nesta aula foi implementado a persistencia dos dados selacionados para realizar o filtro nas    *
  * refeições.                                                                                      *
  * Arquivos alterados:                                                                             *

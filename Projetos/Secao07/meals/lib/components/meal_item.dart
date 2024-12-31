@@ -10,9 +10,9 @@ class MealItem extends StatelessWidget {
   void selectMeal(BuildContext context) {
     Navigator.of(context).pushNamed(AppRoutes.mealDetail,arguments: meal).then((value) {
       if(value == null){
-        mensagemiOS(context,'Nenhuma refeição foi selecionada!');
+        //mensagemiOS(context,'Nenhuma refeição foi selecionada!');
       }else{
-         mensagemiOS(context,'O nome da refeição é $value');
+         //mensagemiOS(context,'O nome da refeição é $value');
       }
     });
   }
